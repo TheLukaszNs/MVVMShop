@@ -10,7 +10,11 @@
         Width="1000"
         ResizeMode="NoResize"
         >
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <local:Button Text="Zaloguj" Variant="Danger" />
-    </StackPanel>
+    <Frame
+        Width="1000"
+        Height="800"
+        Source="StartPage.xaml"
+        NavigationUIVisibility="Hidden"
+        >
+    </Frame>
 </Window>
