@@ -10,7 +10,7 @@
         Width="1000"
         ResizeMode="NoResize"
         >
-    <Grid>
-        
-    </Grid>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <local:Button Text="Zaloguj" Variant="Danger" />
+    </StackPanel>
 </Window>
