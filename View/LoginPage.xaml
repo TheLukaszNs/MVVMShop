@@ -7,20 +7,25 @@
       mc:Ignorable="d" 
       Width="1000"
       Height="800"
-      Title="Logowanie"
       ShowsNavigationUI="False"
       Background="#DFE6E9"
+      Title="Logowanie"
       >
     <Page.Resources>
-        
+        <Style TargetType="{x:Type local:ConstrainedTextField}">
+            <Setter Property="Margin" Value="0 30 0 0"/>
+            <Setter Property="Variant" Value="Default"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
     </Page.Resources>
-
+    
     <Grid>
         <StackPanel
             Margin="0 150 0 0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="Transparent"
+            MinWidth="600"
             >
             <!-- Tytuł -->
             <TextBlock
@@ -34,10 +39,19 @@
                 >
                 Logowanie
             </TextBlock>
+
+            <local:ConstrainedTextField
+                Margin="0 60 0 0"
+                Placeholder="Login"
+                >
+            </local:ConstrainedTextField>
+
+            <local:ConstrainedTextField
+                Placeholder="Hasło"
+                >
+            </local:ConstrainedTextField>
             
-            <!-- Formularz -->
-            
-            <!-- Przyciski -->
+            <!-- Przycisk -->
             <local:Button
                 Text="Zaloguj się"
                 Variant="Default"

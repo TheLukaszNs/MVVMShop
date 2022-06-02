@@ -12,7 +12,10 @@
       Title="Rejestracja"
       >
     <Page.Resources>
-        
+        <Style TargetType="{x:Type local:ConstrainedTextField}">
+            <Setter Property="Margin" Value="0 30 0 0"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -21,6 +24,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="Transparent"
+            MinWidth="600"
             >
             <!-- Tytuł -->
             <TextBlock
@@ -36,8 +40,44 @@
             </TextBlock>
 
             <!-- Formularz -->
+            <Grid
+                Margin="0 60 0 0"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <!-- Przyciski -->
+                <local:ConstrainedTextField
+                    Margin="0 0 10 0"
+                    Grid.Column="0"
+                    Placeholder="Imię"
+                    Variant="Accent"
+                    >
+                </local:ConstrainedTextField>
+
+                <local:ConstrainedTextField
+                    Margin="10 0 0 0"
+                    Grid.Column="1"
+                    Placeholder="Nazwisko"
+                    Variant="Accent"
+                    >
+                </local:ConstrainedTextField>
+            </Grid>
+
+            <local:ConstrainedTextField
+                Placeholder="Login"
+                Variant="Accent"
+                >
+            </local:ConstrainedTextField>
+
+            <local:ConstrainedTextField
+                Placeholder="Hasło"
+                Variant="Accent"
+                >
+            </local:ConstrainedTextField>
+
+            <!-- Przycisk -->
             <local:Button
                 Text="Zarejestruj się"
                 Variant="Accent"
