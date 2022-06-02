@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVMShop.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,6 @@ using System.Windows.Shapes;
 
 namespace MVVMShop.View
 {
-    public enum ButtonVariant
-    {
-        Default,
-        Accent,
-        Danger,
-    }
-
     public partial class Button : UserControl
     {
         public ButtonVariant Variant
