@@ -2,8 +2,8 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using MVVMShop.View;
 using System.Windows.Media;
+using MVVMShop.Common;
 
 namespace MVVMShop.Converters
 {
