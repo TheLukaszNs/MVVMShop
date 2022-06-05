@@ -77,7 +77,7 @@
                 >
             </local:ConstrainedTextField>
 
-            <!-- Przycisk -->
+            <!-- Przyciski -->
             <local:Button
                 Text="Zarejestruj się"
                 Variant="Accent"

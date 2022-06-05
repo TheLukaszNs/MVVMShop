@@ -51,7 +51,7 @@
                 >
             </local:ConstrainedTextField>
             
-            <!-- Przycisk -->
+            <!-- Przyciski -->
             <local:Button
                 Text="Zaloguj się"
                 Variant="Default"
