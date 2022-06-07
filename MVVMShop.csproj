@@ -144,9 +144,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\RegisterPage.xaml">
-    <Page Include="View\StartPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\StartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
