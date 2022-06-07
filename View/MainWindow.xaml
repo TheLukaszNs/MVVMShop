@@ -10,13 +10,13 @@
         Height="800"
         Width="1000"
         ResizeMode="NoResize" 
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.Foreground="White"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
-        >
+>
     <Grid>
-        <Button Content="Start" HorizontalAlignment="Center" />
+        <local:RegisterPage />
     </Grid>
 </Window>

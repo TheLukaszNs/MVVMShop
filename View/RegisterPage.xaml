@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="MVVMShop.View.RegisterPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MVVMShop.View"
+             mc:Ignorable="d" 
+             Height="800" Width="1000">
+    <StackPanel 
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Width="600">
+        <TextBlock
+            Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
+            FontWeight="Bold"
+            TextAlignment="Center"
+            Margin="0, 0, 0, 100"
+            >Rejestracja</TextBlock>
+        <Grid Margin="0, 0, 0, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBox
+                Style="{DynamicResource MaterialDesignFilledTextBox}"
+                materialDesign:HintAssist.Hint="Imię"
+                materialDesign:TextFieldAssist.TrailingIcon="AccountCircleOutline"
+                materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                Cursor="Arrow"/>
+            <TextBox
+                Style="{DynamicResource MaterialDesignFilledTextBox}"
+                materialDesign:HintAssist.Hint="Nazwisko"
+                materialDesign:TextFieldAssist.TrailingIcon="RenameBox"
+                materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                Grid.Column="2"/>
+        </Grid>
+        <TextBox
+            Style="{DynamicResource MaterialDesignFilledTextBox}"
+            materialDesign:HintAssist.Hint="Email"
+            materialDesign:TextFieldAssist.TrailingIcon="Email"
+            materialDesign:TextFieldAssist.HasTrailingIcon="True"
+            Margin="0, 0, 0, 20" Cursor="Arrow"/>
+        <PasswordBox
+            Style="{DynamicResource MaterialDesignFilledPasswordBox}"
+            materialDesign:HintAssist.Hint="Hasło"
+            materialDesign:TextFieldAssist.HasClearButton="False" 
+            materialDesign:TextFieldAssist.TrailingIcon="Email"
+            materialDesign:TextFieldAssist.HasTrailingIcon="True"
+            Margin="0, 0, 0, 20" Cursor="Arrow" />
+
+        <Button
+            Style="{DynamicResource MaterialDesignRaisedButton}"
+            Content="Zarejestruj się"
+            Cursor="Hand"/>
+    </StackPanel>
+</UserControl>
