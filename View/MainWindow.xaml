@@ -17,6 +17,6 @@
         FontFamily="{materialDesign:MaterialDesignFont}"
         >
     <Grid>
-        <Button Content="Start" HorizontalAlignment="Center" />
+        
     </Grid>
 </Window>

@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="MVVMShop.View.LoginPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MVVMShop.View"
+             mc:Ignorable="d" 
+             Width="1000"
+             Height="800"
+             >
+    <Grid>
+        <StackPanel
+            VerticalAlignment="Center"
+            Width="600"
+            >
+            <!-- TITLE -->
+            <TextBlock
+                TextAlignment="Center"
+                Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
+                FontWeight="Bold"
+                Margin="0 0 0 100"
+                >
+                Logowanie
+            </TextBlock>
+            
+            <!-- INPUT -->
+            <TextBox
+                Style="{DynamicResource MaterialDesignFilledTextBox}"
+                materialDesign:HintAssist.Hint="E-mail"
+                materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                materialDesign:TextFieldAssist.TrailingIcon="Email"
+                Margin="0 0 0 20" 
+                Cursor="Arrow"
+                >
+            </TextBox>
+
+            <PasswordBox
+                Style="{DynamicResource MaterialDesignFilledPasswordBox}"
+                materialDesign:HintAssist.Hint="Password"
+                Margin="0 0 0 20"
+                >
+            </PasswordBox>
+            
+            <!-- BUTTON -->
+            <Button Cursor="Hand">
+                Zaloguj się
+            </Button>
+        </StackPanel> 
+    </Grid>
+</UserControl>
