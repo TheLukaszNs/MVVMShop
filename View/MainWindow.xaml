@@ -17,6 +17,6 @@
         FontFamily="{materialDesign:MaterialDesignFont}"
         >
     <Grid>
-        <local:AdminPage></local:AdminPage>
+
     </Grid>
 </Window>
