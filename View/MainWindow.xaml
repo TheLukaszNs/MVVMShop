@@ -15,8 +15,8 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
->
+        >
     <Grid>
-        
+        <local:AdminPage></local:AdminPage>
     </Grid>
 </Window>

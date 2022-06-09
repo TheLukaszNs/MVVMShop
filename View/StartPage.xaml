@@ -32,7 +32,7 @@
 
             <Button>
                 Zarejestruj się
-            </Button>           
+            </Button>      
         </StackPanel>    
     </Grid>
 </UserControl>
