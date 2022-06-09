@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:MVVMShop.ViewModel"
         xmlns:local="clr-namespace:MVVMShop.View"
         mc:Ignorable="d"
         Title="Shop"
@@ -15,7 +16,7 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
-        >
+>
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:StartPageViewModel}">
             <local:StartPage />
