@@ -17,6 +17,5 @@
         FontFamily="{materialDesign:MaterialDesignFont}"
 >
     <Grid>
-        
     </Grid>
 </Window>
