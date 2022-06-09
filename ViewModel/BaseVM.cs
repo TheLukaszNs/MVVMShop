@@ -2,7 +2,7 @@
 
 namespace MVVMShop.ViewModel
 {
-    internal abstract class BaseVM : INotifyPropertyChanged
+    public abstract class BaseVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
