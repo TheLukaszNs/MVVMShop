@@ -15,7 +15,18 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
->
-    <Grid>
-    </Grid>
+        >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:StartPageViewModel}">
+            <local:StartPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LoginPageViewModel}">
+            <local:LoginPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RegisterPageViewModel}">
+            <local:RegisterPage />
+        </DataTemplate>
+    </Window.Resources>
+
+    <ContentControl Content="{Binding CurrentViewModel}" />
 </Window>
