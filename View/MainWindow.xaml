@@ -28,6 +28,24 @@
         <DataTemplate DataType="{x:Type vm:RegisterPageViewModel}">
             <local:RegisterPage />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdminPageViewModel}">
+            <local:AdminPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AssistantPageViewModel}">
+            <local:AssistantPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CustomerPageViewModel}">
+            <local:CustomerPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HistoryPageViewModel}">
+            <local:HistoryPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CartPageViewModel}">
+            <local:CartPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:FinalizationPageViewModel}">
+            <local:FinalizationPage />
+        </DataTemplate>
     </Window.Resources>
 
     <ContentControl Content="{Binding CurrentViewModel}" />
