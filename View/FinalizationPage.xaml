@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="MVVMShop.View.FinalizationPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMShop.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Width="1000"
+             Height="800"
+             >
+    <UserControl.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <StackPanel
+            Width="800"
+            >
+            <!-- MOTD -->
+            <TextBlock
+                Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                FontWeight="Bold"
+                TextAlignment="Center"
+                Margin="0, 0, 0, 100"
+                >
+                Wybierz adres dostawy i metodę płatności
+            </TextBlock>
+
+            <Grid
+                Height="500"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    Grid.Column="0"
+                    >
+                    <!-- Address -->
+                    <TextBlock
+                        Margin="0 0 0 20"
+                        Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                        TextAlignment="Center"
+                        >
+                        Wybierz sposób dostawy
+                    </TextBlock>
+
+                    <ComboBox
+                        Margin="0 0 0 20"
+                        Style="{DynamicResource MaterialDesignFilledComboBox}"
+                        >
+                        <ComboBoxItem>Paczkomat</ComboBoxItem>
+                        <ComboBoxItem>Kurier</ComboBoxItem>
+                        <ComboBoxItem>Odbiór osobisty</ComboBoxItem>
+                    </ComboBox>
+                    
+                    <TextBox
+                        Style="{DynamicResource MaterialDesignFilledTextBox}"
+                        materialDesign:HintAssist.Hint="ulica, nr domu"
+                        materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                        materialDesign:TextFieldAssist.TrailingIcon="Home"
+                        Margin="0 0 0 20" 
+                        >
+                    </TextBox>
+
+                    <TextBox
+                        Style="{DynamicResource MaterialDesignFilledTextBox}"
+                        materialDesign:HintAssist.Hint="kod pocztowy"
+                        materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                        materialDesign:TextFieldAssist.TrailingIcon="Post"
+                        >
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    >
+                    <!-- Payment -->
+                    <TextBlock
+                        Margin="0 0 0 20"
+                        Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                        TextAlignment="Center"
+                        >
+                        Wybierz metodę płatności
+                    </TextBlock>
+
+                    <ComboBox
+                        Margin="0 0 0 20"
+                        Style="{DynamicResource MaterialDesignFilledComboBox}"
+                        >
+                        <ComboBoxItem>Przelew</ComboBoxItem>
+                        <ComboBoxItem>Karta</ComboBoxItem>
+                        <ComboBoxItem>Przy odbiorze</ComboBoxItem>
+                    </ComboBox>
+
+                    <Button>
+                        Zamów
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
