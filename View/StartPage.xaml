@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMShop.View"
+             xmlns:vm="clr-namespace:MVVMShop.ViewModel"
              mc:Ignorable="d" 
              Width="1000"
-             Height="800"
-             >
+             Height="800" 
+             d:DataContext="{d:DesignInstance vm:StartPageViewModel}">
     <Grid>
         <StackPanel
             VerticalAlignment="Center"
@@ -25,12 +26,13 @@
             
             <!-- BUTTONS -->
             <Button
-                Margin="0 0 0 20"
-                >
+                Command="{Binding GoToLoginCommand}"
+                Margin="0 0 0 20" Cursor="Hand">
                 Zaloguj się
             </Button>
 
-            <Button>
+            <Button 
+                Command="{Binding GoToRegisterCommand}">
                 Zarejestruj się
             </Button>      
         </StackPanel>    

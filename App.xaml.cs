@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using MVVMShop.Services;
 using MVVMShop.View;
 using MVVMShop.ViewModel;
 
@@ -26,7 +27,7 @@ namespace MVVMShop
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentViewModel = new LoginPageViewModel();
+            _navigationStore.CurrentViewModel = CreateStartPageViewModel();
 
             MainWindow = new MainWindow()
             {
@@ -37,5 +38,19 @@ namespace MVVMShop
 
             base.OnStartup(e);
         }
+
+        private RegisterPageViewModel CreateRegisterPageViewModel()
+        {
+            return new RegisterPageViewModel(new NavigationService(_navigationStore, CreateLoginPageViewModel));
+        }
+
+        private LoginPageViewModel CreateLoginPageViewModel() => new LoginPageViewModel();
+
+        private StartPageViewModel CreateStartPageViewModel()
+        {
+            return new StartPageViewModel(
+                new NavigationService(_navigationStore, CreateRegisterPageViewModel),
+                new NavigationService(_navigationStore, CreateLoginPageViewModel));
+        } 
     }
 }
