@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="MVVMShop.View.CartPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMShop.View"
+             mc:Ignorable="d" 
+             Width="1000"
+             Height="800"
+             >
+    <UserControl.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <StackPanel
+            Width="800"
+            >
+            <!-- MOTD -->
+            <TextBlock
+                Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
+                FontWeight="Bold"
+                TextAlignment="Center"
+                Margin="0, 0, 0, 100"
+                >
+                Twój koszyk
+            </TextBlock>
+
+            <Grid
+                Height="500"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Products List -->
+                <ListBox
+                    Grid.Column="0"
+                    Margin="10"
+                    >
+                </ListBox>
+                
+                <!-- Summary -->
+                <StackPanel
+                    Grid.Column="1"
+                    >
+                    <TextBlock
+                        TextAlignment="Center"
+                        Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                        >
+                        Wartość: 300$
+                    </TextBlock>
+
+                    <TextBlock
+                        TextAlignment="Center"
+                        Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                        Margin="0 0 0 50"
+                        >
+                        Punkty: 20
+                    </TextBlock>
+
+                    <Button>
+                        Dostawa i płatność
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
