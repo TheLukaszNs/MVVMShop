@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MVVMShop.Commands;
+using MVVMShop.Services;
 
 namespace MVVMShop.ViewModel
 {
-    internal class RegisterPageViewModel : BaseVM
+    public class RegisterPageViewModel : BaseVM
     {
+        public ICommand GoToLoginPageCommand { get; }
+
+        public RegisterPageViewModel(NavigationService loginPageNavigationService)
+        {
+            GoToLoginPageCommand = new NavigateCommand(loginPageNavigationService);
+        }
     }
 }

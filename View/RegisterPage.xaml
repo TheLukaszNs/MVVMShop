@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:MVVMShop.ViewModel"
              xmlns:local="clr-namespace:MVVMShop.View"
              mc:Ignorable="d" 
-             Height="800" Width="1000">
+             Height="800" Width="1000" 
+             d:DataContext="{d:DesignInstance vm:RegisterPageViewModel}">
     <StackPanel 
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
@@ -54,6 +56,22 @@
         <Button
             Style="{DynamicResource MaterialDesignRaisedButton}"
             Content="Zarejestruj się"
+            Margin="0 0 0 20"
             Cursor="Hand"/>
+
+        <StackPanel 
+            Orientation="Horizontal"
+            HorizontalAlignment="Right" >
+            <TextBlock
+                Style="{DynamicResource MaterialDesignBody1TextBlock}"
+                Text="Masz już konto?"
+                Margin="0, 0, 20, 0"
+                VerticalAlignment="Center" />
+            <Button 
+                Style="{DynamicResource MaterialDesignFlatButton}"
+                Content="Zaloguj się" 
+                Command="{Binding GoToLoginPageCommand}"
+                VerticalAlignment="Center" Cursor="Hand" />
+        </StackPanel>
     </StackPanel>
 </UserControl>
