@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MVVMShop.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DB_USER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">mvvmshop_admin</Value>
+    </Setting>
+    <Setting Name="DB_PASSWD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Zaq12wsx</Value>
+    </Setting>
+    <Setting Name="DB_ADDR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="DB_PORT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+    <Setting Name="DB_DATABASE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MVVMShop</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
