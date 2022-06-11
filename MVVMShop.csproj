@@ -120,7 +120,13 @@
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
+    <Compile Include="ViewModel\AdminPageViewModel.cs" />
+    <Compile Include="ViewModel\AssistantPageViewModel.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
+    <Compile Include="ViewModel\CartPageViewModel.cs" />
+    <Compile Include="ViewModel\CustomerPageViewModel.cs" />
+    <Compile Include="ViewModel\FinalizationPageViewModel.cs" />
+    <Compile Include="ViewModel\HistoryPageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegisterPageViewModel.cs" />
