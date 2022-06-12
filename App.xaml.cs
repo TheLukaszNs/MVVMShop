@@ -7,6 +7,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using MVVMShop.HostBuilders;
 using MVVMShop.Services;
 using MVVMShop.View;
 using MVVMShop.ViewModel;
@@ -18,39 +21,43 @@ namespace MVVMShop
     /// </summary>
     public partial class App : Application
     {
-        private readonly NavigationStore _navigationStore;
+        private readonly IHost _host;
 
         public App()
         {
-            _navigationStore = new NavigationStore();
+            _host = Host.CreateDefaultBuilder()
+                .AddViewModels()
+                .ConfigureServices(services =>
+                {
+                    services.AddSingleton<NavigationStore>();
+
+                    services.AddSingleton(s => new MainWindow()
+                    {
+                        DataContext = s.GetRequiredService<MainViewModel>()
+                    });
+                })
+                .Build();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentViewModel = CreateStartPageViewModel();
+            _host.Start();
 
-            MainWindow = new MainWindow()
-            {
-                DataContext = new MainViewModel(_navigationStore)
-            };
+            var navigationService =
+                _host.Services.GetRequiredService<NavigationService<StartPageViewModel>>();
+            navigationService.Navigate();
 
-            MainWindow.Show();
+            MainWindow = _host.Services.GetRequiredService<MainWindow>();
+            MainWindow?.Show();
 
             base.OnStartup(e);
         }
 
-        private RegisterPageViewModel CreateRegisterPageViewModel()
+        protected override void OnExit(ExitEventArgs e)
         {
-            return new RegisterPageViewModel(new NavigationService(_navigationStore, CreateLoginPageViewModel));
+            _host.Dispose();
+
+            base.OnExit(e);
         }
-
-        private LoginPageViewModel CreateLoginPageViewModel() => new LoginPageViewModel();
-
-        private StartPageViewModel CreateStartPageViewModel()
-        {
-            return new StartPageViewModel(
-                new NavigationService(_navigationStore, CreateRegisterPageViewModel),
-                new NavigationService(_navigationStore, CreateLoginPageViewModel));
-        } 
     }
 }
