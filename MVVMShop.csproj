@@ -242,6 +242,11 @@
     </ApplicationDefinition>
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="DAL\DBConnection.cs" />
+    <Compile Include="DAL\Entities\OrderIncludesProducts.cs" />
+    <Compile Include="DAL\Entities\Orders.cs" />
+    <Compile Include="DAL\Entities\Products.cs" />
+    <Compile Include="DAL\Entities\Users.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtension.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
@@ -363,7 +368,7 @@
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Converters\" />
-    <Folder Include="DAL\" />
+    <Folder Include="DAL\Repositories\" />
     <Folder Include="Model\" />
     <Folder Include="Themes\" />
   </ItemGroup>
