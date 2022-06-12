@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVVMShop.DAL;
 using MVVMShop.HostBuilders;
 using MVVMShop.Services;
 using MVVMShop.View;
@@ -16,9 +17,6 @@ using MVVMShop.ViewModel;
 
 namespace MVVMShop
 {
-    /// <summary>
-    /// Logika interakcji dla klasy App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private readonly IHost _host;
@@ -29,6 +27,7 @@ namespace MVVMShop
                 .AddViewModels()
                 .ConfigureServices(services =>
                 {
+                    services.AddSingleton<DbConnection>();
                     services.AddSingleton<NavigationStore>();
 
                     services.AddSingleton(s => new MainWindow()

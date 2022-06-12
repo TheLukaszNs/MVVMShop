@@ -242,7 +242,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
-    <Compile Include="DAL\DBConnection.cs" />
+    <Compile Include="DAL\DbConnection.cs" />
     <Compile Include="DAL\Entities\OrderIncludesProducts.cs" />
     <Compile Include="DAL\Entities\Orders.cs" />
     <Compile Include="DAL\Entities\Products.cs" />

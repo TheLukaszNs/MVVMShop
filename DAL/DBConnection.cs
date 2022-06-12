@@ -7,31 +7,22 @@ using MySql.Data.MySqlClient;
 
 namespace MVVMShop.DAL
 {
-    internal sealed class DBConnection
+    public sealed class DbConnection
     {
-        private MySqlConnectionStringBuilder stringBuilder = new MySqlConnectionStringBuilder();
+        private readonly MySqlConnectionStringBuilder _stringBuilder;
 
-        private static DBConnection instance = null;
-        public static DBConnection Instance
+        public MySqlConnection Connection => new MySqlConnection(_stringBuilder.ToString());
+
+        public DbConnection()
         {
-            get
+            _stringBuilder = new MySqlConnectionStringBuilder
             {
-                if (instance == null)
-                    instance = new DBConnection();
-
-                return instance;
-            }
-        }
-
-        public MySqlConnection Connection => new MySqlConnection(stringBuilder.ToString());
-
-        private DBConnection()
-        {
-            stringBuilder.UserID = Properties.Settings.Default.DB_USER;
-            stringBuilder.Password = Properties.Settings.Default.DB_PASSWD;
-            stringBuilder.Server = Properties.Settings.Default.DB_ADDR;
-            stringBuilder.Port = Properties.Settings.Default.DB_PORT;
-            stringBuilder.Database = Properties.Settings.Default.DB_DATABASE;
+                UserID = Properties.Settings.Default.DB_USER,
+                Password = Properties.Settings.Default.DB_PASSWD,
+                Server = Properties.Settings.Default.DB_ADDR,
+                Port = Properties.Settings.Default.DB_PORT,
+                Database = Properties.Settings.Default.DB_DATABASE
+            };
         }
     }
 }
