@@ -31,7 +31,7 @@
             </TextBlock>
 
             <Grid
-                Height="200"
+                Height="300"
                 >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -58,6 +58,15 @@
                         materialDesign:HintAssist.Hint="Cena"
                         materialDesign:TextFieldAssist.HasTrailingIcon="True"
                         materialDesign:TextFieldAssist.TrailingIcon="CurrencyUsd"
+                        Margin="0 0 0 20"
+                        >
+                    </TextBox>
+
+                    <TextBox
+                        Style="{DynamicResource MaterialDesignFilledTextBox}"
+                        materialDesign:HintAssist.Hint="Punkty"
+                        materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                        materialDesign:TextFieldAssist.TrailingIcon="Trophy"
                         >
                     </TextBox>
 
