@@ -13,9 +13,9 @@ namespace MVVMShop.ViewModel
     {
         public ICommand GoToLoginPageCommand { get; }
 
-        public RegisterPageViewModel(NavigationService loginPageNavigationService)
+        public RegisterPageViewModel(NavigationService<LoginPageViewModel> navigationService)
         {
-            GoToLoginPageCommand = new NavigateCommand(loginPageNavigationService);
+            GoToLoginPageCommand = new NavigateCommand<LoginPageViewModel>(navigationService);
         }
     }
 }

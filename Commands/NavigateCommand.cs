@@ -9,11 +9,11 @@ using MVVMShop.ViewModel;
 
 namespace MVVMShop.Commands
 {
-    internal class NavigateCommand : BaseCommand
+    internal class NavigateCommand<TViewModel> : BaseCommand where TViewModel : BaseVM
     {
-        private readonly NavigationService _navigationService;
+        private readonly NavigationService<TViewModel> _navigationService;
 
-        public NavigateCommand(NavigationService navigationService)
+        public NavigateCommand(NavigationService<TViewModel> navigationService)
         {
             _navigationService = navigationService;
         }

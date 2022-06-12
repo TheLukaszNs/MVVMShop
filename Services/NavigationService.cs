@@ -8,12 +8,12 @@ using MVVMShop.ViewModel;
 
 namespace MVVMShop.Services
 {
-    public class NavigationService
+    public class NavigationService<TViewModel> where TViewModel : BaseVM
     {
         private readonly NavigationStore _navigationStore;
-        private readonly Func<BaseVM> _createViewModel;
+        private readonly Func<TViewModel> _createViewModel;
 
-        public NavigationService(NavigationStore navigationStore, Func<BaseVM> createViewModel)
+        public NavigationService(NavigationStore navigationStore, Func<TViewModel> createViewModel)
         {
             _navigationStore = navigationStore;
             _createViewModel = createViewModel;
