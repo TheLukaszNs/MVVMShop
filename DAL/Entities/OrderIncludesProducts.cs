@@ -29,5 +29,11 @@ namespace MVVMShop.DAL.Entities
         }
 
         #endregion
+
+        #region Methods
+
+        public string Insert() => $"(0, {IDOrder}, {IDProduct}, {ProductCount})";
+
+        #endregion
     }
 }
