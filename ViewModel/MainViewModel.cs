@@ -26,5 +26,11 @@ namespace MVVMShop.ViewModel
         {
             OnPropertyChanged(nameof(CurrentViewModel));
         }
+
+        public override void Dispose()
+        {
+            _navigationStore.CurrentViewModelChanged -= OnCurrentViewModelChanged;
+            base.Dispose();
+        }
     }
 }

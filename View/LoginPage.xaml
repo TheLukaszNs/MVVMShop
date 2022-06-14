@@ -24,6 +24,7 @@
 
             <!-- INPUT -->
             <TextBox
+                Text="{Binding Login}"
                 Style="{DynamicResource MaterialDesignFilledTextBox}"
                 materialDesign:HintAssist.Hint="E-mail"
                 materialDesign:TextFieldAssist.HasTrailingIcon="True"
@@ -31,15 +32,17 @@
                 Margin="0 0 0 20"
                 Cursor="Arrow" />
 
-            <PasswordBox
-                Style="{DynamicResource MaterialDesignFilledPasswordBox}"
+            <TextBox
+                Text="{Binding Password}"
+                Style="{DynamicResource MaterialDesignFilledTextBox}"
                 materialDesign:HintAssist.Hint="Password"
                 Margin="0 0 0 20" />
 
             <!-- BUTTON -->
             <Button
                 Cursor="Hand"
-                Margin="0 0 0 20">
+                Margin="0 0 0 20"
+                Command="{Binding LoginCommand}">
                 Zaloguj się
             </Button>
 

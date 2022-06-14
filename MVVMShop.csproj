@@ -240,6 +240,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AsyncBaseCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="DAL\DbConnection.cs" />
@@ -248,7 +249,10 @@
     <Compile Include="DAL\Entities\Products.cs" />
     <Compile Include="DAL\Entities\Users.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtension.cs" />
+    <Compile Include="Services\Auth\DbAuthService.cs" />
+    <Compile Include="Services\Auth\IAuthService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Stores\AuthStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\AssistantPageViewModel.cs" />
@@ -366,6 +370,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands\Auth\" />
     <Folder Include="Common\" />
     <Folder Include="Converters\" />
     <Folder Include="DAL\Repositories\" />

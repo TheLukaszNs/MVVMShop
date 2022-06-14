@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using MVVMShop.DAL;
 using MVVMShop.HostBuilders;
 using MVVMShop.Services;
+using MVVMShop.Services.Auth;
 using MVVMShop.View;
 using MVVMShop.ViewModel;
 
@@ -29,6 +30,10 @@ namespace MVVMShop
                 {
                     services.AddSingleton<DbConnection>();
                     services.AddSingleton<NavigationStore>();
+                    services.AddSingleton<AuthStore>();
+
+                    services.AddSingleton<IAuthService>(s =>
+                        new DbAuthService(s.GetRequiredService<AuthStore>(), s.GetRequiredService<DbConnection>()));
 
                     services.AddSingleton(s => new MainWindow()
                     {
