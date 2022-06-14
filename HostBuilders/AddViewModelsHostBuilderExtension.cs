@@ -14,23 +14,11 @@ namespace MVVMShop.HostBuilders
     {
         public static IHostBuilder AddViewModels(this IHostBuilder hostBuilder)
         {
-            hostBuilder.ConfigureServices(services =>
-            {
-                services.AddTransient<StartPageViewModel>();
-                services.AddSingleton<Func<StartPageViewModel>>(s => s.GetRequiredService<StartPageViewModel>);
-                services.AddSingleton<NavigationService<StartPageViewModel>>();
-
-                services.AddTransient<LoginPageViewModel>();
-                services.AddSingleton<Func<LoginPageViewModel>>(s => s.GetRequiredService<LoginPageViewModel>);
-                services.AddSingleton<NavigationService<LoginPageViewModel>>();
-
-                services.AddTransient<RegisterPageViewModel>();
-                services.AddSingleton<Func<RegisterPageViewModel>>(s => s.GetRequiredService<RegisterPageViewModel>);
-                services.AddSingleton<NavigationService<RegisterPageViewModel>>();
-
-
-                services.AddSingleton<MainViewModel>();
-            });
+            hostBuilder
+                .AddViewModel<MainViewModel>()
+                .AddViewModel<StartPageViewModel>()
+                .AddViewModel<LoginPageViewModel>()
+                .AddViewModel<RegisterPageViewModel>();
 
             return hostBuilder;
         }

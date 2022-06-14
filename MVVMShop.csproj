@@ -252,6 +252,7 @@
     <Compile Include="DAL\Repositories\OrdersRepository.cs" />
     <Compile Include="DAL\Repositories\ProductsRepository.cs" />
     <Compile Include="DAL\Repositories\UsersRepository.cs" />
+    <Compile Include="HostBuilders\AddViewModelHostBuilderExtension.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtension.cs" />
     <Compile Include="Services\Auth\DbAuthService.cs" />
     <Compile Include="Services\Auth\IAuthService.cs" />
