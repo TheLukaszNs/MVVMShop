@@ -9,7 +9,7 @@ namespace MVVMShop.DAL.Repositories
 {
     using Entities;
 
-    internal static class OrdersRepository
+    internal class OrdersRepository
     {
         #region Queries
 
@@ -19,13 +19,25 @@ namespace MVVMShop.DAL.Repositories
 
         #endregion
 
+        #region Properties
+
+        private readonly DbConnection dbconnection;
+
+        #endregion
+
+        #region Constructors
+
+        public OrdersRepository(DbConnection dbconnection) => this.dbconnection = dbconnection;
+
+        #endregion
+
         #region Methods
 
-        public static List<Orders> GetProducts()
+        public List<Orders> GetProducts()
         {
             List<Orders> orders = new List<Orders>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand(SELECT_ALL, connection);
 
@@ -42,11 +54,11 @@ namespace MVVMShop.DAL.Repositories
             return orders;
         }
 
-        public static bool AddOrder(Orders orders)
+        public bool AddOrder(Orders orders)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{INSERT} {orders.Insert()}", connection);
 
@@ -62,11 +74,11 @@ namespace MVVMShop.DAL.Repositories
         }
 
         // Can modify Status only
-        public static bool EditOrder(Orders order, uint id)
+        public bool EditOrder(Orders order, uint id)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 string MODIFY = $"UPDATE orders " +
                     $"SET " +
@@ -87,11 +99,11 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        public static bool DeleteProduct(uint id)
+        public bool DeleteProduct(uint id)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{DELETE}{id}", connection);
 

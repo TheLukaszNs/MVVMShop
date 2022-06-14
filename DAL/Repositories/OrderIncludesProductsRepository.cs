@@ -9,7 +9,7 @@ namespace MVVMShop.DAL.Repositories
 {
     using Entities;
 
-    internal static class OrderIncludesProductsRepository
+    internal sealed class OrderIncludesProductsRepository
     {
         #region Queries
 
@@ -19,13 +19,25 @@ namespace MVVMShop.DAL.Repositories
 
         #endregion
 
+        #region Properties
+
+        private readonly DbConnection dbconnection;
+
+        #endregion
+
+        #region Constructors
+
+        public OrderIncludesProductsRepository(DbConnection dbconnection) => this.dbconnection = dbconnection;
+
+        #endregion
+
         #region Methods
 
-        public static List<OrderIncludesProducts> Get(uint idO)
+        public List<OrderIncludesProducts> Get(uint idO)
         {
             List<OrderIncludesProducts> data = new List<OrderIncludesProducts>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{SELECT}{idO}", connection);
 
@@ -42,11 +54,11 @@ namespace MVVMShop.DAL.Repositories
             return data;
         }
 
-        public static bool Add(OrderIncludesProducts oip)
+        public bool Add(OrderIncludesProducts oip)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{INSERT} {oip.Insert()}", connection);
 
@@ -61,11 +73,11 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        public static bool Delete(uint id)
+        public bool Delete(uint id)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{DELETE}{id}", connection);
 

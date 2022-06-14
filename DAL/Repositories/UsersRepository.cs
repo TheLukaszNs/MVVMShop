@@ -9,7 +9,7 @@ namespace MVVMShop.DAL.Repositories
 {
     using Entities;
 
-    internal static class UsersRepository
+    internal sealed class UsersRepository
     {
         #region Queries
 
@@ -19,13 +19,25 @@ namespace MVVMShop.DAL.Repositories
 
         #endregion
 
+        #region Properties
+
+        private readonly DbConnection dbconnection;
+
+        #endregion
+
+        #region Constuctors
+
+        public UsersRepository(DbConnection dbconnection) => this.dbconnection = dbconnection;
+
+        #endregion
+
         #region Methods
 
-        public static List<Users> GetUsers()
+        public List<Users> GetUsers()
         {
             List<Users> users = new List<Users>();
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand(SELECT_ALL, connection);
 
@@ -42,11 +54,11 @@ namespace MVVMShop.DAL.Repositories
             return users;
         }
 
-        public static bool AddUser(Users user)
+        public bool AddUser(Users user)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{INSERT} {user.Insert()}", connection);
 
@@ -62,11 +74,11 @@ namespace MVVMShop.DAL.Repositories
         }
 
         // Can modify Role only
-        public static bool EditUser(Users user, uint id)
+        public bool EditUser(Users user, uint id)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 string MODIFY = $"UPDATE users " +
                     $"SET " +
@@ -87,11 +99,11 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        public static bool DeleteUser(uint id)
+        public bool DeleteUser(uint id)
         {
             bool state = false;
 
-            using (var connection = DBConnection.Instance.Connection)
+            using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{DELETE}{id}", connection);
 
