@@ -82,6 +82,10 @@ namespace MVVMShop.DAL.Repositories
             {
                 string MODIFY = $"UPDATE users " +
                     $"SET " +
+                    $"user_email={user.UserEmail} " +
+                    $"user_password={user.UserPassword} " +
+                    $"firstname={user.FirstName} " +
+                    $"lastname={user.LastName} " +
                     $"user_role={user.Role} " +
                     $"WHERE " +
                     $"id={id}";
