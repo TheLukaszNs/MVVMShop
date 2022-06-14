@@ -14,28 +14,16 @@ namespace MVVMShop.Services
     internal class DbAuthService : IAuthService
     {
         private readonly AuthStore _authStore;
-        private readonly DbConnection _dbConnection;
 
-        public DbAuthService(AuthStore authStore, DbConnection dbConnection)
+        public DbAuthService(AuthStore authStore)
         {
             _authStore = authStore;
-            _dbConnection = dbConnection;
         }
 
         public bool LogIn(string email, string password)
         {
             if (email == null || password == null) return false;
 
-            using (var connection = _dbConnection.Connection)
-            {
-                connection.Open();
-
-                var command = new MySqlCommand($"SELECT * FROM users WHERE user_email=@Email", connection);
-                command.Parameters.AddWithValue("@Email", email);
-                MySqlDataReader reader = command.ExecuteReader();
-
-                connection.Close();
-            }
 
             return false;
         }

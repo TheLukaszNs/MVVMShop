@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MVVMShop.Commands;
+using MVVMShop.Model;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
 
@@ -14,6 +15,8 @@ namespace MVVMShop.ViewModel
 {
     public class LoginPageViewModel : BaseVM
     {
+        private readonly UserModel _userModel;
+
         private string _login = "admin@mvvmshop.com";
 
         public string Login

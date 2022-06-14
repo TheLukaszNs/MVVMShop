@@ -254,9 +254,14 @@
     <Compile Include="DAL\Repositories\UsersRepository.cs" />
     <Compile Include="HostBuilders\AddViewModelHostBuilderExtension.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtension.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Services\Auth\DbAuthService.cs" />
     <Compile Include="Services\Auth\IAuthService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\OrderCreator\IOrderCreator.cs" />
+    <Compile Include="Services\OrderProvider\IOrderProvider.cs" />
+    <Compile Include="Services\UserCreator\IUserCreator.cs" />
+    <Compile Include="Services\UserProvider\IUserProvider.cs" />
     <Compile Include="Stores\AuthStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
@@ -378,7 +383,6 @@
     <Folder Include="Commands\Auth\" />
     <Folder Include="Common\" />
     <Folder Include="Converters\" />
-    <Folder Include="Model\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -39,7 +39,7 @@ namespace MVVMShop
                     services.AddSingleton<OrderIncludesProductsRepository>();
 
                     services.AddSingleton<IAuthService>(s =>
-                        new DbAuthService(s.GetRequiredService<AuthStore>(), s.GetRequiredService<DbConnection>()));
+                        new DbAuthService(s.GetRequiredService<AuthStore>()));
 
                     services.AddSingleton(s => new MainWindow()
                     {
