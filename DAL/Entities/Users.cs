@@ -32,7 +32,7 @@ namespace MVVMShop.DAL.Entities
         #endregion
 
         #region Constructors
-
+        
         public Users(MySqlDataReader reader)
         {
             Id = uint.Parse(reader["id"].ToString());
@@ -40,7 +40,7 @@ namespace MVVMShop.DAL.Entities
             UserPassword = reader["user_password"].ToString();
             FirstName = reader["first_name"].ToString();
             LastName = reader["last_name"].ToString();
-            Role = (UserRole) Enum.Parse(typeof(UserRole), reader["user_role"].ToString());
+            Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"].ToString());
         }
 
         public Users(string userEmail, string userPassword, string firstName, string lastName, UserRole role)

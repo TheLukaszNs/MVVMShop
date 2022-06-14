@@ -248,6 +248,10 @@
     <Compile Include="DAL\Entities\Orders.cs" />
     <Compile Include="DAL\Entities\Products.cs" />
     <Compile Include="DAL\Entities\Users.cs" />
+    <Compile Include="DAL\Repositories\OrderIncludesProductsRepository.cs" />
+    <Compile Include="DAL\Repositories\OrdersRepository.cs" />
+    <Compile Include="DAL\Repositories\ProductsRepository.cs" />
+    <Compile Include="DAL\Repositories\UsersRepository.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtension.cs" />
     <Compile Include="Services\Auth\DbAuthService.cs" />
     <Compile Include="Services\Auth\IAuthService.cs" />
@@ -373,7 +377,6 @@
     <Folder Include="Commands\Auth\" />
     <Folder Include="Common\" />
     <Folder Include="Converters\" />
-    <Folder Include="DAL\Repositories\" />
     <Folder Include="Model\" />
     <Folder Include="Themes\" />
   </ItemGroup>
