@@ -33,7 +33,7 @@ namespace MVVMShop.DAL.Repositories
 
         #region Methods
 
-        public List<Orders> GetProducts()
+        public List<Orders> GetOrders()
         {
             List<Orders> orders = new List<Orders>();
 
@@ -54,18 +54,18 @@ namespace MVVMShop.DAL.Repositories
             return orders;
         }
 
-        public bool AddOrder(Orders orders)
+        public bool AddOrder(Orders order)
         {
             bool state = false;
 
             using (var connection = dbconnection.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"{INSERT} {orders.Insert()}", connection);
+                MySqlCommand command = new MySqlCommand($"{INSERT} {order.Insert()}", connection);
 
                 connection.Open();
 
                 state = true;
-                orders.Id = (uint)command.LastInsertedId;
+                order.Id = (uint)command.LastInsertedId;
 
                 connection.Close();
             }
@@ -99,7 +99,7 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        public bool DeleteProduct(uint id)
+        public bool DeleteOrder(uint id)
         {
             bool state = false;
 
