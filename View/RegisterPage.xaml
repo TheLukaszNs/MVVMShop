@@ -6,13 +6,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:vm="clr-namespace:MVVMShop.ViewModel"
              xmlns:local="clr-namespace:MVVMShop.View"
-             mc:Ignorable="d" 
-             Height="800" Width="1000" 
+             mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:RegisterPageViewModel}">
     <StackPanel 
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Width="600">
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Center">
         <TextBlock
             Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
             FontWeight="Bold"
@@ -27,12 +25,14 @@
             </Grid.ColumnDefinitions>
             
             <TextBox
+                Text="{Binding FirstName}"
                 Style="{DynamicResource MaterialDesignFilledTextBox}"
                 materialDesign:HintAssist.Hint="Imię"
                 materialDesign:TextFieldAssist.TrailingIcon="AccountCircleOutline"
                 materialDesign:TextFieldAssist.HasTrailingIcon="True"
                 Cursor="Arrow"/>
             <TextBox
+                Text="{Binding LastName}"
                 Style="{DynamicResource MaterialDesignFilledTextBox}"
                 materialDesign:HintAssist.Hint="Nazwisko"
                 materialDesign:TextFieldAssist.TrailingIcon="RenameBox"
@@ -40,13 +40,14 @@
                 Grid.Column="2"/>
         </Grid>
         <TextBox
+            Text="{Binding Email}"
             Style="{DynamicResource MaterialDesignFilledTextBox}"
             materialDesign:HintAssist.Hint="Email"
             materialDesign:TextFieldAssist.TrailingIcon="Email"
             materialDesign:TextFieldAssist.HasTrailingIcon="True"
             Margin="0, 0, 0, 20" Cursor="Arrow"/>
-        <PasswordBox
-            Style="{DynamicResource MaterialDesignFilledPasswordBox}"
+        <local:BindablePasswordBox
+            Password="{Binding Password}"
             materialDesign:HintAssist.Hint="Hasło"
             materialDesign:TextFieldAssist.HasClearButton="False" 
             materialDesign:TextFieldAssist.TrailingIcon="Email"
@@ -55,6 +56,7 @@
 
         <Button
             Style="{DynamicResource MaterialDesignRaisedButton}"
+            Command="{Binding RegisterCommand}"
             Content="Zarejestruj się"
             Margin="0 0 0 20"
             Cursor="Hand"/>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:MVVMShop.ViewModel"
-        xmlns:local="clr-namespace:MVVMShop.View" 
+        xmlns:local="clr-namespace:MVVMShop.View"
+        xmlns:userControls="clr-namespace:MVVMShop.View.UserControls"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         mc:Ignorable="d"
         Title="Shop"
@@ -46,7 +47,28 @@
         <DataTemplate DataType="{x:Type vm:FinalizationPageViewModel}">
             <local:FinalizationPage />
         </DataTemplate>
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
 
-    <ContentControl Content="{Binding CurrentViewModel}" />
+    <Grid 
+        Width="600" 
+        Margin="0 20"
+        HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <userControls:NavBar 
+            Visibility="{Binding IsAuthenticated, Converter={StaticResource BooleanToVisibilityConverter}}" 
+            Margin="0 20"
+            LogoutClickedCommand="{Binding LogoutCommand}"
+            UserName="{Binding Path=CurrentUser.FirstName}"/>
+        <ContentControl 
+            Grid.Row="1"
+            Content="{Binding CurrentViewModel}"
+            />
+    </Grid>
+    
 </Window>

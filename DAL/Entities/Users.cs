@@ -11,8 +11,8 @@ namespace MVVMShop.DAL.Entities
 
     public enum UserRole
     {
-        Client,
-        Assisstant,
+        Klient,
+        Pracownik,
         Admin
     }
 
@@ -32,15 +32,21 @@ namespace MVVMShop.DAL.Entities
         #endregion
 
         #region Constructors
-        
+
         public Users(MySqlDataReader reader)
         {
-            Id = uint.Parse(reader["id"].ToString());
-            UserEmail = reader["user_email"].ToString();
-            UserPassword = reader["user_password"].ToString();
-            FirstName = reader["first_name"].ToString();
-            LastName = reader["last_name"].ToString();
-            Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"].ToString());
+            Id = uint.Parse(reader["id"]
+                .ToString());
+            UserEmail = reader["user_email"]
+                .ToString();
+            UserPassword = reader["user_password"]
+                .ToString();
+            FirstName = reader["first_name"]
+                .ToString();
+            LastName = reader["last_name"]
+                .ToString();
+            Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"]
+                .ToString());
         }
 
         public Users(string userEmail, string userPassword, string firstName, string lastName, UserRole role)
@@ -91,7 +97,7 @@ namespace MVVMShop.DAL.Entities
                 return false;
 
             if (Role != user.Role)
-                return false;   
+                return false;
 
             return true;
         }

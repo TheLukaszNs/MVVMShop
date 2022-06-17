@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVVMShop.Model;
 
 namespace MVVMShop.Stores
 {
     public class AuthStore
     {
-        private bool _isAuthenticated;
+        private User _authenticatedUser;
 
-        public bool IsAuthenticated
+        public User AuthenticatedUser
         {
-            get => _isAuthenticated;
+            get => _authenticatedUser;
             set
             {
-                _isAuthenticated = value;
+                _authenticatedUser = value;
                 OnAuthStateChanged();
             }
         }
 
-        public event Action<bool> AuthStateChanged;
+        public bool IsAuthenticated => _authenticatedUser != null;
+
+        public event Action<User> AuthStateChanged;
 
         private void OnAuthStateChanged()
         {
-            AuthStateChanged?.Invoke(_isAuthenticated);
+            AuthStateChanged?.Invoke(AuthenticatedUser);
         }
     }
 }

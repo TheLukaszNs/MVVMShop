@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MVVMShop.Common.HelperTypes;
 using MVVMShop.DAL;
+using MVVMShop.DAL.Entities;
+using MVVMShop.DAL.Repositories;
+using MVVMShop.Exceptions;
+using MVVMShop.Model;
 using MVVMShop.Services.Auth;
 using MVVMShop.Stores;
 using MySql.Data.MySqlClient;
@@ -13,24 +19,42 @@ namespace MVVMShop.Services
 {
     internal class DbAuthService : IAuthService
     {
-        private readonly AuthStore _authStore;
+        private readonly UsersRepository _usersRepository;
 
-        public DbAuthService(AuthStore authStore)
+        public DbAuthService(UsersRepository usersRepository)
         {
-            _authStore = authStore;
+            _usersRepository = usersRepository;
         }
 
-        public bool LogIn(string email, string password)
+        public User LogIn(string email, string password)
         {
-            if (email == null || password == null) return false;
+            if (email == null || password == null)
+                return null;
 
+            Users userDb = _usersRepository.GetUsers()
+                .FirstOrDefault(u => u.UserEmail == email);
 
-            return false;
+            if (userDb is null || !userDb.UserPassword.Equals(password))
+                throw new AuthFailedException("Podano błędny email lub hasło!");
+
+            return new User(userDb);
         }
 
-        public bool Register()
+        public bool Register(UserRegisterData userData)
         {
-            throw new NotImplementedException();
+            if (userData == null)
+                return false;
+
+            Users userDb = _usersRepository.GetUsers()
+                .FirstOrDefault(u => u.UserEmail == userData.Email);
+
+            if (!(userDb is null))
+                throw new AuthFailedException("Użytkownik o podanym adresie już istnieje!");
+
+            userDb = new Users(userData.Email, userData.Password, userData.FirstName, userData.LastName, userData.Role);
+            Debug.WriteLine(userDb.Insert());
+
+            return _usersRepository.AddUser(userDb);
         }
 
         public void LogOut()
