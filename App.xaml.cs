@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVVMShop.Common.Hashers;
 using MVVMShop.DAL;
 using MVVMShop.DAL.Entities;
 using MVVMShop.DAL.Repositories;
@@ -35,14 +36,14 @@ namespace MVVMShop
                     services.AddSingleton<AuthStore>();
 
                     // services.AddSingleton<UsersRepository>();
-                    services.AddSingleton<BaseRepository<Users>>(s =>
+                    services.AddSingleton(s =>
                         new BaseRepository<Users>(s.GetRequiredService<DbConnection>(), "users"));
                     services.AddSingleton<ProductsRepository>();
                     services.AddSingleton<OrdersRepository>();
                     services.AddSingleton<OrderIncludesProductsRepository>();
 
                     services.AddSingleton<IAuthService>(s =>
-                        new DbAuthService(s.GetRequiredService<BaseRepository<Users>>()));
+                        new DbAuthService(s.GetRequiredService<BaseRepository<Users>>(), new DefaultPasswordHasher()));
 
                     services.AddSingleton(s => new MainWindow()
                     {
