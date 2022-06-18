@@ -39,11 +39,10 @@ namespace MVVMShop.DAL.Entities
 
     #endregion
 
-    public sealed class Orders
+    public sealed class Orders : BaseEntity, IDatabaseReader<Orders>
     {
         #region Properties
 
-        public uint? Id { get; set; }
         public uint IDCustomer { get; set; }
         public uint IDAssisstant { get; set; }
         public decimal OrderValue { get; set; }
@@ -57,18 +56,7 @@ namespace MVVMShop.DAL.Entities
 
         #region Constructors
 
-        public Orders(MySqlDataReader reader)
-        {
-            Id = uint.Parse(reader["id"].ToString());
-            IDCustomer = uint.Parse(reader["id_c"].ToString());
-            IDAssisstant = uint.Parse(reader["id_a"].ToString());
-            OrderValue = decimal.Parse(reader["order_value"].ToString());
-            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), reader["order_status"].ToString());
-            OrderDate = DateTime.Parse(reader["order_date"].ToString());
-            Address = reader["address"].ToString();
-            Payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), reader["payment_method"].ToString());
-            Delivery = (DeliveryMethod)Enum.Parse(typeof(DeliveryMethod), reader["delivery_method"].ToString());
-        }
+        public Orders() { }
 
         public Orders(uint IDCustomer, uint IDAssisstant, decimal orderValue, OrderStatus status, DateTime orderDate, string address, PaymentMethod payment, DeliveryMethod delivery)
         {
@@ -99,6 +87,19 @@ namespace MVVMShop.DAL.Entities
         #endregion
 
         #region Methods
+
+        public Orders ReadDataFromDatabase(MySqlDataReader reader) => new Orders
+        {
+            Id = uint.Parse(reader["id"].ToString()),
+            IDCustomer = uint.Parse(reader["id_c"].ToString()),
+            IDAssisstant = uint.Parse(reader["id_a"].ToString()),
+            OrderValue = decimal.Parse(reader["order_value"].ToString()),
+            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), reader["order_status"].ToString()),
+            OrderDate = DateTime.Parse(reader["order_date"].ToString()),
+            Address = reader["address"].ToString(),
+            Payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), reader["payment_method"].ToString()),
+            Delivery = (DeliveryMethod)Enum.Parse(typeof(DeliveryMethod), reader["delivery_method"].ToString())
+        };
 
         public string Insert() => $"(0, {IDCustomer}, {IDAssisstant}, {OrderValue}, {Status}, {OrderDate}, {Address}, {Payment}, {Delivery})";
 

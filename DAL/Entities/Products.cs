@@ -7,11 +7,10 @@ using MySql.Data.MySqlClient;
 
 namespace MVVMShop.DAL.Entities
 {
-    public sealed class Products
+    public sealed class Products : BaseEntity, IDatabaseReader<Products>
     {
         #region Properties
 
-        public uint? Id { get; set; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public bool Availability { get; set; }
@@ -21,14 +20,7 @@ namespace MVVMShop.DAL.Entities
 
         #region Constructors
 
-        public Products(MySqlDataReader reader)
-        {
-            Id = uint.Parse(reader["id"].ToString());
-            ProductName = reader["product_name"].ToString();
-            Price = decimal.Parse(reader["price"].ToString());
-            Availability = bool.Parse(reader["availability"].ToString());
-            Image = reader["image"].ToString();
-        }
+        public Products() { }
 
         public Products(string productName, decimal price, bool availability, string image)
         {
@@ -51,6 +43,15 @@ namespace MVVMShop.DAL.Entities
         #endregion
 
         #region Methods
+
+        public Products ReadDataFromDatabase(MySqlDataReader reader) => new Products
+        {
+            Id = uint.Parse(reader["id"].ToString()),
+            ProductName = reader["product_name"].ToString(),
+            Price = decimal.Parse(reader["price"].ToString()),
+            Availability = bool.Parse(reader["availability"].ToString()),
+            Image = reader["image"].ToString()
+        };
 
         public string Insert() => $"(0, {ProductName}, {Price}, {Availability}, {Image})";
 
