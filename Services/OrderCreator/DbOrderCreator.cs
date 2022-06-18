@@ -20,9 +20,10 @@ namespace MVVMShop.Services.OrderCreator
 
         #region Constructors
 
-        public DbOrderCreator(OrdersRepository ordersRepository, OrderIncludesProductsRepository orderIncludesProductsRepository)
+        public DbOrderCreator(OrdersRepository ordersRepository,
+            OrderIncludesProductsRepository orderIncludesProductsRepository)
         {
-            this.ordersRepository = ordersRepository; 
+            this.ordersRepository = ordersRepository;
             this.orderIncludesProductsRepository = orderIncludesProductsRepository;
         }
 
@@ -30,9 +31,9 @@ namespace MVVMShop.Services.OrderCreator
 
         #region Methods
 
-        private bool CreateOrder(Orders order, List<Products> products)
+        public bool CreateOrder(Orders order, List<Products> products)
         {
-
+            return false;
         }
 
         #endregion

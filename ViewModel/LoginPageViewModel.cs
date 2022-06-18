@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security;
 using System.Text;
@@ -7,17 +8,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MVVMShop.Commands;
+using MVVMShop.Exceptions;
 using MVVMShop.Model;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
+using MVVMShop.Stores;
 
 namespace MVVMShop.ViewModel
 {
     public class LoginPageViewModel : BaseVM
     {
-        private readonly UserModel _userModel;
+        //private readonly UserModel _userModel;
 
-        private string _login = "admin@mvvmshop.com";
+        private string _login;
 
         public string Login
         {
@@ -29,7 +32,7 @@ namespace MVVMShop.ViewModel
             }
         }
 
-        private string _password = "Test";
+        private string _password;
 
         public string Password
         {
@@ -41,7 +44,9 @@ namespace MVVMShop.ViewModel
             }
         }
 
+        private readonly NavigationService<CustomerPageViewModel> _customerNavigationService;
         private readonly IAuthService _authService;
+        private readonly AuthStore _authStore;
 
         public ICommand GoToRegisterPageCommand { get; }
 
@@ -53,15 +58,29 @@ namespace MVVMShop.ViewModel
                 )
             );
 
-        public LoginPageViewModel(NavigationService<RegisterPageViewModel> navigationService, IAuthService authService)
+        public LoginPageViewModel(NavigationService<RegisterPageViewModel> registerNavigationService,
+            NavigationService<CustomerPageViewModel> customerNavigationService, IAuthService authService,
+            AuthStore authStore)
         {
-            GoToRegisterPageCommand = new NavigateCommand<RegisterPageViewModel>(navigationService);
+            GoToRegisterPageCommand = new NavigateCommand<RegisterPageViewModel>(registerNavigationService);
+            _customerNavigationService = customerNavigationService;
             _authService = authService;
+            _authStore = authStore;
         }
 
         private void LogIn()
         {
-            _authService.LogIn(Login, Password);
+            try
+            {
+                var user = _authService.LogIn(Login, Password);
+
+                _authStore.AuthenticatedUser = user;
+                _customerNavigationService.Navigate();
+            }
+            catch (AuthFailedException)
+            {
+                // Handle the auth failure
+            }
         }
     }
 }

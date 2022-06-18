@@ -14,7 +14,7 @@ namespace MVVMShop.DAL.Repositories
         #region Queries
 
         private const string SELECT_ALL = "SELECT * FROM users";
-        private const string INSERT = "INSERT users VALUE";
+        private const string INSERT = "INSERT users VALUE (0, @Email, @Password, @FirstName, @LastName, @Role)";
         private const string DELETE = "DELETE FROM users WHERE id=";
 
         #endregion
@@ -60,10 +60,16 @@ namespace MVVMShop.DAL.Repositories
 
             using (var connection = dbconnection.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"{INSERT} {user.Insert()}", connection);
+                MySqlCommand command = new MySqlCommand(INSERT, connection);
+                command.Parameters.AddWithValue("@Email", user.UserEmail);
+                command.Parameters.AddWithValue("@Password", user.UserPassword);
+                command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                command.Parameters.AddWithValue("@LastName", user.LastName);
+                command.Parameters.AddWithValue("@Role", user.Role.ToString());
 
                 connection.Open();
 
+                var id = command.ExecuteNonQuery();
                 state = true;
                 user.Id = (uint)command.LastInsertedId;
 
@@ -81,14 +87,14 @@ namespace MVVMShop.DAL.Repositories
             using (var connection = dbconnection.Connection)
             {
                 string MODIFY = $"UPDATE users " +
-                    $"SET " +
-                    $"user_email={user.UserEmail} " +
-                    $"user_password={user.UserPassword} " +
-                    $"firstname={user.FirstName} " +
-                    $"lastname={user.LastName} " +
-                    $"user_role={user.Role} " +
-                    $"WHERE " +
-                    $"id={id}";
+                                $"SET " +
+                                $"user_email={user.UserEmail} " +
+                                $"user_password={user.UserPassword} " +
+                                $"firstname={user.FirstName} " +
+                                $"lastname={user.LastName} " +
+                                $"user_role={user.Role} " +
+                                $"WHERE " +
+                                $"id={id}";
 
                 MySqlCommand command = new MySqlCommand(MODIFY, connection);
 

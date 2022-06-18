@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MVVMShop.View.UserControls.NavBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMShop.View.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <materialDesign:Card Padding="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                VerticalAlignment="Center"
+                Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                Margin="0 0 20 0">
+                Witaj!
+            </TextBlock>
+
+            <Button
+                Style="{DynamicResource MaterialDesignOutlinedButton}"
+                Grid.Column="1"
+                Margin="0 0 20 0"
+                Content="{materialDesign:PackIcon CartCheck}"/>
+            <Button 
+                Style="{DynamicResource MaterialDesignFlatAccentButton}"
+                Grid.Column="2"
+                x:Name="ButtonLogout"
+                Click="ButtonLogout_OnClick">Wyloguj się</Button>
+        </Grid>
+    </materialDesign:Card>
+</UserControl>
