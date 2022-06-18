@@ -245,6 +245,7 @@
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Common\HelperTypes\UserRegisterData.cs" />
     <Compile Include="DAL\DbConnection.cs" />
+    <Compile Include="DAL\Entities\BaseEntity.cs" />
     <Compile Include="DAL\Entities\OrderIncludesProducts.cs" />
     <Compile Include="DAL\Entities\Orders.cs" />
     <Compile Include="DAL\Entities\Products.cs" />
