@@ -32,26 +32,7 @@ namespace MVVMShop.DAL.Entities
 
         #region Constructors
 
-        public Users()
-        {
-
-        }
-
-        public Users(MySqlDataReader reader)
-        {
-            Id = uint.Parse(reader["id"]
-                .ToString());
-            UserEmail = reader["user_email"]
-                .ToString();
-            UserPassword = reader["user_password"]
-                .ToString();
-            FirstName = reader["first_name"]
-                .ToString();
-            LastName = reader["last_name"]
-                .ToString();
-            Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"]
-                .ToString());
-        }
+        public Users() { }
 
         public Users(string userEmail, string userPassword, string firstName, string lastName, UserRole role)
         {
@@ -77,19 +58,15 @@ namespace MVVMShop.DAL.Entities
 
         #region Methods
 
-        public Users ReadDataFromDatabase(MySqlDataReader reader)
+        public Users ReadDataFromDatabase(MySqlDataReader reader) => new Users
         {
-            Users user = new Users();
-
-            user.Id = uint.Parse(reader["id"].ToString());
-            user.UserEmail = reader["user_email"].ToString();
-            user.UserPassword = reader["user_password"].ToString();
-            user.FirstName = reader["first_name"].ToString();
-            user.LastName = reader["last_name"].ToString();
-            user.Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"].ToString());
-
-            return user;
-        }
+            Id = uint.Parse(reader["id"].ToString()),
+            UserEmail = reader["user_email"].ToString(),
+            UserPassword = reader["user_password"].ToString(),
+            FirstName = reader["first_name"].ToString(),
+            LastName = reader["last_name"].ToString(),
+            Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"].ToString())
+        };
 
         public string Insert() => $"(0, {UserEmail}, {UserPassword}, {FirstName}, {LastName}, {Role})";
 
