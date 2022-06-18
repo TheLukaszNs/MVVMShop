@@ -19,20 +19,7 @@ namespace MVVMShop.View.UserControls
     {
         public static readonly DependencyProperty UserNameProperty = DependencyProperty.Register(
             nameof(UserName), typeof(string), typeof(NavBar),
-            new PropertyMetadata(string.Empty, UserNamePropertyChangedCallback));
-
-        private static void UserNamePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is NavBar navBar)
-            {
-                navBar.UpdateUserName();
-            }
-        }
-
-        private void UpdateUserName()
-        {
-            TextUserControl.Text = UserName;
-        }
+            new PropertyMetadata(string.Empty));
 
         public string UserName
         {

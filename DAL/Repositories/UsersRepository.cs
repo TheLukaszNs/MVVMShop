@@ -9,7 +9,7 @@ namespace MVVMShop.DAL.Repositories
 {
     using Entities;
 
-    internal sealed class UsersRepository
+    internal sealed class UsersRepository : BaseRepository<Users>
     {
         #region Queries
 
@@ -21,13 +21,17 @@ namespace MVVMShop.DAL.Repositories
 
         #region Properties
 
-        private readonly DbConnection dbconnection;
+        //private readonly DbConnection dbconnection;
 
         #endregion
 
         #region Constuctors
 
-        public UsersRepository(DbConnection dbconnection) => this.dbconnection = dbconnection;
+        //public UsersRepository(DbConnection dbconnection) => this.dbconnection = dbconnection;
+        public UsersRepository(DbConnection dbconnection) : base(dbconnection, "users")
+        {
+
+        }
 
         #endregion
 
