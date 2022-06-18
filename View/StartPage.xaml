@@ -6,35 +6,31 @@
              xmlns:local="clr-namespace:MVVMShop.View"
              xmlns:vm="clr-namespace:MVVMShop.ViewModel"
              mc:Ignorable="d" 
-             Width="1000"
-             Height="800" 
              d:DataContext="{d:DesignInstance vm:StartPageViewModel}">
-    <Grid>
-        <StackPanel
-            VerticalAlignment="Center"
-            Width="600"
-            >
-            <!-- TITLE -->
-            <TextBlock
+    <StackPanel
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch"
+    >
+        <!-- TITLE -->
+        <TextBlock
                 TextAlignment="Center"
                 Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
                 FontWeight="Bold"
                 Margin="0 0 0 100"
                 >
                 Sklep internetowy
-            </TextBlock>
-            
-            <!-- BUTTONS -->
-            <Button
+        </TextBlock>
+
+        <!-- BUTTONS -->
+        <Button
                 Command="{Binding GoToLoginCommand}"
                 Margin="0 0 0 20" Cursor="Hand">
-                Zaloguj się
-            </Button>
+            Zaloguj się
+        </Button>
 
-            <Button 
+        <Button 
                 Command="{Binding GoToRegisterCommand}">
-                Zarejestruj się
-            </Button>      
-        </StackPanel>    
-    </Grid>
+            Zarejestruj się
+        </Button>
+    </StackPanel>
 </UserControl>

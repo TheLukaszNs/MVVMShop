@@ -5,25 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:vm="clr-namespace:MVVMShop.ViewModel"
-             mc:Ignorable="d"
-             Width="1000"
-             Height="800" 
+             xmlns:view="clr-namespace:MVVMShop.View"
+             mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:LoginPageViewModel}">
-    <Grid>
-        <StackPanel
+    <StackPanel
             VerticalAlignment="Center"
-            Width="600">
-            <!-- TITLE -->
-            <TextBlock
+            HorizontalAlignment="Stretch">
+        <!-- TITLE -->
+        <TextBlock
                 TextAlignment="Center"
                 Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
                 FontWeight="Bold"
                 Margin="0 0 0 100">
                 Logowanie
-            </TextBlock>
+        </TextBlock>
 
-            <!-- INPUT -->
-            <TextBox
+        <!-- INPUT -->
+        <TextBox
                 Text="{Binding Login}"
                 Style="{DynamicResource MaterialDesignFilledTextBox}"
                 materialDesign:HintAssist.Hint="E-mail"
@@ -32,34 +30,32 @@
                 Margin="0 0 0 20"
                 Cursor="Arrow" />
 
-            <TextBox
-                Text="{Binding Password}"
-                Style="{DynamicResource MaterialDesignFilledTextBox}"
+        <view:BindablePasswordBox
+                Password="{Binding Password}"
                 materialDesign:HintAssist.Hint="Password"
-                Margin="0 0 0 20" />
+                Margin="0 0 0 20" Cursor="Arrow" />
 
-            <!-- BUTTON -->
-            <Button
+        <!-- BUTTON -->
+        <Button
                 Cursor="Hand"
                 Margin="0 0 0 20"
                 Command="{Binding LoginCommand}">
-                Zaloguj się
-            </Button>
+            Zaloguj się
+        </Button>
 
-            <StackPanel
+        <StackPanel
                 Orientation="Horizontal"
                 HorizontalAlignment="Right">
-                <TextBlock
+            <TextBlock
                     Style="{DynamicResource MaterialDesignBody1TextBlock}"
                     Text="Nie masz jeszcze konta?"
                     Margin="0, 0, 20, 0"
                     VerticalAlignment="Center" />
-                <Button
+            <Button
                     Style="{DynamicResource MaterialDesignFlatButton}"
                     Content="Zarejestruj się"
                     Command="{Binding GoToRegisterPageCommand}"
                     VerticalAlignment="Center" Cursor="Hand" />
-            </StackPanel>
         </StackPanel>
-    </Grid>
+    </StackPanel>
 </UserControl>

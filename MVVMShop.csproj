@@ -243,6 +243,7 @@
     <Compile Include="Commands\AsyncBaseCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Common\HelperTypes\UserRegisterData.cs" />
     <Compile Include="DAL\DbConnection.cs" />
     <Compile Include="DAL\Entities\OrderIncludesProducts.cs" />
     <Compile Include="DAL\Entities\Orders.cs" />
@@ -254,8 +255,11 @@
     <Compile Include="DAL\Repositories\OrdersRepository.cs" />
     <Compile Include="DAL\Repositories\ProductsRepository.cs" />
     <Compile Include="DAL\Repositories\UsersRepository.cs" />
+    <Compile Include="Exceptions\AuthFailedException.cs" />
     <Compile Include="HostBuilders\AddViewModelHostBuilderExtension.cs" />
     <Compile Include="HostBuilders\AddViewModelsHostBuilderExtension.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Services\Auth\DbAuthService.cs" />
     <Compile Include="Services\Auth\IAuthService.cs" />
     <Compile Include="Services\NavigationService.cs" />
@@ -289,6 +293,9 @@
     <Compile Include="View\AssistantPage.xaml.cs">
       <DependentUpon>AssistantPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
@@ -310,6 +317,9 @@
     <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControls\NavBar.xaml.cs">
+      <DependentUpon>NavBar.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -319,6 +329,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AssistantPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -363,6 +377,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\UserControls\NavBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -393,9 +411,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\Auth\" />
-    <Folder Include="Common\" />
     <Folder Include="Converters\" />
-    <Folder Include="Model\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

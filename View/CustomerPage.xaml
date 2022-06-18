@@ -4,35 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMShop.View"
-             mc:Ignorable="d" 
-             Width="1000"
-             Height="800"
+             mc:Ignorable="d"
              >
     <UserControl.Resources>
         
     </UserControl.Resources>
-    
-    <Grid>
-        <StackPanel
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Width="800"
-            >
-            <!-- MOTD -->
-            <TextBlock
-                Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
-                FontWeight="Bold"
-                TextAlignment="Center"
-                Margin="0, 0, 0, 100"
-                >
-                Wybierz produkty
-            </TextBlock>
 
-            <!-- Products List -->
-            <ListBox
-                Height="500"
-                >
-            </ListBox>
-        </StackPanel>
-    </Grid>
+    <StackPanel
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch"
+        >
+        <!-- MOTD -->
+        <TextBlock
+            Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
+            FontWeight="Bold"
+            TextAlignment="Center"
+            Margin="0, 0, 0, 100"
+            >
+            Wybierz produkty
+        </TextBlock>
+
+        <!-- Products List -->
+        <ListBox>
+        </ListBox>
+    </StackPanel>
 </UserControl>

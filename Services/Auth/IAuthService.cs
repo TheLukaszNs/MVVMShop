@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVVMShop.Common.HelperTypes;
+using MVVMShop.DAL.Entities;
+using MVVMShop.Model;
 
 namespace MVVMShop.Services.Auth
 {
     public interface IAuthService
     {
-        bool LogIn(string email, string password);
-        bool Register();
+        User LogIn(string email, string password);
+        bool Register(UserRegisterData userData);
         void LogOut();
     }
 }
