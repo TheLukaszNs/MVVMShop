@@ -3,73 +3,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVVMShop.DAL.Entities;
 using MySql.Data.MySqlClient;
 
 namespace MVVMShop.DAL.Repositories
 {
-    using Entities;
-
-    internal sealed class UsersRepository : BaseRepository<Users>
+    internal abstract class BaseRepository<T> where T : BaseEntity, new()
     {
         #region Queries
 
-        private const string SELECT_ALL = "SELECT * FROM users";
-        private const string INSERT = "INSERT users VALUE";
-        private const string DELETE = "DELETE FROM users WHERE id=";
+        private const string SELECT_ALL = "SELECT * FROM";
+        private const string DELETE = "DELETE FROM ";
 
         #endregion
 
         #region Properties
 
-        //private readonly DbConnection dbconnection;
+        protected readonly DbConnection dbconnection;
+        private readonly string table;
 
         #endregion
 
         #region Constuctors
 
-        //public UsersRepository(DbConnection dbconnection) => this.dbconnection = dbconnection;
-        public UsersRepository(DbConnection dbconnection) : base(dbconnection, "users")
+        public BaseRepository(DbConnection dbconnection, string table)
         {
-
+            this.dbconnection = dbconnection;
+            this.table = table;
         }
 
         #endregion
 
         #region Methods
 
-        public List<Users> GetUsers()
+        public List<T> Get(Func<MySqlDataReader, T> readDataFromDatabase)
         {
-            List<Users> users = new List<Users>();
+            List<T> data = new List<T>();
 
             using (var connection = dbconnection.Connection)
             {
-                MySqlCommand command = new MySqlCommand(SELECT_ALL, connection);
+                MySqlCommand command = new MySqlCommand($"{SELECT_ALL} {table}", connection);
 
                 connection.Open();
 
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
-                    users.Add(new Users(reader));
+                {
+                    T item = new T();
+
+                    item = readDataFromDatabase(reader);
+
+                    data.Add(item);
+                }
 
                 connection.Close();
             }
 
-            return users;
+            return data;
         }
 
-        public bool AddUser(Users user)
+        public bool Add(T item, string insertMethod)
         {
             bool state = false;
 
             using (var connection = dbconnection.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"{INSERT} {user.Insert()}", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT {table} VALUE {insertMethod}", connection);
 
                 connection.Open();
 
                 state = true;
-                user.Id = (uint)command.LastInsertedId;
+                item.Id = (uint)command.LastInsertedId;
 
                 connection.Close();
             }
@@ -77,20 +82,15 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        // Can modify Role only
-        public bool EditUser(Users user, uint id)
+        public bool Edit(uint id, string modifyCommand)
         {
             bool state = false;
 
             using (var connection = dbconnection.Connection)
             {
-                string MODIFY = $"UPDATE users " +
+                string MODIFY = $"UPDATE {table} " +
                     $"SET " +
-                    $"user_email={user.UserEmail} " +
-                    $"user_password={user.UserPassword} " +
-                    $"firstname={user.FirstName} " +
-                    $"lastname={user.LastName} " +
-                    $"user_role={user.Role} " +
+                    $"{modifyCommand}" +
                     $"WHERE " +
                     $"id={id}";
 
@@ -107,13 +107,13 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        public bool DeleteUser(uint id)
+        public bool Delete(uint id)
         {
             bool state = false;
 
             using (var connection = dbconnection.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"{DELETE}{id}", connection);
+                MySqlCommand command = new MySqlCommand($"{DELETE}{table} WHERE id={id}", connection);
 
                 connection.Open();
 

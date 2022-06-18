@@ -18,11 +18,10 @@ namespace MVVMShop.DAL.Entities
 
     #endregion
 
-    public sealed class Users
+    public sealed class Users : BaseEntity, IDatabaseReader<Users>
     {
         #region Properties
 
-        public uint? Id { get; set; }
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }
         public string FirstName { get; set; }
@@ -32,7 +31,12 @@ namespace MVVMShop.DAL.Entities
         #endregion
 
         #region Constructors
-        
+
+        public Users()
+        {
+
+        }
+
         public Users(MySqlDataReader reader)
         {
             Id = uint.Parse(reader["id"].ToString());
@@ -66,6 +70,20 @@ namespace MVVMShop.DAL.Entities
         #endregion
 
         #region Methods
+
+        public Users ReadDataFromDatabase(MySqlDataReader reader)
+        {
+            Users user = new Users();
+
+            user.Id = uint.Parse(reader["id"].ToString());
+            user.UserEmail = reader["user_email"].ToString();
+            user.UserPassword = reader["user_password"].ToString();
+            user.FirstName = reader["first_name"].ToString();
+            user.LastName = reader["last_name"].ToString();
+            user.Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"].ToString());
+
+            return user;
+        }
 
         public string Insert() => $"(0, {UserEmail}, {UserPassword}, {FirstName}, {LastName}, {Role})";
 
