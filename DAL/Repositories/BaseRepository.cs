@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace MVVMShop.DAL.Repositories
 {
-    internal abstract class BaseRepository<T> where T : BaseEntity, new()
+    internal class BaseRepository<T> where T : BaseEntity
     {
         #region Queries
 
@@ -49,13 +49,7 @@ namespace MVVMShop.DAL.Repositories
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
-                {
-                    T item = new T();
-
-                    item = readDataFromDatabase(reader);
-
-                    data.Add(item);
-                }
+                    data.Add(readDataFromDatabase(reader));
 
                 connection.Close();
             }
@@ -63,18 +57,23 @@ namespace MVVMShop.DAL.Repositories
             return data;
         }
 
-        public bool Add(T item, string insertMethod)
+        public bool Add(T item, Dictionary<string, string> valueMap)
         {
             bool state = false;
 
             using (var connection = dbconnection.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"INSERT {table} VALUE {insertMethod}", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT {table} VALUE {ValueMapToCommandInsert(valueMap)}",
+                    connection);
+                AddParametersFromValueMap(valueMap, command);
 
                 connection.Open();
 
-                state = true;
-                item.Id = (uint)command.LastInsertedId;
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    state = true;
+                    item.Id = (uint)command.LastInsertedId;
+                }
 
                 connection.Close();
             }
@@ -89,10 +88,10 @@ namespace MVVMShop.DAL.Repositories
             using (var connection = dbconnection.Connection)
             {
                 string MODIFY = $"UPDATE {table} " +
-                    $"SET " +
-                    $"{modifyCommand}" +
-                    $"WHERE " +
-                    $"id={id}";
+                                $"SET " +
+                                $"{modifyCommand}" +
+                                $"WHERE " +
+                                $"id={id}";
 
                 MySqlCommand command = new MySqlCommand(MODIFY, connection);
 
@@ -124,6 +123,25 @@ namespace MVVMShop.DAL.Repositories
             }
 
             return state;
+        }
+
+        private string ValueMapToCommandInsert(Dictionary<string, string> valueMap)
+        {
+            var insert = new StringBuilder();
+
+            insert.Append("(0,");
+            insert.Append(String.Join(",", valueMap.Keys));
+            insert.Append(")");
+
+            return insert.ToString();
+        }
+
+        private void AddParametersFromValueMap(Dictionary<string, string> valueMap, MySqlCommand command)
+        {
+            foreach (var parameter in valueMap)
+            {
+                command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+            }
         }
 
         #endregion

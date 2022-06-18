@@ -19,9 +19,9 @@ namespace MVVMShop.Services
 {
     internal class DbAuthService : IAuthService
     {
-        private readonly UsersRepository _usersRepository;
+        private readonly BaseRepository<Users> _usersRepository;
 
-        public DbAuthService(UsersRepository usersRepository)
+        public DbAuthService(BaseRepository<Users> usersRepository)
         {
             _usersRepository = usersRepository;
         }
@@ -31,7 +31,7 @@ namespace MVVMShop.Services
             if (email == null || password == null)
                 return null;
 
-            Users userDb = _usersRepository.GetUsers()
+            Users userDb = _usersRepository.Get(GetDataFromDatabase)
                 .FirstOrDefault(u => u.UserEmail == email);
 
             if (userDb is null || !userDb.UserPassword.Equals(password))
@@ -45,7 +45,7 @@ namespace MVVMShop.Services
             if (userData == null)
                 return false;
 
-            Users userDb = _usersRepository.GetUsers()
+            Users userDb = _usersRepository.Get(GetDataFromDatabase)
                 .FirstOrDefault(u => u.UserEmail == userData.Email);
 
             if (!(userDb is null))
@@ -54,7 +54,33 @@ namespace MVVMShop.Services
             userDb = new Users(userData.Email, userData.Password, userData.FirstName, userData.LastName, userData.Role);
             Debug.WriteLine(userDb.Insert());
 
-            return _usersRepository.AddUser(userDb);
+            return _usersRepository.Add(userDb, new Dictionary<string, string>
+            {
+                ["@Email"] = userDb.UserEmail,
+                ["@Password"] = userDb.UserPassword,
+                ["@FirstName"] = userDb.FirstName,
+                ["@LastName"] = userDb.LastName,
+                ["@Role"] = UserRole.Klient.ToString(),
+            });
+        }
+
+        private Users GetDataFromDatabase(MySqlDataReader reader)
+        {
+            return new Users
+            {
+                Id = uint.Parse(reader["id"]
+                    .ToString()),
+                UserEmail = reader["user_email"]
+                    .ToString(),
+                UserPassword = reader["user_password"]
+                    .ToString(),
+                FirstName = reader["first_name"]
+                    .ToString(),
+                LastName = reader["last_name"]
+                    .ToString(),
+                Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"]
+                    .ToString())
+            };
         }
 
         public void LogOut()

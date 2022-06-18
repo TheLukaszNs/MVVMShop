@@ -10,6 +10,7 @@ using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVVMShop.DAL;
+using MVVMShop.DAL.Entities;
 using MVVMShop.DAL.Repositories;
 using MVVMShop.HostBuilders;
 using MVVMShop.Services;
@@ -33,13 +34,15 @@ namespace MVVMShop
                     services.AddSingleton<NavigationStore>();
                     services.AddSingleton<AuthStore>();
 
-                    services.AddSingleton<UsersRepository>();
+                    // services.AddSingleton<UsersRepository>();
+                    services.AddSingleton<BaseRepository<Users>>(s =>
+                        new BaseRepository<Users>(s.GetRequiredService<DbConnection>(), "users"));
                     services.AddSingleton<ProductsRepository>();
                     services.AddSingleton<OrdersRepository>();
                     services.AddSingleton<OrderIncludesProductsRepository>();
 
                     services.AddSingleton<IAuthService>(s =>
-                        new DbAuthService(s.GetRequiredService<UsersRepository>()));
+                        new DbAuthService(s.GetRequiredService<BaseRepository<Users>>()));
 
                     services.AddSingleton(s => new MainWindow()
                     {
