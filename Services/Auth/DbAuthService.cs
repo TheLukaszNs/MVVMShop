@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MVVMShop.Common.Hashers;
 using MVVMShop.Common.HelperTypes;
 using MVVMShop.DAL;
 using MVVMShop.DAL.Entities;
@@ -20,10 +21,12 @@ namespace MVVMShop.Services
     internal class DbAuthService : IAuthService
     {
         private readonly BaseRepository<Users> _usersRepository;
+        private readonly IHasher _passwordHasher;
 
-        public DbAuthService(BaseRepository<Users> usersRepository)
+        public DbAuthService(BaseRepository<Users> usersRepository, IHasher passwordHasher)
         {
             _usersRepository = usersRepository;
+            _passwordHasher = passwordHasher;
         }
 
         public User LogIn(string email, string password)
@@ -34,7 +37,7 @@ namespace MVVMShop.Services
             Users userDb = _usersRepository.Get(GetDataFromDatabase)
                 .FirstOrDefault(u => u.UserEmail == email);
 
-            if (userDb is null || !userDb.UserPassword.Equals(password))
+            if (userDb is null || !_passwordHasher.Equals(userDb.UserPassword, password))
                 throw new AuthFailedException("Podano błędny email lub hasło!");
 
             return new User(userDb);
@@ -51,8 +54,8 @@ namespace MVVMShop.Services
             if (!(userDb is null))
                 throw new AuthFailedException("Użytkownik o podanym adresie już istnieje!");
 
-            userDb = new Users(userData.Email, userData.Password, userData.FirstName, userData.LastName, userData.Role);
-            Debug.WriteLine(userDb.Insert());
+            userDb = new Users(userData.Email, _passwordHasher.Hash(userData.Password), userData.FirstName,
+                userData.LastName, userData.Role);
 
             return _usersRepository.Add(userDb, new Dictionary<string, string>
             {
@@ -62,6 +65,11 @@ namespace MVVMShop.Services
                 ["@LastName"] = userDb.LastName,
                 ["@Role"] = UserRole.Klient.ToString(),
             });
+        }
+
+        public void LogOut()
+        {
+            throw new NotImplementedException();
         }
 
         private Users GetDataFromDatabase(MySqlDataReader reader)
@@ -81,11 +89,6 @@ namespace MVVMShop.Services
                 Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"]
                     .ToString())
             };
-        }
-
-        public void LogOut()
-        {
-            throw new NotImplementedException();
         }
     }
 }
