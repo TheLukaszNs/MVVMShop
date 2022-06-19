@@ -19,17 +19,19 @@ namespace MVVMShop.Services.ProductCreators
             _productRepository = productRepository;
         }
 
-        public bool CreateProduct(Product product)
+        public Product CreateProduct(Product product)
         {
             var dbProduct = new Products(product.ProductName, product.Price, true, "");
 
-            return _productRepository.Add(ref dbProduct, new Dictionary<string, string>
+            dbProduct = _productRepository.Add(ref dbProduct, new Dictionary<string, string>
             {
                 ["@ProductName"] = dbProduct.ProductName,
                 ["@Price"] = dbProduct.Price.ToString(CultureInfo.InvariantCulture),
                 ["@Availability"] = dbProduct.Availability ? "1" : "0",
                 ["@Image"] = ""
             });
+
+            return new Product(dbProduct);
         }
     }
 }

@@ -43,10 +43,10 @@ namespace MVVMShop.Services
             return new User(userDb);
         }
 
-        public bool Register(UserRegisterData userData)
+        public User Register(UserRegisterData userData)
         {
             if (userData == null)
-                return false;
+                return null;
 
             Users userDb = _usersRepository.Get(Users.FromDatabaseReader)
                 .FirstOrDefault(u => u.UserEmail == userData.Email);
@@ -57,7 +57,7 @@ namespace MVVMShop.Services
             userDb = new Users(userData.Email, _passwordHasher.Hash(userData.Password), userData.FirstName,
                 userData.LastName, userData.Role);
 
-            return _usersRepository.Add(ref userDb, new Dictionary<string, string>
+            userDb = _usersRepository.Add(ref userDb, new Dictionary<string, string>
             {
                 ["@Email"] = userDb.UserEmail,
                 ["@Password"] = userDb.UserPassword,
@@ -65,6 +65,8 @@ namespace MVVMShop.Services
                 ["@LastName"] = userDb.LastName,
                 ["@Role"] = UserRole.Klient.ToString(),
             });
+
+            return new User(userDb);
         }
 
         public void LogOut()

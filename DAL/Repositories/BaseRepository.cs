@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.DAL.Entities;
+using MVVMShop.Model;
 using MySql.Data.MySqlClient;
 
 namespace MVVMShop.DAL.Repositories
@@ -57,10 +58,8 @@ namespace MVVMShop.DAL.Repositories
             return data;
         }
 
-        public bool Add(ref T item, Dictionary<string, string> valueMap)
+        public T Add(ref T item, Dictionary<string, string> valueMap)
         {
-            bool state = false;
-
             using (var connection = dbconnection.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"INSERT {table} VALUE {ValueMapToCommandInsert(valueMap)}",
@@ -72,14 +71,13 @@ namespace MVVMShop.DAL.Repositories
 
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    state = true;
                     item.Id = (uint)command.LastInsertedId;
                 }
 
                 connection.Close();
             }
 
-            return state;
+            return item;
         }
 
         public bool Edit(uint? id, string modifyCommand)

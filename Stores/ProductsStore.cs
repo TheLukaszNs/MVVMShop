@@ -17,7 +17,8 @@ namespace MVVMShop.Stores
 
         public List<Product> Products { get; } = new List<Product>();
 
-        public ProductsStore(IProductCreator productCreator, IProductProvider productProvider, IProductEditor productEditor, IProductRemover productRemover)
+        public ProductsStore(IProductCreator productCreator, IProductProvider productProvider,
+            IProductEditor productEditor, IProductRemover productRemover)
         {
             _productCreator = productCreator;
             _productProvider = productProvider;
@@ -32,16 +33,16 @@ namespace MVVMShop.Stores
 
         public void AddProduct(Product product)
         {
-            if (!_productCreator.CreateProduct(product))
+            var newProduct = _productCreator.CreateProduct(product);
+            if (newProduct == null)
                 return;
 
-            Products.Add(product);
-            OnProductAdded(product);
+            Products.Add(newProduct);
+            OnProductAdded(newProduct);
         }
 
         public void EditProduct(uint? productId)
         {
-
         }
 
         public void DeleteProduct(uint? productId)
