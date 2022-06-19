@@ -292,7 +292,7 @@
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AssisstantOrderListItem.xaml.cs">
+    <Compile Include="View\UserControls\AssisstantOrderListItem.xaml.cs">
       <DependentUpon>AssisstantOrderListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AssistantPage.xaml.cs">
@@ -325,11 +325,14 @@
     <Compile Include="View\UserControls\NavBar.xaml.cs">
       <DependentUpon>NavBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserManagementPage.xaml.cs">
+      <DependentUpon>UserManagementPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AssisstantOrderListItem.xaml">
+    <Page Include="View\UserControls\AssisstantOrderListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -383,6 +386,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\UserControls\NavBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
