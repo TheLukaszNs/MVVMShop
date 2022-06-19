@@ -82,7 +82,7 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        public bool Edit(uint id, string modifyCommand)
+        public bool Edit(uint? id, string modifyCommand)
         {
             bool state = false;
 

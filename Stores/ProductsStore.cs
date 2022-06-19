@@ -30,12 +30,19 @@ namespace MVVMShop.Stores
             OnProductAdded(product);
         }
 
+        public void EditProduct(uint? productId)
+        {
+
+        }
+
         private void InitProducts()
         {
             Products.Clear();
 
             var products = _productProvider.GetAllProducts();
-            Products.AddRange(products);
+
+            if (products != null)
+                Products.AddRange(products);
         }
 
         private void OnProductAdded(Product product) => ProductAdded?.Invoke(product);

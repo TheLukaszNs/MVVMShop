@@ -273,6 +273,8 @@
     <Compile Include="Services\OrderCreators\IOrderCreator.cs" />
     <Compile Include="Services\ProductCreators\IProductCreator.cs" />
     <Compile Include="Services\ProductCreators\DbProductCreator.cs" />
+    <Compile Include="Services\ProductEditor\DbProductEditor.cs" />
+    <Compile Include="Services\ProductEditor\IProductEditor.cs" />
     <Compile Include="Services\ProductProviders\IProductProvider.cs" />
     <Compile Include="Services\ProductProviders\DbProductProvider.cs" />
     <Compile Include="Stores\AuthStore.cs" />

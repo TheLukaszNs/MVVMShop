@@ -18,6 +18,17 @@ namespace MVVMShop.ViewModel
 
         private ObservableCollection<Product> _products;
 
+        private Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get => _selectedProduct;
+            set 
+            {
+                _selectedProduct = value;
+                OnPropertyChanged(nameof(SelectedProduct));
+            }
+        }
+
         public ObservableCollection<Product> Products
         {
             get => _products;
@@ -67,14 +78,51 @@ namespace MVVMShop.ViewModel
         private ICommand _createCommand;
 
         public ICommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(
-            o => _productsStore.AddProduct(new Product
-                {
-                    ProductName = ProductName,
-                    Availability = true,
-                    Price = decimal.Parse(Price)
-                }
-            ),
-            o => decimal.TryParse(Price, out _)
+            o =>
+            {
+                _productsStore.AddProduct(new Product
+                    {
+                        ProductName = ProductName,
+                        Availability = true,
+                        Price = decimal.Parse(Price)
+                    }
+                );
+
+                ClearForm();
+            },
+            o => decimal.TryParse(Price, out _) && int.TryParse(Points, out _)
+        ));
+
+        private ICommand _setFormCommand;
+        public ICommand SetFormCommand => _setFormCommand ?? (_setFormCommand = new RelayCommand(
+            o =>
+            {
+                ProductName = SelectedProduct.ProductName;
+                Price = SelectedProduct.Price.ToString();
+            },
+            o => true
+        ));
+
+        private ICommand _editCommand;
+        private ICommand EditCommand => _editCommand ?? (_editCommand = new RelayCommand(
+            o =>
+            {
+                _productsStore.EditProduct(SelectedProduct.Id);
+
+                ClearForm();
+            },
+            o => SelectedProduct != null
+        ));
+
+        private ICommand _deleteCommand;
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(
+            o =>
+            {
+
+
+                ClearForm();
+            },
+            o => SelectedProduct != null
         ));
 
         public AdminPageViewModel(ProductsStore productsStore)
@@ -82,6 +130,13 @@ namespace MVVMShop.ViewModel
             _productsStore = productsStore;
             _productsStore.ProductAdded += OnProductAdded;
             LoadProducts();
+        }
+
+        private void ClearForm()
+        {
+            ProductName = "";
+            Price = "";
+            Points = "";
         }
 
         private void OnProductAdded(Product product)
