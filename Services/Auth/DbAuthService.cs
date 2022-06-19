@@ -57,7 +57,7 @@ namespace MVVMShop.Services
             userDb = new Users(userData.Email, _passwordHasher.Hash(userData.Password), userData.FirstName,
                 userData.LastName, userData.Role);
 
-            return _usersRepository.Add(userDb, new Dictionary<string, string>
+            return _usersRepository.Add(ref userDb, new Dictionary<string, string>
             {
                 ["@Email"] = userDb.UserEmail,
                 ["@Password"] = userDb.UserPassword,

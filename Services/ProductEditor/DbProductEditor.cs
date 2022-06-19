@@ -17,9 +17,11 @@ namespace MVVMShop.Services.ProductEditor
 
         public bool EditProduct(uint? productId)
         {
-            var dbProduct = _productRepository.Get()[productId];
+            // var dbProduct = _productRepository.Get()[productId];
 
-            return _productRepository.Edit(productId, $"id={dbProduct.Id}, product_name={dbProduct.ProductName}, price={dbProduct.Price}");
+            //return _productRepository.Edit(productId, $"id={dbProduct.Id}, product_name={dbProduct.ProductName}, price={dbProduct.Price}");
+
+            return false;
         }
     }
 }
