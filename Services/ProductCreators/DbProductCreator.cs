@@ -23,7 +23,7 @@ namespace MVVMShop.Services.ProductCreators
         {
             var dbProduct = new Products(product.ProductName, product.Price, true, "");
 
-            return _productRepository.Add(dbProduct, new Dictionary<string, string>
+            return _productRepository.Add(ref dbProduct, new Dictionary<string, string>
             {
                 ["@ProductName"] = dbProduct.ProductName,
                 ["@Price"] = dbProduct.Price.ToString(CultureInfo.InvariantCulture),

@@ -97,6 +97,9 @@ namespace MVVMShop.ViewModel
         public ICommand SetFormCommand => _setFormCommand ?? (_setFormCommand = new RelayCommand(
             o =>
             {
+                if (SelectedProduct == null)
+                    return;
+
                 ProductName = SelectedProduct.ProductName;
                 Price = SelectedProduct.Price.ToString();
             },
@@ -118,7 +121,7 @@ namespace MVVMShop.ViewModel
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(
             o =>
             {
-
+                _productsStore.DeleteProduct(SelectedProduct.Id);
 
                 ClearForm();
             },
@@ -129,6 +132,8 @@ namespace MVVMShop.ViewModel
         {
             _productsStore = productsStore;
             _productsStore.ProductAdded += OnProductAdded;
+            _productsStore.ProductRemoved += OnProductRemoved;
+
             LoadProducts();
         }
 
@@ -142,6 +147,11 @@ namespace MVVMShop.ViewModel
         private void OnProductAdded(Product product)
         {
             _products.Add(product);
+        }
+
+        private void OnProductRemoved(Product product)
+        {
+            _products.Remove(product);
         }
 
         private void LoadProducts()

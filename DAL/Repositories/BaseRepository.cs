@@ -57,7 +57,7 @@ namespace MVVMShop.DAL.Repositories
             return data;
         }
 
-        public bool Add(T item, Dictionary<string, string> valueMap)
+        public bool Add(ref T item, Dictionary<string, string> valueMap)
         {
             bool state = false;
 
@@ -107,7 +107,7 @@ namespace MVVMShop.DAL.Repositories
             return state;
         }
 
-        public bool Delete(uint id)
+        public bool Delete(uint? id)
         {
             bool state = false;
 

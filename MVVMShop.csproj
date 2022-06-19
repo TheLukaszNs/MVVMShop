@@ -277,6 +277,8 @@
     <Compile Include="Services\ProductEditor\IProductEditor.cs" />
     <Compile Include="Services\ProductProviders\IProductProvider.cs" />
     <Compile Include="Services\ProductProviders\DbProductProvider.cs" />
+    <Compile Include="Services\ProductRemover\DbProductRemover.cs" />
+    <Compile Include="Services\ProductRemover\IProductRemover.cs" />
     <Compile Include="Stores\AuthStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Stores\ProductsStore.cs" />
