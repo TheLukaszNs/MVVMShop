@@ -18,7 +18,7 @@ using MySql.Data.MySqlClient;
 
 namespace MVVMShop.Services
 {
-    internal class DbAuthService : IAuthService
+    public class DbAuthService : IAuthService
     {
         private readonly BaseRepository<Users> _usersRepository;
         private readonly IHasher _passwordHasher;
@@ -34,7 +34,7 @@ namespace MVVMShop.Services
             if (email == null || password == null)
                 return null;
 
-            Users userDb = _usersRepository.Get(GetDataFromDatabase)
+            Users userDb = _usersRepository.Get(Users.FromDatabaseReader)
                 .FirstOrDefault(u => u.UserEmail == email);
 
             if (userDb is null || !_passwordHasher.Equals(userDb.UserPassword, password))
@@ -48,7 +48,7 @@ namespace MVVMShop.Services
             if (userData == null)
                 return false;
 
-            Users userDb = _usersRepository.Get(GetDataFromDatabase)
+            Users userDb = _usersRepository.Get(Users.FromDatabaseReader)
                 .FirstOrDefault(u => u.UserEmail == userData.Email);
 
             if (!(userDb is null))
@@ -70,25 +70,6 @@ namespace MVVMShop.Services
         public void LogOut()
         {
             throw new NotImplementedException();
-        }
-
-        private Users GetDataFromDatabase(MySqlDataReader reader)
-        {
-            return new Users
-            {
-                Id = uint.Parse(reader["id"]
-                    .ToString()),
-                UserEmail = reader["user_email"]
-                    .ToString(),
-                UserPassword = reader["user_password"]
-                    .ToString(),
-                FirstName = reader["first_name"]
-                    .ToString(),
-                LastName = reader["last_name"]
-                    .ToString(),
-                Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"]
-                    .ToString())
-            };
         }
     }
 }

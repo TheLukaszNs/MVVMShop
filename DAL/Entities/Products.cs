@@ -20,7 +20,9 @@ namespace MVVMShop.DAL.Entities
 
         #region Constructors
 
-        public Products() { }
+        public Products()
+        {
+        }
 
         public Products(string productName, decimal price, bool availability, string image)
         {
@@ -46,11 +48,16 @@ namespace MVVMShop.DAL.Entities
 
         public Products ReadDataFromDatabase(MySqlDataReader reader) => new Products
         {
-            Id = uint.Parse(reader["id"].ToString()),
-            ProductName = reader["product_name"].ToString(),
-            Price = decimal.Parse(reader["price"].ToString()),
-            Availability = bool.Parse(reader["availability"].ToString()),
-            Image = reader["image"].ToString()
+            Id = uint.Parse(reader["id"]
+                .ToString()),
+            ProductName = reader["product_name"]
+                .ToString(),
+            Price = decimal.Parse(reader["price"]
+                .ToString()),
+            Availability = bool.Parse(reader["availability"]
+                .ToString()),
+            Image = reader["image"]
+                .ToString()
         };
 
         public string Insert() => $"(0, {ProductName}, {Price}, {Availability}, {Image})";
@@ -79,5 +86,18 @@ namespace MVVMShop.DAL.Entities
         public override int GetHashCode() => base.GetHashCode();
 
         #endregion
+
+        public static Products FromDatabaseReader(MySqlDataReader reader) => new Products
+        {
+            Id = uint.Parse(reader["id"]
+                .ToString()),
+            ProductName = reader["product_name"]
+                .ToString(),
+            Price = decimal.Parse(reader["price"]
+                .ToString()),
+            Availability = bool.Parse(reader["availability"]
+                .ToString()),
+            Image = ""
+        };
     }
 }

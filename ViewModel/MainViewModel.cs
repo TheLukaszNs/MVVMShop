@@ -46,6 +46,7 @@ namespace MVVMShop.ViewModel
                 _navigationService.Navigate();
 
             OnPropertyChanged(nameof(IsAuthenticated));
+            OnPropertyChanged(nameof(CurrentUser));
         }
 
         private void OnCurrentViewModelChanged()

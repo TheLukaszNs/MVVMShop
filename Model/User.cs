@@ -13,13 +13,15 @@ namespace MVVMShop.Model
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public UserRole Role { get; set; }
 
-        public User(uint? id, string email, string firstName, string lastName)
+        public User(uint? id, string email, string firstName, string lastName, UserRole role)
         {
             Id = id;
             Email = email;
             FirstName = firstName;
             LastName = lastName;
+            Role = role;
         }
 
         public User(Users user)
@@ -28,6 +30,7 @@ namespace MVVMShop.Model
             Email = user.UserEmail;
             FirstName = user.FirstName;
             LastName = user.LastName;
+            Role = user.Role;
         }
     }
 }

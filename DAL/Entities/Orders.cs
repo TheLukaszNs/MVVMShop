@@ -56,9 +56,12 @@ namespace MVVMShop.DAL.Entities
 
         #region Constructors
 
-        public Orders() { }
+        public Orders()
+        {
+        }
 
-        public Orders(uint IDCustomer, uint IDAssisstant, decimal orderValue, OrderStatus status, DateTime orderDate, string address, PaymentMethod payment, DeliveryMethod delivery)
+        public Orders(uint IDCustomer, uint IDAssisstant, decimal orderValue, OrderStatus status, DateTime orderDate,
+            string address, PaymentMethod payment, DeliveryMethod delivery)
         {
             Id = null;
             this.IDCustomer = IDCustomer;
@@ -90,18 +93,28 @@ namespace MVVMShop.DAL.Entities
 
         public Orders ReadDataFromDatabase(MySqlDataReader reader) => new Orders
         {
-            Id = uint.Parse(reader["id"].ToString()),
-            IDCustomer = uint.Parse(reader["id_c"].ToString()),
-            IDAssisstant = uint.Parse(reader["id_a"].ToString()),
-            OrderValue = decimal.Parse(reader["order_value"].ToString()),
-            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), reader["order_status"].ToString()),
-            OrderDate = DateTime.Parse(reader["order_date"].ToString()),
-            Address = reader["address"].ToString(),
-            Payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), reader["payment_method"].ToString()),
-            Delivery = (DeliveryMethod)Enum.Parse(typeof(DeliveryMethod), reader["delivery_method"].ToString())
+            Id = uint.Parse(reader["id"]
+                .ToString()),
+            IDCustomer = uint.Parse(reader["id_c"]
+                .ToString()),
+            IDAssisstant = uint.Parse(reader["id_a"]
+                .ToString()),
+            OrderValue = decimal.Parse(reader["order_value"]
+                .ToString()),
+            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), reader["order_status"]
+                .ToString()),
+            OrderDate = DateTime.Parse(reader["order_date"]
+                .ToString()),
+            Address = reader["address"]
+                .ToString(),
+            Payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), reader["payment_method"]
+                .ToString()),
+            Delivery = (DeliveryMethod)Enum.Parse(typeof(DeliveryMethod), reader["delivery_method"]
+                .ToString())
         };
 
-        public string Insert() => $"(0, {IDCustomer}, {IDAssisstant}, {OrderValue}, {Status}, {OrderDate}, {Address}, {Payment}, {Delivery})";
+        public string Insert() =>
+            $"(0, {IDCustomer}, {IDAssisstant}, {OrderValue}, {Status}, {OrderDate}, {Address}, {Payment}, {Delivery})";
 
         public override string ToString() => $"{Id} {OrderValue} {OrderDate} {Status}";
 
@@ -139,5 +152,10 @@ namespace MVVMShop.DAL.Entities
         public override int GetHashCode() => base.GetHashCode();
 
         #endregion
+
+        public static BaseEntity FromDatabaseReader(MySqlDataReader reader)
+        {
+            return new Orders();
+        }
     }
 }

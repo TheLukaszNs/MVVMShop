@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace MVVMShop.DAL.Repositories
 {
-    internal class BaseRepository<T> where T : BaseEntity
+    public class BaseRepository<T> where T : BaseEntity
     {
         #region Queries
 
@@ -35,23 +35,6 @@ namespace MVVMShop.DAL.Repositories
         #endregion
 
         #region Methods
-
-        private string ValueMapToCommandInsert(Dictionary<string, string> valueMap)
-        {
-            var insert = new StringBuilder();
-
-            insert.Append("(0,");
-            insert.Append(String.Join(",", valueMap.Keys));
-            insert.Append(")");
-
-            return insert.ToString();
-        }
-
-        private void AddParametersFromValueMap(Dictionary<string, string> valueMap, MySqlCommand command)
-        {
-            foreach (var parameter in valueMap)
-                command.Parameters.AddWithValue(parameter.Key, parameter.Value);
-        }
 
         public List<T> Get(Func<MySqlDataReader, T> readDataFromDatabase)
         {
@@ -80,7 +63,8 @@ namespace MVVMShop.DAL.Repositories
 
             using (var connection = dbconnection.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"INSERT {table} VALUE {ValueMapToCommandInsert(valueMap)}", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT {table} VALUE {ValueMapToCommandInsert(valueMap)}",
+                    connection);
 
                 AddParametersFromValueMap(valueMap, command);
 
@@ -140,6 +124,23 @@ namespace MVVMShop.DAL.Repositories
             }
 
             return state;
+        }
+
+        private string ValueMapToCommandInsert(Dictionary<string, string> valueMap)
+        {
+            var insert = new StringBuilder();
+
+            insert.Append("(0,");
+            insert.Append(String.Join(",", valueMap.Keys));
+            insert.Append(")");
+
+            return insert.ToString();
+        }
+
+        private void AddParametersFromValueMap(Dictionary<string, string> valueMap, MySqlCommand command)
+        {
+            foreach (var parameter in valueMap)
+                command.Parameters.AddWithValue(parameter.Key, parameter.Value);
         }
 
         #endregion

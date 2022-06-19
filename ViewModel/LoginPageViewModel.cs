@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MVVMShop.Commands;
+using MVVMShop.DAL.Entities;
 using MVVMShop.Exceptions;
 using MVVMShop.Model;
 using MVVMShop.Services;
@@ -44,7 +45,9 @@ namespace MVVMShop.ViewModel
             }
         }
 
-        private readonly NavigationService<CustomerPageViewModel> _customerNavigationService;
+        private readonly NavigationService<CustomerPageViewModel> _customerNavigation;
+        private readonly NavigationService<AssistantPageViewModel> _assistantNavigation;
+        private readonly NavigationService<AdminPageViewModel> _adminNavigation;
         private readonly IAuthService _authService;
         private readonly AuthStore _authStore;
 
@@ -59,11 +62,15 @@ namespace MVVMShop.ViewModel
             );
 
         public LoginPageViewModel(NavigationService<RegisterPageViewModel> registerNavigationService,
-            NavigationService<CustomerPageViewModel> customerNavigationService, IAuthService authService,
+            NavigationService<CustomerPageViewModel> customerNavigation,
+            NavigationService<AssistantPageViewModel> assistantNavigation,
+            NavigationService<AdminPageViewModel> adminNavigation, IAuthService authService,
             AuthStore authStore)
         {
             GoToRegisterPageCommand = new NavigateCommand<RegisterPageViewModel>(registerNavigationService);
-            _customerNavigationService = customerNavigationService;
+            _customerNavigation = customerNavigation;
+            _assistantNavigation = assistantNavigation;
+            _adminNavigation = adminNavigation;
             _authService = authService;
             _authStore = authStore;
         }
@@ -75,7 +82,21 @@ namespace MVVMShop.ViewModel
                 var user = _authService.LogIn(Login, Password);
 
                 _authStore.AuthenticatedUser = user;
-                _customerNavigationService.Navigate();
+
+                switch (user.Role)
+                {
+                    case UserRole.Klient:
+                        _customerNavigation.Navigate();
+                        break;
+                    case UserRole.Pracownik:
+                        _assistantNavigation.Navigate();
+                        break;
+                    case UserRole.Admin:
+                        _adminNavigation.Navigate();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
             catch (AuthFailedException)
             {
