@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MVVMShop.View
+namespace MVVMShop.View.UserControls
 {
     /// <summary>
-    /// Logika interakcji dla klasy AssisstantOrderListItem.xaml
+    /// Logika interakcji dla klasy UserRoleListItem.xaml
     /// </summary>
-    public partial class AssisstantOrderListItem : UserControl
+    public partial class UserRoleListItem : UserControl
     {
-        public AssisstantOrderListItem()
+        public UserRoleListItem()
         {
             InitializeComponent();
         }
