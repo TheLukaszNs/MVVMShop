@@ -5,111 +5,165 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMShop.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModel="clr-namespace:MVVMShop.ViewModel"
+             xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             Width="1000"
-             Height="800"
-             >
+             d:DataContext="{d:DesignInstance viewModel:AdminPageViewModel}">
     <UserControl.Resources>
         <Style TargetType="StackPanel">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
-    
-    <Grid>
-        <StackPanel
-            Width="800"
-            >
-            <!-- MOTD -->
-            <TextBlock
+
+    <StackPanel 
+        HorizontalAlignment="Stretch">
+        <!-- MOTD -->
+        <TextBlock
                 Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
                 FontWeight="Bold"
                 TextAlignment="Center"
                 Margin="0, 0, 0, 100"
                 >
                 Zarządzaj produktami
-            </TextBlock>
+        </TextBlock>
 
-            <Grid
-                Height="300"
-                >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                
-                <!-- EDITOR -->
-                <StackPanel
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- EDITOR -->
+            <StackPanel
                     Grid.Column="0"
                     HorizontalAlignment="Stretch"
                     Margin="10"
                     >
-                    <TextBox
+                <TextBox
                         Style="{DynamicResource MaterialDesignFilledTextBox}"
                         materialDesign:HintAssist.Hint="Nazwa"
                         Margin="0 0 0 20"
                         materialDesign:TextFieldAssist.HasTrailingIcon="True"
                         materialDesign:TextFieldAssist.TrailingIcon="TagOutline"
+                        Text="{Binding ProductName}"
                         >
-                    </TextBox>
+                </TextBox>
 
-                    <TextBox
+                <TextBox
                         Style="{DynamicResource MaterialDesignFilledTextBox}"
                         materialDesign:HintAssist.Hint="Cena"
                         materialDesign:TextFieldAssist.HasTrailingIcon="True"
                         materialDesign:TextFieldAssist.TrailingIcon="CurrencyUsd"
                         Margin="0 0 0 20"
-                        >
-                    </TextBox>
+                        Text="{Binding Price}" Cursor="Arrow"
+                >
+                </TextBox>
 
-                    <TextBox
+                <TextBox
                         Style="{DynamicResource MaterialDesignFilledTextBox}"
                         materialDesign:HintAssist.Hint="Punkty"
                         materialDesign:TextFieldAssist.HasTrailingIcon="True"
                         materialDesign:TextFieldAssist.TrailingIcon="Trophy"
-                        >
-                    </TextBox>
+                        Text="{Binding Points}"
+                >
+                </TextBox>
 
-                    <Grid
+                <Grid
                         Margin="0 20 0 0"
                         >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
 
-                        <Button
+                    <Button
                             Margin="0 0 5 0"
-                            Grid.Column="0"
+                            Grid.Column="0" Cursor="Hand"
+                            Command="{Binding CreateCommand}"
                             >
-                            Dodaj
-                        </Button>
+                        Dodaj
+                    </Button>
 
-                        <Button
+                    <Button
                             Margin="5 0 5 0"
                             Grid.Column="1"
+                            Command="{Binding EditCommand}"
                             >
-                            Edytuj
-                        </Button>
+                        Edytuj
+                    </Button>
 
-                        <Button
+                    <Button
                             Margin="5 0 0 0"
                             Grid.Column="2" Cursor="Hand"
+                            Command="{Binding DeleteCommand}"
                             >
-                            Usuń
-                        </Button>
-                    </Grid>
-                </StackPanel>
-                
-                <!-- LIST -->
-                <ListBox
+                        Usuń
+                    </Button>
+                </Grid>
+            </StackPanel>
+
+            <!-- LIST -->
+            <ListBox
                     Grid.Column="1"
                     Margin="10"
-                    VerticalAlignment="Center"
-                    >
-                </ListBox>
-            </Grid>
-        </StackPanel>
-    </Grid>
+                    VerticalAlignment="Top"
+                    ItemsSource="{Binding Products}"
+                    HorizontalContentAlignment="Stretch"
+                    Style="{DynamicResource MaterialDesignListBox}"
+                    MaxHeight="225"
+                    x:Name="data"
+                    SelectedItem="{Binding SelectedProduct}"
+            >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid 
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Center"
+                            Margin="0 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                Text="{Binding ProductName}" 
+                                VerticalAlignment="Center"/>
+                            <StackPanel
+                                Margin="20 0 20 0"
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Price}" />
+                                <materialDesign:PackIcon Kind="CurrencyUsd" />
+                            </StackPanel>
+                            <StackPanel
+                                Grid.Column="2"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                                <CheckBox
+                                    Margin="10 0 10 0"
+                                    VerticalAlignment="Center"
+                                    IsChecked="{Binding Availability}" 
+                                    IsEnabled="False"/>
+                                <materialDesign:PackIcon Kind="BasketCheckOutline" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <Behaviors:Interaction.Triggers>
+                    <Behaviors:EventTrigger
+                        EventName="SelectionChanged"
+                        SourceObject="{Binding ElementName=data}"
+                        >
+                        <Behaviors:InvokeCommandAction Command="{Binding SetFormCommand}"/>
+                    </Behaviors:EventTrigger>
+                </Behaviors:Interaction.Triggers>
+            </ListBox>
+        </Grid>
+    </StackPanel>
 </UserControl>

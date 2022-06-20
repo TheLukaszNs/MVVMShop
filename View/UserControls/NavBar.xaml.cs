@@ -27,9 +27,26 @@ namespace MVVMShop.View.UserControls
             set => SetValue(UserNameProperty, value);
         }
 
+        public static readonly DependencyProperty UserManagementCommandProperty = DependencyProperty.Register(
+            nameof(UserManagementCommand), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty CartCommandProperty = DependencyProperty.Register(
+            nameof(CartCommand), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
+
         public static readonly DependencyProperty LogoutClickedCommandProperty = DependencyProperty.Register(
             nameof(LogoutClickedCommand), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
 
+        public ICommand UserManagementCommand
+        {
+            get => (ICommand)GetValue(UserManagementCommandProperty);
+            set => SetValue(UserManagementCommandProperty, value);
+        }
+
+        public ICommand CartCommand
+        {
+            get => (ICommand)GetValue(CartCommandProperty);
+            set => SetValue(CartCommandProperty, value);
+        }
         public ICommand LogoutClickedCommand
         {
             get => (ICommand)GetValue(LogoutClickedCommandProperty);
@@ -39,6 +56,16 @@ namespace MVVMShop.View.UserControls
         public NavBar()
         {
             InitializeComponent();
+        }
+
+        private void ButtonUserManagement_OnClick(object sender, RoutedEventArgs e)
+        {
+            UserManagementCommand?.Execute(null);
+        }
+
+        private void ButtonCart_OnClick(object sender, RoutedEventArgs e)
+        {
+            CartCommand?.Execute(null);
         }
 
         private void ButtonLogout_OnClick(object sender, RoutedEventArgs e)

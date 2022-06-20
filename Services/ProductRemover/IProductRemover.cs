@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVMShop.DAL.Entities
+namespace MVVMShop.Services.ProductRemover
 {
-    public class BaseEntity
+    public interface IProductRemover
     {
-        public uint? Id { get; set; }
+        bool RemoveProduct(uint? productId);
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVMShop.DAL.Entities
+namespace MVVMShop.Services.ProductEditor
 {
-    public class BaseEntity
+    public interface IProductEditor
     {
-        public uint? Id { get; set; }
+        bool EditProduct(uint? productId);
     }
 }

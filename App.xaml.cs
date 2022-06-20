@@ -16,6 +16,11 @@ using MVVMShop.DAL.Repositories;
 using MVVMShop.HostBuilders;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
+using MVVMShop.Services.OrderCreators;
+using MVVMShop.Services.ProductCreators;
+using MVVMShop.Services.ProductProviders;
+using MVVMShop.Services.ProductEditor;
+using MVVMShop.Services.ProductRemover;
 using MVVMShop.View;
 using MVVMShop.ViewModel;
 
@@ -34,16 +39,26 @@ namespace MVVMShop
                     services.AddSingleton<DbConnection>();
                     services.AddSingleton<NavigationStore>();
                     services.AddSingleton<AuthStore>();
+                    services.AddSingleton<ProductsStore>();
 
-                    // services.AddSingleton<UsersRepository>();
                     services.AddSingleton(s =>
                         new BaseRepository<Users>(s.GetRequiredService<DbConnection>(), "users"));
-                    services.AddSingleton<ProductsRepository>();
-                    services.AddSingleton<OrdersRepository>();
-                    services.AddSingleton<OrderIncludesProductsRepository>();
+                    services.AddSingleton(s =>
+                        new BaseRepository<Products>(s.GetRequiredService<DbConnection>(), "products"));
+                    services.AddSingleton(s =>
+                        new BaseRepository<Orders>(s.GetRequiredService<DbConnection>(), "orders"));
+                    services.AddSingleton(s =>
+                        new BaseRepository<OrderIncludesProducts>(s.GetRequiredService<DbConnection>(),
+                            "order_includes_products"));
+
 
                     services.AddSingleton<IAuthService>(s =>
                         new DbAuthService(s.GetRequiredService<BaseRepository<Users>>(), new DefaultPasswordHasher()));
+                    services.AddSingleton<IProductCreator, DbProductCreator>();
+                    services.AddSingleton<IProductProvider, DbProductProvider>();
+                    services.AddSingleton<IProductEditor, DbProductEditor>();
+                    services.AddSingleton<IProductRemover, DbProductRemover>();
+                    services.AddSingleton<IOrderCreator, DbOrderCreator>();
 
                     services.AddSingleton(s => new MainWindow()
                     {

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVMShop.DAL.Entities
+namespace MVVMShop.ViewModel
 {
-    public class BaseEntity
+    public class UserManagementViewModel : BaseVM
     {
-        public uint? Id { get; set; }
     }
 }

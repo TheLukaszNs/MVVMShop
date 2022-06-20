@@ -27,14 +27,17 @@ namespace MVVMShop.DAL.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public UserRole Role { get; set; }
+        public uint Points { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public Users() { }
+        public Users()
+        {
+        }
 
-        public Users(string userEmail, string userPassword, string firstName, string lastName, UserRole role)
+        public Users(string userEmail, string userPassword, string firstName, string lastName, UserRole role, uint points)
         {
             Id = null;
             UserEmail = userEmail.Trim();
@@ -42,6 +45,7 @@ namespace MVVMShop.DAL.Entities
             FirstName = firstName.Trim();
             LastName = lastName.Trim();
             Role = role;
+            Points = points;
         }
 
         public Users(Users user)
@@ -52,6 +56,7 @@ namespace MVVMShop.DAL.Entities
             FirstName = user.FirstName;
             LastName = user.LastName;
             Role = user.Role;
+            Points = user.Points;
         }
 
         #endregion
@@ -60,17 +65,24 @@ namespace MVVMShop.DAL.Entities
 
         public Users ReadDataFromDatabase(MySqlDataReader reader) => new Users
         {
-            Id = uint.Parse(reader["id"].ToString()),
-            UserEmail = reader["user_email"].ToString(),
-            UserPassword = reader["user_password"].ToString(),
-            FirstName = reader["first_name"].ToString(),
-            LastName = reader["last_name"].ToString(),
-            Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"].ToString())
+            Id = uint.Parse(reader["id"]
+                .ToString()),
+            UserEmail = reader["user_email"]
+                .ToString(),
+            UserPassword = reader["user_password"]
+                .ToString(),
+            FirstName = reader["first_name"]
+                .ToString(),
+            LastName = reader["last_name"]
+                .ToString(),
+            Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"]
+                .ToString()),
+            Points = (uint)reader["points"]
         };
 
-        public string Insert() => $"(0, {UserEmail}, {UserPassword}, {FirstName}, {LastName}, {Role})";
+        public string Insert() => $"(0, {UserEmail}, {UserPassword}, {FirstName}, {LastName}, {Role}, {Points})";
 
-        public override string ToString() => $"{FirstName} {LastName}, {UserEmail}, {Role}";
+        public override string ToString() => $"{FirstName} {LastName}, {UserEmail}, {Role}, {Points}";
 
         public override bool Equals(object obj)
         {
@@ -94,11 +106,32 @@ namespace MVVMShop.DAL.Entities
             if (Role != user.Role)
                 return false;
 
+            if (Points != user.Points)
+                return false;
+
             return true;
         }
 
         public override int GetHashCode() => base.GetHashCode();
 
         #endregion
+
+        public static Users FromDatabaseReader(MySqlDataReader reader) =>
+            new Users
+            {
+                Id = uint.Parse(reader["id"]
+                    .ToString()),
+                UserEmail = reader["user_email"]
+                    .ToString(),
+                UserPassword = reader["user_password"]
+                    .ToString(),
+                FirstName = reader["first_name"]
+                    .ToString(),
+                LastName = reader["last_name"]
+                    .ToString(),
+                Role = (UserRole)Enum.Parse(typeof(UserRole), reader["user_role"]
+                    .ToString()),
+                Points = (uint)reader["points"]
+            };
     }
 }

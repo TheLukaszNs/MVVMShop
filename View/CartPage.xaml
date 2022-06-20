@@ -5,8 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMShop.View"
              mc:Ignorable="d" 
-             Width="1000"
-             Height="800"
              >
     <UserControl.Resources>
         <Style TargetType="StackPanel">

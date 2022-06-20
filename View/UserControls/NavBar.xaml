@@ -18,14 +18,16 @@
                 VerticalAlignment="Center"
                 Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                 Margin="0 0 20 0">
-                Witaj!
+                Witaj,
+                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:NavBar}}, Path=UserName}" />
             </TextBlock>
 
             <Button
                 Style="{DynamicResource MaterialDesignOutlinedButton}"
                 Grid.Column="1"
                 Margin="0 0 20 0"
-                Content="{materialDesign:PackIcon CartCheck}"/>
+                Content="{materialDesign:PackIcon CartCheck}" Cursor="Hand"
+                Click="ButtonCart_OnClick"/>
             <Button 
                 Style="{DynamicResource MaterialDesignFlatAccentButton}"
                 Grid.Column="2"

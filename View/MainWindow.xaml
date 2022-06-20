@@ -52,7 +52,7 @@
     </Window.Resources>
 
     <Grid 
-        Width="600" 
+        Width="700" 
         Margin="0 20"
         HorizontalAlignment="Center">
         <Grid.RowDefinitions>
@@ -63,6 +63,8 @@
         <userControls:NavBar 
             Visibility="{Binding IsAuthenticated, Converter={StaticResource BooleanToVisibilityConverter}}" 
             Margin="0 20"
+            UserManagementCommand="{Binding UserManagementCommand}"
+            CartCommand="{Binding CartPageCommand}"
             LogoutClickedCommand="{Binding LogoutCommand}"
             UserName="{Binding Path=CurrentUser.FirstName}"/>
         <ContentControl 
