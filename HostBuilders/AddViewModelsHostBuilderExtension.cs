@@ -21,7 +21,9 @@ namespace MVVMShop.HostBuilders
                 .AddViewModel<RegisterPageViewModel>()
                 .AddViewModel<CustomerPageViewModel>()
                 .AddViewModel<AssistantPageViewModel>()
-                .AddViewModel<AdminPageViewModel>();
+                .AddViewModel<AdminPageViewModel>()
+                .AddViewModel<UserManagementViewModel>()
+                .AddViewModel<CartPageViewModel>();
 
             return hostBuilder;
         }

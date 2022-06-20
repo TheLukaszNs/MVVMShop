@@ -15,6 +15,7 @@ using MVVMShop.Exceptions;
 using MVVMShop.Model;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
+using System.Text.RegularExpressions;
 
 namespace MVVMShop.ViewModel
 {
@@ -22,6 +23,8 @@ namespace MVVMShop.ViewModel
     {
         private readonly NavigationService<LoginPageViewModel> _navigationService;
         private readonly IAuthService _authService;
+
+        private Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
         private string _firstName;
 
@@ -76,7 +79,8 @@ namespace MVVMShop.ViewModel
         private ICommand _registerCommand;
 
         public ICommand RegisterCommand => _registerCommand ??= new RelayCommand(
-            o => Register()
+            o => Register(),
+            o => regex.Match(Email ?? "").Success
         );
 
         public RegisterPageViewModel(NavigationService<LoginPageViewModel> navigationService, IAuthService authService)
