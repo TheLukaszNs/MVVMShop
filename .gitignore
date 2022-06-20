@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 # DB
 DB/DbContexts/MVVMShopDesignTimeContextFactory.cs
+
+*.clef
+*.sarif
