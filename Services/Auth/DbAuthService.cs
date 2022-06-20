@@ -64,6 +64,7 @@ namespace MVVMShop.Services
                 ["@FirstName"] = userDb.FirstName,
                 ["@LastName"] = userDb.LastName,
                 ["@Role"] = UserRole.Klient.ToString(),
+                ["@Points"] = userDb.Points.ToString()
             });
 
             return new User(userDb);

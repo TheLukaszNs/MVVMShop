@@ -293,6 +293,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegisterPageViewModel.cs" />
     <Compile Include="ViewModel\StartPageViewModel.cs" />
+    <Compile Include="ViewModel\UserManagementViewModel.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>

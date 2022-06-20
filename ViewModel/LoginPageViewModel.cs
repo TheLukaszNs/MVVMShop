@@ -14,12 +14,15 @@ using MVVMShop.Model;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
 using MVVMShop.Stores;
+using System.Text.RegularExpressions;
 
 namespace MVVMShop.ViewModel
 {
     public class LoginPageViewModel : BaseVM
     {
         //private readonly UserModel _userModel;
+
+        private Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
         private string _login;
 
@@ -57,7 +60,8 @@ namespace MVVMShop.ViewModel
 
         public ICommand LoginCommand =>
             _loginCommand ?? (_loginCommand = new RelayCommand(
-                    o => LogIn()
+                    o => LogIn(),
+                    o => regex.Match(Login ?? "").Success
                 )
             );
 
