@@ -43,9 +43,16 @@ namespace MVVMShop.DAL.Entities
 
         #endregion
 
-        public static BaseEntity FromDatabaseReader(MySqlDataReader reader)
+        public static BaseEntity FromDatabaseReader(MySqlDataReader reader) => new OrderIncludesProducts
         {
-            return new OrderIncludesProducts();
-        }
+            Id = uint.Parse(reader["id"]
+                .ToString()),
+            IDOrder = uint.Parse(reader["id_o"]
+                .ToString()),
+            IDProduct = uint.Parse(reader["id_p"]
+                .ToString()),
+            ProductCount = uint.Parse(reader["product_count"]
+                .ToString())
+        };
     }
 }

@@ -51,6 +51,7 @@ namespace MVVMShop.DAL.Entities
         public string Address { get; set; }
         public PaymentMethod Payment { get; set; }
         public DeliveryMethod Delivery { get; set; }
+        public uint Points { get; set; }
 
         #endregion
 
@@ -61,7 +62,7 @@ namespace MVVMShop.DAL.Entities
         }
 
         public Orders(uint IDCustomer, uint IDAssisstant, decimal orderValue, OrderStatus status, DateTime orderDate,
-            string address, PaymentMethod payment, DeliveryMethod delivery)
+            string address, PaymentMethod payment, DeliveryMethod delivery, uint points)
         {
             Id = null;
             this.IDCustomer = IDCustomer;
@@ -72,6 +73,7 @@ namespace MVVMShop.DAL.Entities
             Address = address.Trim();
             Payment = payment;
             Delivery = delivery;
+            Points = points;
         }
 
         public Orders(Orders orders)
@@ -85,6 +87,7 @@ namespace MVVMShop.DAL.Entities
             Address = orders.Address;
             Payment = orders.Payment;
             Delivery = orders.Delivery;
+            Points = orders.Points;
         }
 
         #endregion
@@ -110,13 +113,14 @@ namespace MVVMShop.DAL.Entities
             Payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), reader["payment_method"]
                 .ToString()),
             Delivery = (DeliveryMethod)Enum.Parse(typeof(DeliveryMethod), reader["delivery_method"]
-                .ToString())
+                .ToString()),
+            Points = (uint)reader["points"]
         };
 
         public string Insert() =>
-            $"(0, {IDCustomer}, {IDAssisstant}, {OrderValue}, {Status}, {OrderDate}, {Address}, {Payment}, {Delivery})";
+            $"(0, {IDCustomer}, {IDAssisstant}, {OrderValue}, {Status}, {OrderDate}, {Address}, {Payment}, {Delivery}, {Points})";
 
-        public override string ToString() => $"{Id} {OrderValue} {OrderDate} {Status}";
+        public override string ToString() => $"{Id} {OrderValue} {OrderDate} {Status}, {Points}";
 
         public override bool Equals(object obj)
         {
@@ -146,6 +150,9 @@ namespace MVVMShop.DAL.Entities
             if (Delivery != order.Delivery)
                 return false;
 
+            if (Points != order.Points)
+                return false;
+
             return true;
         }
 
@@ -153,9 +160,27 @@ namespace MVVMShop.DAL.Entities
 
         #endregion
 
-        public static BaseEntity FromDatabaseReader(MySqlDataReader reader)
+        public static BaseEntity FromDatabaseReader(MySqlDataReader reader) => new Orders
         {
-            return new Orders();
-        }
+            Id = uint.Parse(reader["id"]
+                .ToString()),
+            IDCustomer = uint.Parse(reader["id_c"]
+                .ToString()),
+            IDAssisstant = uint.Parse(reader["id_a"]
+                .ToString()),
+            OrderValue = decimal.Parse(reader["order_value"]
+                .ToString()),
+            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), reader["order_status"]
+                .ToString()),
+            OrderDate = DateTime.Parse(reader["order_date"]
+                .ToString()),
+            Address = reader["address"]
+                .ToString(),
+            Payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), reader["payment_method"]
+                .ToString()),
+            Delivery = (DeliveryMethod)Enum.Parse(typeof(DeliveryMethod), reader["delivery_method"]
+                .ToString()),
+            Points = (uint)reader["points"]
+        };
     }
 }

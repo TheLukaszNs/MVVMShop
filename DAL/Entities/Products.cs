@@ -15,6 +15,7 @@ namespace MVVMShop.DAL.Entities
         public decimal Price { get; set; }
         public bool Availability { get; set; }
         public string Image { get; set; }
+        public uint Points { get; set; }
 
         #endregion
 
@@ -24,13 +25,14 @@ namespace MVVMShop.DAL.Entities
         {
         }
 
-        public Products(string productName, decimal price, bool availability, string image)
+        public Products(string productName, decimal price, bool availability, string image, uint points)
         {
             Id = null;
             ProductName = productName.Trim();
             Price = price;
             Availability = availability;
             Image = image.Trim();
+            Points = points;
         }
 
         public Products(Products product)
@@ -40,6 +42,7 @@ namespace MVVMShop.DAL.Entities
             Price = product.Price;
             Availability = product.Availability;
             Image = product.Image;
+            Points = product.Points;
         }
 
         #endregion
@@ -57,12 +60,13 @@ namespace MVVMShop.DAL.Entities
             Availability = bool.Parse(reader["availability"]
                 .ToString()),
             Image = reader["image"]
-                .ToString()
+                .ToString(),
+            Points = (uint)reader["points"]
         };
 
-        public string Insert() => $"(0, {ProductName}, {Price}, {Availability}, {Image})";
+        public string Insert() => $"(0, {ProductName}, {Price}, {Availability}, {Image}, {Points})";
 
-        public override string ToString() => $"{ProductName}, {Price}, {(Availability ? "Dostępny" : "Niedostępny")}";
+        public override string ToString() => $"{ProductName}, {Price}, {(Availability ? "Dostępny" : "Niedostępny")}, {Points}";
 
         public override bool Equals(object obj)
         {
@@ -79,6 +83,9 @@ namespace MVVMShop.DAL.Entities
 
             if (Image.ToLower() != product.Image.ToLower())
                 return false;
+
+            if (Points != product.Points)
+                return false;   
 
             return true;
         }
@@ -97,7 +104,8 @@ namespace MVVMShop.DAL.Entities
                 .ToString()),
             Availability = bool.Parse(reader["availability"]
                 .ToString()),
-            Image = ""
+            Image = "",
+            Points = (uint)reader["points"]
         };
     }
 }

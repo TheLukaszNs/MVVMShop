@@ -21,14 +21,15 @@ namespace MVVMShop.Services.ProductCreators
 
         public Product CreateProduct(Product product)
         {
-            var dbProduct = new Products(product.ProductName, product.Price, true, "");
+            var dbProduct = new Products(product.ProductName, product.Price, true, "", product.Points);
 
             dbProduct = _productRepository.Add(ref dbProduct, new Dictionary<string, string>
             {
                 ["@ProductName"] = dbProduct.ProductName,
                 ["@Price"] = dbProduct.Price.ToString(CultureInfo.InvariantCulture),
                 ["@Availability"] = dbProduct.Availability ? "1" : "0",
-                ["@Image"] = ""
+                ["@Image"] = "",
+                ["@Points"] = dbProduct.Points.ToString()
             });
 
             return new Product(dbProduct);
