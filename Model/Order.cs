@@ -18,9 +18,10 @@ namespace MVVMShop.Model
         public DateTime OrderDate { get; set; }
         public PaymentMethod Payment { get; set; }
         public DeliveryMethod Delivery { get; set; }
+        public uint Points { get; set; }
 
         public Order(uint? id, User customer, User assistant, decimal value, string address, OrderStatus status,
-            DateTime orderDate, PaymentMethod payment, DeliveryMethod delivery)
+            DateTime orderDate, PaymentMethod payment, DeliveryMethod delivery, uint points)
         {
             Id = id;
             Customer = customer;
@@ -31,6 +32,7 @@ namespace MVVMShop.Model
             OrderDate = orderDate;
             Payment = payment;
             Delivery = delivery;
+            Points = points;
         }
     }
 }

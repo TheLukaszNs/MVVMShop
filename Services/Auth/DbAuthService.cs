@@ -55,7 +55,7 @@ namespace MVVMShop.Services
                 throw new AuthFailedException("Użytkownik o podanym adresie już istnieje!");
 
             userDb = new Users(userData.Email, _passwordHasher.Hash(userData.Password), userData.FirstName,
-                userData.LastName, userData.Role);
+                userData.LastName, userData.Role, 0);
 
             userDb = _usersRepository.Add(ref userDb, new Dictionary<string, string>
             {

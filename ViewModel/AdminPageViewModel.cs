@@ -84,7 +84,8 @@ namespace MVVMShop.ViewModel
                     {
                         ProductName = ProductName,
                         Availability = true,
-                        Price = decimal.Parse(Price)
+                        Price = decimal.Parse(Price),
+                        Points = uint.Parse(Points)
                     }
                 );
 
@@ -102,6 +103,7 @@ namespace MVVMShop.ViewModel
 
                 ProductName = SelectedProduct.ProductName;
                 Price = SelectedProduct.Price.ToString();
+                Points = SelectedProduct.Points.ToString();
             },
             o => true
         ));

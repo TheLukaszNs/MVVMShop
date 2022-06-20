@@ -13,6 +13,7 @@ namespace MVVMShop.Model
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public bool Availability { get; set; }
+        public uint Points { get; set; }
 
         public Product()
         {
@@ -24,6 +25,7 @@ namespace MVVMShop.Model
             ProductName = product.ProductName;
             Price = product.Price;
             Availability = product.Availability;
+            Points = product.Points;
         }
     }
 }
