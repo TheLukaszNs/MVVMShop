@@ -10,6 +10,8 @@ using MVVMShop.Common.HelperTypes;
 using MVVMShop.DAL;
 using MVVMShop.DAL.Entities;
 using MVVMShop.DAL.Repositories;
+using MVVMShop.DB.DbContexts;
+using MVVMShop.DTOs;
 using MVVMShop.Exceptions;
 using MVVMShop.Model;
 using MVVMShop.Services.Auth;
@@ -20,12 +22,12 @@ namespace MVVMShop.Services
 {
     public class DbAuthService : IAuthService
     {
-        private readonly BaseRepository<Users> _usersRepository;
+        private readonly MVVMShopContextFactory _dbContextFactory;
         private readonly IHasher _passwordHasher;
 
-        public DbAuthService(BaseRepository<Users> usersRepository, IHasher passwordHasher)
+        public DbAuthService(MVVMShopContextFactory dbContextFactory, IHasher passwordHasher)
         {
-            _usersRepository = usersRepository;
+            _dbContextFactory = dbContextFactory;
             _passwordHasher = passwordHasher;
         }
 
@@ -34,45 +36,51 @@ namespace MVVMShop.Services
             if (email == null || password == null)
                 return null;
 
-            Users userDb = _usersRepository.Get(Users.FromDatabaseReader)
-                .FirstOrDefault(u => u.UserEmail == email);
+            using var context = _dbContextFactory.CreateDbContext();
+            var user = (from u in context.Users
+                where u.Email == email
+                select u).FirstOrDefault();
 
-            if (userDb is null || !_passwordHasher.Equals(userDb.UserPassword, password))
+            if (user is null || !_passwordHasher.Equals(user.Password, password))
                 throw new AuthFailedException("Podano błędny email lub hasło!");
 
-            return new User(userDb);
+            return ToUser(user);
         }
 
-        public User Register(UserRegisterData userData)
+        public void Register(UserRegisterData userData)
         {
             if (userData == null)
-                return null;
+                return;
 
-            Users userDb = _usersRepository.Get(Users.FromDatabaseReader)
-                .FirstOrDefault(u => u.UserEmail == userData.Email);
+            using var context = _dbContextFactory.CreateDbContext();
+            var user = (from u in context.Users
+                where u.Email == userData.Email
+                select u).FirstOrDefault();
 
-            if (!(userDb is null))
+            if (user is not null)
                 throw new AuthFailedException("Użytkownik o podanym adresie już istnieje!");
 
-            userDb = new Users(userData.Email, _passwordHasher.Hash(userData.Password), userData.FirstName,
-                userData.LastName, userData.Role, 0);
+            user = ToUserDto(userData);
 
-            userDb = _usersRepository.Add(ref userDb, new Dictionary<string, string>
-            {
-                ["@Email"] = userDb.UserEmail,
-                ["@Password"] = userDb.UserPassword,
-                ["@FirstName"] = userDb.FirstName,
-                ["@LastName"] = userDb.LastName,
-                ["@Role"] = UserRole.Klient.ToString(),
-                ["@Points"] = userDb.Points.ToString()
-            });
-
-            return new User(userDb);
+            context.Users.Add(user);
+            context.SaveChanges();
         }
 
         public void LogOut()
         {
             throw new NotImplementedException();
         }
+
+        private UserDTO ToUserDto(UserRegisterData user) => new()
+        {
+            Email = user.Email,
+            Password = _passwordHasher.Hash(user.Password),
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Role = UserRole.Klient,
+        };
+
+        private User ToUser(UserDTO user) =>
+            new(user.Id, user.Email, user.FirstName, user.LastName, user.Role, user.Points);
     }
 }

@@ -19,10 +19,11 @@ namespace MVVMShop.ViewModel
         private ObservableCollection<Product> _products;
 
         private Product _selectedProduct;
+
         public Product SelectedProduct
         {
             get => _selectedProduct;
-            set 
+            set
             {
                 _selectedProduct = value;
                 OnPropertyChanged(nameof(SelectedProduct));
@@ -77,8 +78,8 @@ namespace MVVMShop.ViewModel
 
         private ICommand _createCommand;
 
-        public ICommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(
-            o =>
+        public ICommand CreateCommand => _createCommand ??= new RelayCommand(
+            _ =>
             {
                 _productsStore.AddProduct(new Product
                     {
@@ -92,11 +93,12 @@ namespace MVVMShop.ViewModel
                 ClearForm();
             },
             o => decimal.TryParse(Price, out _) && int.TryParse(Points, out _)
-        ));
+        );
 
         private ICommand _setFormCommand;
-        public ICommand SetFormCommand => _setFormCommand ?? (_setFormCommand = new RelayCommand(
-            o =>
+
+        public ICommand SetFormCommand => _setFormCommand ??= new RelayCommand(
+            _ =>
             {
                 if (SelectedProduct == null)
                     return;
@@ -105,36 +107,46 @@ namespace MVVMShop.ViewModel
                 Price = SelectedProduct.Price.ToString();
                 Points = SelectedProduct.Points.ToString();
             },
-            o => true
-        ));
+            _ => true
+        );
 
         private ICommand _editCommand;
-        private ICommand EditCommand => _editCommand ?? (_editCommand = new RelayCommand(
-            o =>
-            {
-                _productsStore.EditProduct(SelectedProduct.Id);
 
+        public ICommand EditCommand => _editCommand ??= new RelayCommand(
+            _ =>
+            {
+                _productsStore.EditProduct(SelectedProduct.Id, new Product
+                {
+                    ProductName = ProductName,
+                    Availability = true,
+                    Price = decimal.Parse(Price),
+                    Points = uint.Parse(Points)
+                });
+
+                OnPropertyChanged(nameof(Products));
                 ClearForm();
             },
-            o => SelectedProduct != null
-        ));
+            o => SelectedProduct != null && decimal.TryParse(Price, out _) && int.TryParse(Points, out _)
+        );
 
         private ICommand _deleteCommand;
-        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(
-            o =>
+
+        public ICommand DeleteCommand => _deleteCommand ??= new RelayCommand(
+            _ =>
             {
                 _productsStore.DeleteProduct(SelectedProduct.Id);
 
                 ClearForm();
             },
-            o => SelectedProduct != null
-        ));
+            _ => SelectedProduct != null
+        );
 
         public AdminPageViewModel(ProductsStore productsStore)
         {
             _productsStore = productsStore;
             _productsStore.ProductAdded += OnProductAdded;
             _productsStore.ProductRemoved += OnProductRemoved;
+            _productsStore.ProductChanged += OnProductChanged;
 
             LoadProducts();
         }
@@ -155,6 +167,8 @@ namespace MVVMShop.ViewModel
         {
             _products.Remove(product);
         }
+
+        private void OnProductChanged() => LoadProducts();
 
         private void LoadProducts()
         {

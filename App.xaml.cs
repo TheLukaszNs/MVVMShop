@@ -7,12 +7,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVVMShop.Common.Hashers;
 using MVVMShop.DAL;
 using MVVMShop.DAL.Entities;
 using MVVMShop.DAL.Repositories;
+using MVVMShop.DB.DbContexts;
 using MVVMShop.HostBuilders;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
@@ -34,8 +37,12 @@ namespace MVVMShop
         {
             _host = Host.CreateDefaultBuilder()
                 .AddViewModels()
-                .ConfigureServices(services =>
+                .ConfigureAppConfiguration(app => { app.AddJsonFile("appsettings.json"); })
+                .ConfigureServices((hostContext, services) =>
                 {
+                    string connectionString = hostContext.Configuration.GetConnectionString("Default");
+
+                    services.AddSingleton(new MVVMShopContextFactory(connectionString));
                     services.AddSingleton<DbConnection>();
                     services.AddSingleton<NavigationStore>();
                     services.AddSingleton<AuthStore>();
@@ -53,7 +60,7 @@ namespace MVVMShop
 
 
                     services.AddSingleton<IAuthService>(s =>
-                        new DbAuthService(s.GetRequiredService<BaseRepository<Users>>(), new DefaultPasswordHasher()));
+                        new DbAuthService(s.GetRequiredService<MVVMShopContextFactory>(), new DefaultPasswordHasher()));
                     services.AddSingleton<IProductCreator, DbProductCreator>();
                     services.AddSingleton<IProductProvider, DbProductProvider>();
                     services.AddSingleton<IProductEditor, DbProductEditor>();
@@ -71,6 +78,10 @@ namespace MVVMShop
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
+
+            MVVMShopContextFactory mvvmShopContextFactory = _host.Services.GetRequiredService<MVVMShopContextFactory>();
+            using MVVMShopContext dbContext = mvvmShopContextFactory.CreateDbContext();
+            dbContext.Database.Migrate();
 
             var navigationService =
                 _host.Services.GetRequiredService<NavigationService<StartPageViewModel>>();

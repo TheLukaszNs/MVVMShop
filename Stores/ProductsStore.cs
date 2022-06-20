@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using MVVMShop.DTOs;
 using MVVMShop.Model;
 using MVVMShop.Services.ProductCreators;
 using MVVMShop.Services.ProductProviders;
@@ -30,22 +32,28 @@ namespace MVVMShop.Stores
 
         public event Action<Product> ProductAdded;
         public event Action<Product> ProductRemoved;
+        public event Action ProductChanged;
 
         public void AddProduct(Product product)
         {
-            var newProduct = _productCreator.CreateProduct(product);
-            if (newProduct == null)
+            _productCreator.CreateProduct(product);
+
+            Products.Add(product);
+            OnProductAdded(product);
+        }
+
+        public void EditProduct(Guid productId, Product editedProduct)
+        {
+            var newProduct = _productEditor.EditProduct(productId, editedProduct);
+            if (newProduct is null)
                 return;
 
-            Products.Add(newProduct);
-            OnProductAdded(newProduct);
+            var index = Products.FindIndex(x => x.Id == productId);
+            Products[index] = newProduct;
+            OnProductChanged();
         }
 
-        public void EditProduct(uint? productId)
-        {
-        }
-
-        public void DeleteProduct(uint? productId)
+        public void DeleteProduct(Guid productId)
         {
             if (!_productRemover.RemoveProduct(productId))
                 return;
@@ -67,5 +75,6 @@ namespace MVVMShop.Stores
 
         private void OnProductAdded(Product product) => ProductAdded?.Invoke(product);
         private void OnProductRemoved(Product product) => ProductRemoved?.Invoke(product);
+        private void OnProductChanged() => ProductChanged?.Invoke();
     }
 }

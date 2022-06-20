@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using MVVMShop.Commands;
 using MVVMShop.DAL.Entities;
+using MVVMShop.DTOs;
 using MVVMShop.Exceptions;
 using MVVMShop.Model;
 using MVVMShop.Services;

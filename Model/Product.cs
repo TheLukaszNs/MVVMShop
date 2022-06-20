@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.DAL.Entities;
+using MVVMShop.DTOs;
 
 namespace MVVMShop.Model
 {
     public class Product
     {
-        public uint? Id { get; set; }
+        public Guid Id { get; set; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public bool Availability { get; set; }
@@ -19,7 +20,7 @@ namespace MVVMShop.Model
         {
         }
 
-        public Product(Products product)
+        public Product(ProductDTO product)
         {
             Id = product.Id;
             ProductName = product.ProductName;

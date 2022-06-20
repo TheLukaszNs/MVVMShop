@@ -9,6 +9,6 @@ namespace MVVMShop.Services.ProductProviders
 {
     public interface IProductProvider
     {
-        List<Product> GetAllProducts();
+        IEnumerable<Product> GetAllProducts();
     }
 }

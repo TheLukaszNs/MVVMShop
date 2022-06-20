@@ -9,6 +9,6 @@ namespace MVVMShop.Services.ProductCreators
 {
     public interface IProductCreator
     {
-        Product CreateProduct(Product product);
+        void CreateProduct(Product product);
     }
 }
