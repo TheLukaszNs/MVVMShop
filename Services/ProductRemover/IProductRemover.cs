@@ -8,6 +8,6 @@ namespace MVVMShop.Services.ProductRemover
 {
     public interface IProductRemover
     {
-        bool RemoveProduct(uint? productId);
+        bool RemoveProduct(Guid productId);
     }
 }

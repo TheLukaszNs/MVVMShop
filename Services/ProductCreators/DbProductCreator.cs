@@ -6,33 +6,38 @@ using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.DAL.Entities;
 using MVVMShop.DAL.Repositories;
+using MVVMShop.DB.DbContexts;
+using MVVMShop.DTOs;
 using MVVMShop.Model;
 
 namespace MVVMShop.Services.ProductCreators
 {
     public class DbProductCreator : IProductCreator
     {
-        private readonly BaseRepository<Products> _productRepository;
+        private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbProductCreator(BaseRepository<Products> productRepository)
+        public DbProductCreator(MVVMShopContextFactory dbContextFactory)
         {
-            _productRepository = productRepository;
+            _dbContextFactory = dbContextFactory;
         }
 
-        public Product CreateProduct(Product product)
+        public void CreateProduct(Product product)
         {
-            var dbProduct = new Products(product.ProductName, product.Price, true, "", product.Points);
+            using var context = _dbContextFactory.CreateDbContext();
+            var productDto = ToProductDto(product);
 
-            dbProduct = _productRepository.Add(ref dbProduct, new Dictionary<string, string>
-            {
-                ["@ProductName"] = dbProduct.ProductName,
-                ["@Price"] = dbProduct.Price.ToString(CultureInfo.InvariantCulture),
-                ["@Availability"] = dbProduct.Availability ? "1" : "0",
-                ["@Image"] = "",
-                ["@Points"] = dbProduct.Points.ToString()
-            });
-
-            return new Product(dbProduct);
+            context.Products.Add(productDto);
+            context.SaveChanges();
+            product.Id = productDto.Id;
         }
+
+        private ProductDTO ToProductDto(Product product) => new()
+        {
+            Availability = product.Availability,
+            Points = product.Points,
+            Image = "",
+            Price = product.Price,
+            ProductName = product.ProductName
+        };
     }
 }

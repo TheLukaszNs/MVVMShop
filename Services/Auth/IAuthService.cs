@@ -12,7 +12,7 @@ namespace MVVMShop.Services.Auth
     public interface IAuthService
     {
         User LogIn(string email, string password);
-        User Register(UserRegisterData userData);
+        void Register(UserRegisterData userData);
         void LogOut();
     }
 }

@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.DAL.Entities;
+using MVVMShop.DTOs;
 
 namespace MVVMShop.Model
 {
     public class User
     {
-        public uint? Id { get; set; }
+        public Guid Id { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public UserRole Role { get; set; }
         public uint Points { get; set; }
 
-        public User(uint? id, string email, string firstName, string lastName, UserRole role, uint points)
+        public User(Guid id, string email, string firstName, string lastName, UserRole role, uint points)
         {
             Id = id;
             Email = email;
@@ -28,7 +29,7 @@ namespace MVVMShop.Model
 
         public User(Users user)
         {
-            Id = user.Id;
+            Id = Guid.Empty;
             Email = user.UserEmail;
             FirstName = user.FirstName;
             LastName = user.LastName;

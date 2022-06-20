@@ -60,7 +60,7 @@ namespace MVVMShop
 
 
                     services.AddSingleton<IAuthService>(s =>
-                        new DbAuthService(s.GetRequiredService<BaseRepository<Users>>(), new DefaultPasswordHasher()));
+                        new DbAuthService(s.GetRequiredService<MVVMShopContextFactory>(), new DefaultPasswordHasher()));
                     services.AddSingleton<IProductCreator, DbProductCreator>();
                     services.AddSingleton<IProductProvider, DbProductProvider>();
                     services.AddSingleton<IProductEditor, DbProductEditor>();

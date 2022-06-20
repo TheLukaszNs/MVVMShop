@@ -5,27 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.DAL.Entities;
 using MVVMShop.DAL.Repositories;
+using MVVMShop.DB.DbContexts;
 using MVVMShop.Model;
 
 namespace MVVMShop.Services.ProductProviders
 {
     internal class DbProductProvider : IProductProvider
     {
-        private readonly BaseRepository<Products> _productsRepository;
+        private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbProductProvider(BaseRepository<Products> productsRepository)
+        public DbProductProvider(MVVMShopContextFactory dbContextFactory)
         {
-            _productsRepository = productsRepository;
+            _dbContextFactory = dbContextFactory;
         }
 
-        public List<Product> GetAllProducts()
+        public IEnumerable<Product> GetAllProducts()
         {
-            var products = _productsRepository.Get(Products.FromDatabaseReader);
-            if (products == null || products.Count == 0)
-                return null;
+            using var context = _dbContextFactory.CreateDbContext();
 
-            return products.Select(p => new Product(p))
-                .ToList();
+            var products = context.Products.ToList();
+            return products.Select(p => new Product
+            {
+                ProductName = p.ProductName,
+                Price = p.Price,
+                Availability = p.Availability,
+                Id = p.Id,
+                Points = p.Points,
+            });
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.DAL.Entities;
+using MVVMShop.DTOs;
 
 namespace MVVMShop.Common.HelperTypes
 {

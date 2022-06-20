@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVVMShop.DTOs;
 using MySql.Data.MySqlClient;
 
 namespace MVVMShop.DAL.Entities
 {
     #region Roles
-
-    public enum UserRole
-    {
-        Klient,
-        Pracownik,
-        Admin
-    }
 
     #endregion
 
@@ -37,7 +31,8 @@ namespace MVVMShop.DAL.Entities
         {
         }
 
-        public Users(string userEmail, string userPassword, string firstName, string lastName, UserRole role, uint points)
+        public Users(string userEmail, string userPassword, string firstName, string lastName, UserRole role,
+            uint points)
         {
             Id = null;
             UserEmail = userEmail.Trim();

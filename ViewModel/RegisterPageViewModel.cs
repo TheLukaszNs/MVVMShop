@@ -10,6 +10,8 @@ using MVVMShop.Commands;
 using MVVMShop.Common.HelperTypes;
 using MVVMShop.DAL;
 using MVVMShop.DAL.Entities;
+using MVVMShop.DTOs;
+using MVVMShop.Exceptions;
 using MVVMShop.Model;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
@@ -73,9 +75,9 @@ namespace MVVMShop.ViewModel
 
         private ICommand _registerCommand;
 
-        public ICommand RegisterCommand => _registerCommand ?? (_registerCommand = new RelayCommand(
+        public ICommand RegisterCommand => _registerCommand ??= new RelayCommand(
             o => Register()
-        ));
+        );
 
         public RegisterPageViewModel(NavigationService<LoginPageViewModel> navigationService, IAuthService authService)
         {
@@ -86,17 +88,21 @@ namespace MVVMShop.ViewModel
 
         private void Register()
         {
-            User user = _authService.Register(new UserRegisterData
+            try
             {
-                Email = Email,
-                LastName = LastName,
-                FirstName = FirstName,
-                Password = Password,
-                Role = UserRole.Klient
-            });
-
-            if (user != null)
-                _navigationService.Navigate();
+                _authService.Register(new UserRegisterData
+                {
+                    Email = Email,
+                    LastName = LastName,
+                    FirstName = FirstName,
+                    Password = Password,
+                    Role = UserRole.Klient
+                });
+            }
+            catch (AuthFailedException)
+            {
+                //
+            }
         }
     }
 }
