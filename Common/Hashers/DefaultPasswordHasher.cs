@@ -13,14 +13,13 @@ namespace MVVMShop.Common.Hashers
     {
         public string Hash(string value, byte[] salt = null)
         {
-            if (salt == null || salt.Length != 16)
+            if (salt is not { Length: 16 })
             {
                 salt = new byte[16];
 
-                using (var rngCsp = new RNGCryptoServiceProvider())
-                {
-                    rngCsp.GetNonZeroBytes(salt);
-                }
+                using var rngCsp = RandomNumberGenerator.Create();
+
+                rngCsp.GetNonZeroBytes(salt);
             }
 
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
