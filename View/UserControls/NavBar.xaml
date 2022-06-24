@@ -27,7 +27,7 @@
                 Grid.Column="1"
                 Margin="0 0 20 0"
                 Content="{materialDesign:PackIcon CartCheck}" Cursor="Hand"
-                Click="ButtonCart_OnClick"/>
+                Click="ButtonUserManagement_OnClick"/>
             <Button 
                 Style="{DynamicResource MaterialDesignFlatAccentButton}"
                 Grid.Column="2"

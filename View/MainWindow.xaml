@@ -47,6 +47,9 @@
         <DataTemplate DataType="{x:Type vm:FinalizationPageViewModel}">
             <local:FinalizationPage />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UserManagementViewModel}">
+            <local:UserManagementPage/>
+        </DataTemplate>
 
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>

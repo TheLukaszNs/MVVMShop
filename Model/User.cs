@@ -17,6 +17,11 @@ namespace MVVMShop.Model
         public UserRole Role { get; set; }
         public uint Points { get; set; }
 
+        public User()
+        {
+
+        }
+
         public User(Guid id, string email, string firstName, string lastName, UserRole role, uint points)
         {
             Id = id;

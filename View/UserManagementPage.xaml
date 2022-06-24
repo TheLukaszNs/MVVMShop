@@ -4,15 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMShop.View"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:mvvmenum="clr-namespace:MVVMShop.DTOs"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              >
     <UserControl.Resources>
-
+        <ObjectDataProvider x:Key="DataFromEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="mvvmenum:UserRole"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </UserControl.Resources>
     <StackPanel
         HorizontalAlignment="Stretch"
         VerticalAlignment="Center"
-        Width="800"
         >
         <TextBlock
             Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
@@ -24,7 +30,79 @@
         </TextBlock>
 
         <!-- User's List -->
-        <ListBox>
+        <ListBox
+            ItemsSource="{Binding Users}"
+            SelectedItem="{Binding SelectedUser}"
+            HorizontalContentAlignment="Stretch"
+            >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            >
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="{Binding Email}"
+                                TextAlignment="Center"
+                                >
+                            </TextBlock>
+                            <materialDesign:PackIcon
+                                Padding="10"
+                                Kind="Email"
+                                >
+                            </materialDesign:PackIcon>
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            >
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="{Binding FirstName}"
+                                TextAlignment="Center"
+                                >
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            >
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="{Binding LastName}"
+                                TextAlignment="Center"
+                                >
+                            </TextBlock>
+                            <materialDesign:PackIcon
+                                Kind="User"
+                                >
+                            </materialDesign:PackIcon>
+                        </StackPanel>
+
+                        <ComboBox
+                            Grid.Column="3"
+                            ItemsSource="{Binding Source={StaticResource DataFromEnum}, Mode=OneWay}"
+                            SelectedItem="{Binding SelectedRole}"
+                            HorizontalContentAlignment="Stretch"
+                            >
+                        </ComboBox>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </StackPanel>
 </UserControl>
