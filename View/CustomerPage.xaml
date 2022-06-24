@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMShop.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              >
     <UserControl.Resources>
@@ -25,7 +26,56 @@
         </TextBlock>
 
         <!-- Products List -->
-        <ListBox>
+        <ListBox
+            ItemsSource="{Binding Products}"
+            SelectedItem="{Binding SelectedProduct}"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            MaxHeight="400"
+            Style="{DynamicResource MaterialDesignListBox}"
+            >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            Text="{Binding ProductName}"
+                            >
+                        </TextBlock>
+
+                        <StackPanel
+                            Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            >
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                TextAlignment="Center"
+                                Text="{Binding Price}"
+                                >
+                            </TextBlock>
+                            <materialDesign:PackIcon
+                                Kind="CurrencyUsd"
+                                >
+                            </materialDesign:PackIcon>
+                        </StackPanel>
+
+                        <Button
+                            Grid.Column="2"
+                            >
+                            Dodaj
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </StackPanel>
 </UserControl>

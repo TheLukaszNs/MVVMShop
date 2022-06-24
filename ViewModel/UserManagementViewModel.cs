@@ -37,68 +37,12 @@ namespace MVVMShop.ViewModel
             }
         }
 
-        private string _email;
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
-            }
-        }
-
-        private string _firstName;
-        public string FirstName
-        {
-            get => _firstName;
-            set
-            {
-                _firstName = value;
-                OnPropertyChanged(nameof(FirstName));
-            }
-        }
-
-        private string _lastName;
-        public string LastName
-        {
-            get => _lastName;
-            set
-            {
-                _lastName = value;
-                OnPropertyChanged(nameof(LastName));
-            }
-        }
-
-        private List<UserRole> _roles;
-        public List<UserRole> Roles
-        {
-            get => _roles;
-            set
-            {
-                _roles = value;
-                OnPropertyChanged(nameof(Roles));
-            }
-        }
-
-        private UserRole _selectedRole;
-        public UserRole SelectedRole
-        {
-            get => _selectedRole;
-            set
-            {
-                _selectedRole = value;
-                OnPropertyChanged(nameof(SelectedRole));
-            }
-        }
-
         public UserManagementViewModel(UsersStore usersStore, AuthStore authStore)
         {
             _usersStore = usersStore;
             _authStore = authStore;
 
             LoadUsers();
-            Roles = Enum.GetValues(typeof(UserRole)).Cast<UserRole>().ToList();
         }
 
         private void LoadUsers() => Users = new ObservableCollection<User>(_usersStore.Users.Where(u => !u.Id.Equals(_authStore.AuthenticatedUser.Id)));

@@ -3,69 +3,158 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:MVVMShop.View"
              mc:Ignorable="d" 
              >
     <UserControl.Resources>
-        <Style TargetType="StackPanel">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
+        
     </UserControl.Resources>
-    
-    <Grid>
-        <StackPanel
-            Width="800"
+
+    <StackPanel
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch"
+        >
+        <TextBlock
+            Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
+            FontWeight="Bold"
+            TextAlignment="Center"
             >
-            <!-- MOTD -->
-            <TextBlock
-                Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
-                FontWeight="Bold"
-                TextAlignment="Center"
-                Margin="0, 0, 0, 100"
-                >
-                Twój koszyk
-            </TextBlock>
+            Twój koszyk
+        </TextBlock>
 
-            <Grid
-                Height="500"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <!-- User Products -->
+            <ListBox
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                Style="{DynamicResource MaterialDesignListBox}"
+                ItemsSource="{Binding Products}"
+                SelectedItem="{Binding SelectedProduct}"
                 >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                
-                <!-- Products List -->
-                <ListBox
-                    Grid.Column="0"
-                    Margin="10"
-                    >
-                </ListBox>
-                
-                <!-- Summary -->
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                TextAlignment="Center"
+                                Text="{Binding ProductName}"
+                                >
+                            </TextBlock>
+
+                            <StackPanel
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                >
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    TextAlignment="Center"
+                                    Text="{Binding Price}"
+                                    >
+                                </TextBlock>
+                                <materialDesign:PackIcon
+                                Kind="CurrencyUsd"
+                                >
+                                </materialDesign:PackIcon>
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="2"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                >
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    TextAlignment="Center"
+                                    Text="{Binding Points}"
+                                    >
+                                </TextBlock>
+                                <materialDesign:PackIcon
+                                    Kind="Trophy"
+                                    >
+                                </materialDesign:PackIcon>
+                            </StackPanel>
+
+                            <Button
+                                Grid.Column="3"
+                                Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                                >
+                                Usuń
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Summary -->
+            <StackPanel
+                Grid.Column="1"
+                >
+                <!-- Price -->
                 <StackPanel
-                    Grid.Column="1"
+                    Orientation="Horizontal"
                     >
                     <TextBlock
-                        TextAlignment="Center"
-                        Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                        >
-                        Wartość: 300$
+                        VerticalAlignment="Center"
+                        TextAlignment="Center">
+                        Suma: 
                     </TextBlock>
 
                     <TextBlock
+                        VerticalAlignment="Center"
                         TextAlignment="Center"
-                        Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                        Margin="0 0 0 50"
+                        Text="{Binding TotalPrice}"
                         >
-                        Punkty: 20
                     </TextBlock>
 
-                    <Button>
-                        Dostawa i płatność
-                    </Button>
+                    <materialDesign:PackIcon
+                        Kind="CurrencyUsd"
+                        >
+                    </materialDesign:PackIcon>
                 </StackPanel>
-            </Grid>
-        </StackPanel>
-    </Grid>
+
+                <!-- Points -->
+                <StackPanel
+                    Orientation="Horizontal"
+                    >
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        TextAlignment="Center">
+                        Punkty:
+                    </TextBlock>
+
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        TextAlignment="Center"
+                        Text="{Binding TotalPoints}"
+                        >
+                    </TextBlock>
+
+                    <materialDesign:PackIcon
+                        Kind="Trophy"
+                        >
+                    </materialDesign:PackIcon>
+                </StackPanel>
+
+                <Button>
+                    Dostawa i płatność
+                </Button>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </UserControl>

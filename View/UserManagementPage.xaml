@@ -96,7 +96,6 @@
                         <ComboBox
                             Grid.Column="3"
                             ItemsSource="{Binding Source={StaticResource DataFromEnum}, Mode=OneWay}"
-                            SelectedItem="{Binding SelectedRole}"
                             HorizontalContentAlignment="Stretch"
                             >
                         </ComboBox>
