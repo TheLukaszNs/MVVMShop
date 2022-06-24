@@ -34,7 +34,6 @@
         <!-- User's List -->
         <ListBox
             ItemsSource="{Binding Users}"
-            SelectedItem="{Binding SelectedUser}"
             HorizontalContentAlignment="Stretch"
             >
             <ListBox.ItemTemplate>

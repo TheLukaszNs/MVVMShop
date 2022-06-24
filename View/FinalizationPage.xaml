@@ -6,106 +6,102 @@
              xmlns:local="clr-namespace:MVVMShop.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Width="1000"
-             Height="800"
              >
     <UserControl.Resources>
-        <Style TargetType="StackPanel">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
+
     </UserControl.Resources>
-    
-    <Grid>
-        <StackPanel
-            Width="800"
+
+    <StackPanel
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch"
+        >
+        <TextBlock
+            Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+            FontWeight="Bold"
+            TextAlignment="Center"
+            Margin="0, 0, 0, 100"
             >
-            <!-- MOTD -->
-            <TextBlock
-                Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                FontWeight="Bold"
-                TextAlignment="Center"
-                Margin="0, 0, 0, 100"
+            Wybierz adres dostawy i metodę płatności
+        </TextBlock>
+
+        <Grid
+            Height="500"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                HorizontalAlignment="Stretch"
+                Grid.Column="0"
                 >
-                Wybierz adres dostawy i metodę płatności
-            </TextBlock>
+                <!-- Address -->
+                <TextBlock
+                    Margin="0 0 0 20"
+                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                    TextAlignment="Center"
+                    >
+                    Wybierz sposób dostawy
+                </TextBlock>
 
-            <Grid
-                Height="500"
+                <ComboBox
+                    Margin="0 0 0 20"
+                    Style="{DynamicResource MaterialDesignFilledComboBox}"
+                    SelectedItem="{Binding SelectedDeliveryType}"
+                    >
+                    <ComboBoxItem>Paczkomat</ComboBoxItem>
+                    <ComboBoxItem>Kurier</ComboBoxItem>
+                    <ComboBoxItem>Odbiór osobisty</ComboBoxItem>
+                </ComboBox>
+
+                <TextBox
+                    Style="{DynamicResource MaterialDesignFilledTextBox}"
+                    materialDesign:HintAssist.Hint="miejscowość, ulica, nr domu"
+                    materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                    materialDesign:TextFieldAssist.TrailingIcon="Home"
+                    Margin="0 0 0 20" 
+                    Text="{Binding StreetAddress}"
+                    >
+                </TextBox>
+
+                <TextBox
+                    Style="{DynamicResource MaterialDesignFilledTextBox}"
+                    materialDesign:HintAssist.Hint="kod pocztowy"
+                    materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                    materialDesign:TextFieldAssist.TrailingIcon="Post"
+                    Text="{Binding PostCode}"
+                    >
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
                 >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel
-                    HorizontalAlignment="Stretch"
-                    Grid.Column="0"
+                <!-- Payment -->
+                <TextBlock
+                    Margin="0 0 0 20"
+                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                    TextAlignment="Center"
                     >
-                    <!-- Address -->
-                    <TextBlock
-                        Margin="0 0 0 20"
-                        Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                        TextAlignment="Center"
-                        >
-                        Wybierz sposób dostawy
-                    </TextBlock>
+                    Wybierz metodę płatności
+                </TextBlock>
 
-                    <ComboBox
-                        Margin="0 0 0 20"
-                        Style="{DynamicResource MaterialDesignFilledComboBox}"
-                        >
-                        <ComboBoxItem>Paczkomat</ComboBoxItem>
-                        <ComboBoxItem>Kurier</ComboBoxItem>
-                        <ComboBoxItem>Odbiór osobisty</ComboBoxItem>
-                    </ComboBox>
-                    
-                    <TextBox
-                        Style="{DynamicResource MaterialDesignFilledTextBox}"
-                        materialDesign:HintAssist.Hint="ulica, nr domu"
-                        materialDesign:TextFieldAssist.HasTrailingIcon="True"
-                        materialDesign:TextFieldAssist.TrailingIcon="Home"
-                        Margin="0 0 0 20" 
-                        >
-                    </TextBox>
-
-                    <TextBox
-                        Style="{DynamicResource MaterialDesignFilledTextBox}"
-                        materialDesign:HintAssist.Hint="kod pocztowy"
-                        materialDesign:TextFieldAssist.HasTrailingIcon="True"
-                        materialDesign:TextFieldAssist.TrailingIcon="Post"
-                        >
-                    </TextBox>
-                </StackPanel>
-
-                <StackPanel
-                    Grid.Column="1"
-                    HorizontalAlignment="Stretch"
+                <ComboBox
+                    Margin="0 0 0 20"
+                    Style="{DynamicResource MaterialDesignFilledComboBox}"
+                    SelectedItem="{Binding SelectedPaymentMethod}"
                     >
-                    <!-- Payment -->
-                    <TextBlock
-                        Margin="0 0 0 20"
-                        Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                        TextAlignment="Center"
-                        >
-                        Wybierz metodę płatności
-                    </TextBlock>
+                    <ComboBoxItem>Przelew</ComboBoxItem>
+                    <ComboBoxItem>Karta</ComboBoxItem>
+                    <ComboBoxItem>Przy odbiorze</ComboBoxItem>
+                </ComboBox>
 
-                    <ComboBox
-                        Margin="0 0 0 20"
-                        Style="{DynamicResource MaterialDesignFilledComboBox}"
-                        >
-                        <ComboBoxItem>Przelew</ComboBoxItem>
-                        <ComboBoxItem>Karta</ComboBoxItem>
-                        <ComboBoxItem>Przy odbiorze</ComboBoxItem>
-                    </ComboBox>
-
-                    <Button>
-                        Zamów
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-    </Grid>
+                <Button>
+                    Zamów
+                </Button>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </UserControl>
