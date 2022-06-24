@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
+using MVVMShop.DTOs;
 using MVVMShop.Model;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
@@ -17,38 +19,51 @@ namespace MVVMShop.ViewModel
     {
         private readonly NavigationStore _navigationStore;
         private readonly AuthStore _authStore;
-        private readonly NavigationService<StartPageViewModel> _navigationService;
-        private readonly NavigationService<UserManagementViewModel> _userManagementNavigation;
-        private readonly NavigationService<CartPageViewModel> _cartPageNavigation;
+        private readonly GlobalNavigationService _navigationService;
 
         public BaseVM CurrentViewModel => _navigationStore.CurrentViewModel;
         public User CurrentUser => _authStore.AuthenticatedUser;
         public bool IsAuthenticated => _authStore.IsAuthenticated;
 
-        private ICommand _userManagementCommand;
-        public ICommand UserManagementCommand => _userManagementCommand ?? (_userManagementCommand = new RelayCommand(
-            o => _userManagementNavigation.Navigate()
-        ));
+        public PackIconKind NavBarActionIconKind => CurrentUser?.Role switch
+        {
+            UserRole.Admin => PackIconKind.AccountGroupOutline,
+            UserRole.Pracownik => PackIconKind.PackageVariant,
+            UserRole.Klient => PackIconKind.ShoppingCartOutline,
+            _ => throw new ArgumentOutOfRangeException()
+        };
 
-        private ICommand _cartPageCommand;
-        public ICommand CartPageCommand => _cartPageCommand ?? (_cartPageCommand = new RelayCommand(
-            o => _cartPageNavigation.Navigate()
-        ));
+        private ICommand _navBarActionCommand;
+
+        public ICommand NavBarActionCommand => _navBarActionCommand ??= new RelayCommand(_ =>
+        {
+            switch (CurrentUser.Role)
+            {
+                case UserRole.Admin:
+                    _navigationService.UserManagementNavigationService.Navigate();
+                    break;
+                case UserRole.Pracownik:
+                    break;
+                case UserRole.Klient:
+                    _navigationService.CartPageNavigationService.Navigate();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        });
 
         private ICommand _logoutCommand;
 
-        public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new RelayCommand(
-            o => _authStore.AuthenticatedUser = null
-        ));
+        public ICommand LogoutCommand => _logoutCommand ??= new RelayCommand(
+            _ => _authStore.AuthenticatedUser = null
+        );
 
         public MainViewModel(NavigationStore navigationStore, AuthStore authStore,
-            NavigationService<StartPageViewModel> navigationService, NavigationService<UserManagementViewModel> userManagementNavigation, NavigationService<CartPageViewModel> cartPageNavigation)
+            GlobalNavigationService navigationService)
         {
             _navigationStore = navigationStore;
             _authStore = authStore;
             _navigationService = navigationService;
-            _userManagementNavigation = userManagementNavigation;
-            _cartPageNavigation = cartPageNavigation;
 
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             _authStore.AuthStateChanged += OnAuthStateChanged;
@@ -57,10 +72,12 @@ namespace MVVMShop.ViewModel
         private void OnAuthStateChanged(User user)
         {
             if (user == null)
-                _navigationService.Navigate();
+                _navigationService.StartPageNavigationService.Navigate();
 
             OnPropertyChanged(nameof(IsAuthenticated));
             OnPropertyChanged(nameof(CurrentUser));
+            OnPropertyChanged(nameof(NavBarActionIconKind));
+            OnPropertyChanged(nameof(NavBarActionCommand));
         }
 
         private void OnCurrentViewModelChanged()

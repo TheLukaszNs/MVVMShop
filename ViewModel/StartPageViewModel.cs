@@ -16,10 +16,11 @@ namespace MVVMShop.ViewModel
         public ICommand GoToRegisterCommand { get; }
         public ICommand GoToLoginCommand { get; }
 
-        public StartPageViewModel(NavigationService<RegisterPageViewModel> registerPageNavigationService, NavigationService<LoginPageViewModel> loginPageNavigationService)
+        public StartPageViewModel(GlobalNavigationService navigationService)
         {
-            GoToRegisterCommand = new NavigateCommand<RegisterPageViewModel>(registerPageNavigationService);
-            GoToLoginCommand = new NavigateCommand<LoginPageViewModel>(loginPageNavigationService);
+            GoToRegisterCommand =
+                new NavigateCommand<RegisterPageViewModel>(navigationService.RegisterPageNavigationService);
+            GoToLoginCommand = new NavigateCommand<LoginPageViewModel>(navigationService.LoginPageNavigationService);
         }
     }
 }

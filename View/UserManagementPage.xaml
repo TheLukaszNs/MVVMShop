@@ -6,9 +6,11 @@
              xmlns:local="clr-namespace:MVVMShop.View"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:mvvmenum="clr-namespace:MVVMShop.DTOs"
+             xmlns:viewModel="clr-namespace:MVVMShop.ViewModel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             >
+             d:DataContext="{d:DesignInstance viewModel:UserManagementViewModel}">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="DataFromEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -40,9 +42,8 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel
@@ -50,56 +51,61 @@
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
                             >
+                            <materialDesign:PackIcon
+                                Padding="10"
+                                Margin="0 0 20 0"
+                                Kind="Email"
+                            >
+                            </materialDesign:PackIcon>
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Text="{Binding Email}"
                                 TextAlignment="Center"
                                 >
                             </TextBlock>
-                            <materialDesign:PackIcon
-                                Padding="10"
-                                Kind="Email"
-                                >
-                            </materialDesign:PackIcon>
                         </StackPanel>
 
                         <StackPanel
                             Grid.Column="1"
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                        >
+                            <materialDesign:PackIcon
+                                Padding="10"
+                                Margin="0 0 20 0"
+                                Kind="User"
                             >
+                            </materialDesign:PackIcon>
                             <TextBlock
                                 VerticalAlignment="Center"
-                                Text="{Binding FirstName}"
+                                Text="{Binding Name}"
                                 TextAlignment="Center"
                                 >
                             </TextBlock>
                         </StackPanel>
 
-                        <StackPanel
+                        <StackPanel 
                             Grid.Column="2"
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
-                            >
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Text="{Binding LastName}"
-                                TextAlignment="Center"
-                                >
-                            </TextBlock>
+                            HorizontalAlignment="Right">
                             <materialDesign:PackIcon
-                                Kind="User"
-                                >
-                            </materialDesign:PackIcon>
-                        </StackPanel>
-
-                        <ComboBox
-                            Grid.Column="3"
-                            ItemsSource="{Binding Source={StaticResource DataFromEnum}, Mode=OneWay}"
-                            SelectedItem="{Binding SelectedRole}"
-                            HorizontalContentAlignment="Stretch"
+                                Padding="10"
+                                Margin="0 0 20 0"
+                                Kind="BadgeAccount"
+                                VerticalAlignment="Center"
                             >
-                        </ComboBox>
+                            </materialDesign:PackIcon>
+                            <ComboBox
+                                ItemsSource="{Binding Source={StaticResource DataFromEnum}, Mode=OneWay}"
+                                SelectedItem="{Binding Role, Mode=TwoWay}"
+                                Width="150"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                            >
+                            </ComboBox>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

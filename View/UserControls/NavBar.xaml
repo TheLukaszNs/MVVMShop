@@ -19,20 +19,27 @@
                 Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                 Margin="0 0 20 0">
                 Witaj,
-                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:NavBar}}, Path=UserName}" />
+                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:NavBar}}, Path=User.FirstName}" />
             </TextBlock>
 
             <Button
-                Style="{DynamicResource MaterialDesignOutlinedButton}"
+                Style="{DynamicResource MaterialDesignIconButton}"
                 Grid.Column="1"
-                Margin="0 0 20 0"
-                Content="{materialDesign:PackIcon CartCheck}" Cursor="Hand"
-                Click="ButtonUserManagement_OnClick"/>
+                Cursor="Hand"
+                x:Name="ActionButton"
+                Click="ActionButton_OnClick">
+                <materialDesign:PackIcon
+                    x:Name="ActionButton_Icon" />
+            </Button>
             <Button 
-                Style="{DynamicResource MaterialDesignFlatAccentButton}"
+                Style="{DynamicResource MaterialDesignIconButton}"
+                Foreground="{DynamicResource SecondaryHueMidBrush}"
                 Grid.Column="2"
                 x:Name="ButtonLogout"
-                Click="ButtonLogout_OnClick">Wyloguj się</Button>
+                Click="ButtonLogout_OnClick" Cursor="Hand">
+                <materialDesign:PackIcon
+                    Kind="LogoutVariant"/>
+            </Button>
         </Grid>
     </materialDesign:Card>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,45 +13,39 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
+using MVVMShop.Model;
+using MVVMShop.Services;
+using MVVMShop.ViewModel;
 
 namespace MVVMShop.View.UserControls
 {
     public partial class NavBar : UserControl
     {
-        public static readonly DependencyProperty UserNameProperty = DependencyProperty.Register(
-            nameof(UserName), typeof(string), typeof(NavBar),
-            new PropertyMetadata(string.Empty));
+        private readonly NavigationService<CartPageViewModel> _cartNavigationService;
 
-        public string UserName
+        public User User
         {
-            get => (string)GetValue(UserNameProperty);
+            get => (User)GetValue(UserNameProperty);
             set => SetValue(UserNameProperty, value);
         }
 
-        public static readonly DependencyProperty UserManagementCommandProperty = DependencyProperty.Register(
-            nameof(UserManagementCommand), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
-
-        public static readonly DependencyProperty CartCommandProperty = DependencyProperty.Register(
-            nameof(CartCommand), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
-
-        public static readonly DependencyProperty LogoutClickedCommandProperty = DependencyProperty.Register(
-            nameof(LogoutClickedCommand), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
-
-        public ICommand UserManagementCommand
-        {
-            get => (ICommand)GetValue(UserManagementCommandProperty);
-            set => SetValue(UserManagementCommandProperty, value);
-        }
-
-        public ICommand CartCommand
-        {
-            get => (ICommand)GetValue(CartCommandProperty);
-            set => SetValue(CartCommandProperty, value);
-        }
         public ICommand LogoutClickedCommand
         {
             get => (ICommand)GetValue(LogoutClickedCommandProperty);
             set => SetValue(LogoutClickedCommandProperty, value);
+        }
+
+        public PackIconKind ActionButtonKind
+        {
+            get => (PackIconKind)GetValue(ActionButtonKindProperty);
+            set => SetValue(ActionButtonKindProperty, value);
+        }
+
+        public ICommand ActionButtonAction
+        {
+            get { return (ICommand)GetValue(ActionButtonActionProperty); }
+            set { SetValue(ActionButtonActionProperty, value); }
         }
 
         public NavBar()
@@ -58,19 +53,42 @@ namespace MVVMShop.View.UserControls
             InitializeComponent();
         }
 
-        private void ButtonUserManagement_OnClick(object sender, RoutedEventArgs e)
-        {
-            UserManagementCommand?.Execute(null);
-        }
-
-        private void ButtonCart_OnClick(object sender, RoutedEventArgs e)
-        {
-            CartCommand?.Execute(null);
-        }
-
         private void ButtonLogout_OnClick(object sender, RoutedEventArgs e)
         {
             LogoutClickedCommand?.Execute(null);
+        }
+
+        private void ActionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ActionButtonAction?.Execute(null);
+        }
+
+        public void SetActionButtonIcon(PackIconKind kind)
+        {
+            ActionButton_Icon.Kind = kind;
+        }
+
+        public static readonly DependencyProperty UserNameProperty = DependencyProperty.Register(
+            nameof(User), typeof(User), typeof(NavBar),
+            new PropertyMetadata(null));
+
+        public static readonly DependencyProperty LogoutClickedCommandProperty = DependencyProperty.Register(
+            nameof(LogoutClickedCommand), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ActionButtonActionProperty =
+            DependencyProperty.Register(nameof(ActionButtonAction), typeof(ICommand), typeof(NavBar),
+                new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ActionButtonKindProperty = DependencyProperty.Register(
+            nameof(ActionButtonKind), typeof(PackIconKind), typeof(NavBar),
+            new PropertyMetadata(PackIconKind.CartCheck, OnActionButtonChangedCallback));
+
+        private static void OnActionButtonChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is not NavBar navBar || e.NewValue is not PackIconKind kind)
+                return;
+
+            navBar.SetActionButtonIcon(kind);
         }
     }
 }

@@ -21,10 +21,10 @@ namespace MVVMShop.ViewModel
 {
     public class RegisterPageViewModel : BaseVM
     {
-        private readonly NavigationService<LoginPageViewModel> _navigationService;
+        private readonly GlobalNavigationService _navigationService;
         private readonly IAuthService _authService;
 
-        private Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        private readonly Regex _regex = new(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
         private string _firstName;
 
@@ -79,15 +79,17 @@ namespace MVVMShop.ViewModel
         private ICommand _registerCommand;
 
         public ICommand RegisterCommand => _registerCommand ??= new RelayCommand(
-            o => Register(),
-            o => regex.Match(Email ?? "").Success
+            _ => Register(),
+            _ => _regex.Match(Email ?? "")
+                .Success
         );
 
-        public RegisterPageViewModel(NavigationService<LoginPageViewModel> navigationService, IAuthService authService)
+        public RegisterPageViewModel(GlobalNavigationService navigationService, IAuthService authService)
         {
             _navigationService = navigationService;
             _authService = authService;
-            GoToLoginPageCommand = new NavigateCommand<LoginPageViewModel>(navigationService);
+            GoToLoginPageCommand =
+                new NavigateCommand<LoginPageViewModel>(navigationService.LoginPageNavigationService);
         }
 
         private void Register()
@@ -102,6 +104,8 @@ namespace MVVMShop.ViewModel
                     Password = Password,
                     Role = UserRole.Klient
                 });
+
+                _navigationService.LoginPageNavigationService.Navigate();
             }
             catch (AuthFailedException)
             {

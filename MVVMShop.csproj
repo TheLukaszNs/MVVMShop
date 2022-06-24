@@ -19,6 +19,7 @@
     <Folder Include="Commands\Auth\" />
     <Folder Include="Converters\" />
     <Folder Include="DTOs\" />
+    <Folder Include="Services\UserEditor\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>

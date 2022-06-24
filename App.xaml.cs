@@ -24,6 +24,7 @@ using MVVMShop.Services.ProductCreators;
 using MVVMShop.Services.ProductProviders;
 using MVVMShop.Services.ProductEditor;
 using MVVMShop.Services.ProductRemover;
+using MVVMShop.Services.UserEditor;
 using MVVMShop.Services.UserProvider;
 using MVVMShop.View;
 using MVVMShop.ViewModel;
@@ -50,16 +51,7 @@ namespace MVVMShop
                     services.AddSingleton<ProductsStore>();
                     services.AddSingleton<UsersStore>();
 
-                    services.AddSingleton(s =>
-                        new BaseRepository<Users>(s.GetRequiredService<DbConnection>(), "users"));
-                    services.AddSingleton(s =>
-                        new BaseRepository<Products>(s.GetRequiredService<DbConnection>(), "products"));
-                    services.AddSingleton(s =>
-                        new BaseRepository<Orders>(s.GetRequiredService<DbConnection>(), "orders"));
-                    services.AddSingleton(s =>
-                        new BaseRepository<OrderIncludesProducts>(s.GetRequiredService<DbConnection>(),
-                            "order_includes_products"));
-
+                    services.AddSingleton<GlobalNavigationService>();
 
                     services.AddSingleton<IAuthService>(s =>
                         new DbAuthService(s.GetRequiredService<MVVMShopContextFactory>(), new DefaultPasswordHasher()));
@@ -69,6 +61,7 @@ namespace MVVMShop
                     services.AddSingleton<IProductRemover, DbProductRemover>();
                     services.AddSingleton<IOrderCreator, DbOrderCreator>();
                     services.AddSingleton<IUserProvider, DbUserProvider>();
+                    services.AddSingleton<IUserEditor, DbUserEditor>();
 
                     services.AddSingleton(s => new MainWindow()
                     {

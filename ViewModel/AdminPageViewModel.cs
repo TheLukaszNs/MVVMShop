@@ -178,6 +178,8 @@ namespace MVVMShop.ViewModel
         public override void Dispose()
         {
             _productsStore.ProductAdded -= OnProductAdded;
+            _productsStore.ProductRemoved -= OnProductRemoved;
+            _productsStore.ProductChanged -= OnProductChanged;
             base.Dispose();
         }
     }
