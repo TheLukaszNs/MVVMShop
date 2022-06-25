@@ -50,6 +50,7 @@ namespace MVVMShop
                     services.AddSingleton<AuthStore>();
                     services.AddSingleton<ProductsStore>();
                     services.AddSingleton<UsersStore>();
+                    services.AddSingleton<CartStore>();
 
                     services.AddSingleton<GlobalNavigationService>();
 

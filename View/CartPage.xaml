@@ -46,6 +46,7 @@
                                 <ColumnDefinition Width="1*"></ColumnDefinition>
                                 <ColumnDefinition Width="1*"></ColumnDefinition>
                                 <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock
@@ -90,9 +91,25 @@
                                 </materialDesign:PackIcon>
                             </StackPanel>
 
-                            <Button
+                            <StackPanel
                                 Grid.Column="3"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                >
+                                <TextBlock>
+                                    Ilość:
+                                </TextBlock>
+
+                                <TextBlock
+                                    Text="{Binding Count}"
+                                    >
+                                </TextBlock>
+                            </StackPanel>
+
+                            <Button
+                                Grid.Column="4"
                                 Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                                Command="{Binding DeleteCommand}"
                                 >
                                 Usuń
                             </Button>

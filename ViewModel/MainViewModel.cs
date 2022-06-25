@@ -30,7 +30,7 @@ namespace MVVMShop.ViewModel
             UserRole.Admin => PackIconKind.AccountGroupOutline,
             UserRole.Pracownik => PackIconKind.PackageVariant,
             UserRole.Klient => PackIconKind.ShoppingCartOutline,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => PackIconKind.Abacus
         };
 
         private ICommand _navBarActionCommand;
