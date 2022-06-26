@@ -26,6 +26,7 @@
             <ListBox
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Orders}"
                 >
                 <ListBox.ItemTemplate>
                     <DataTemplate>

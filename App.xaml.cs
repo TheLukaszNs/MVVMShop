@@ -18,6 +18,7 @@ using MVVMShop.Services;
 using MVVMShop.Services.Auth;
 using MVVMShop.Services.OrderCreators;
 using MVVMShop.Services.OrderProviders;
+using MVVMShop.Services.OrderEditor;
 using MVVMShop.Services.ProductCreators;
 using MVVMShop.Services.ProductProviders;
 using MVVMShop.Services.ProductEditor;
@@ -63,6 +64,7 @@ namespace MVVMShop
                     services.AddSingleton<IUserEditor, DbUserEditor>();
                     services.AddSingleton<IOrderCreator, DbOrderCreator>();
                     services.AddSingleton<IOrderProvider, DbOrderProvider>();
+                    services.AddSingleton<IOrderEditor, DbOrderEditor>();
 
                     services.AddSingleton(s => new MainWindow()
                     {

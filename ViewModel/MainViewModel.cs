@@ -50,7 +50,7 @@ namespace MVVMShop.ViewModel
                 case UserRole.Pracownik:
                     break;
                 case UserRole.Klient:
-                    _navigationService.HistoryPageNavigationService.Navigate();
+                    _navigationService.CartPageNavigationService.Navigate();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -80,7 +80,7 @@ namespace MVVMShop.ViewModel
         private ICommand _navBarSecondaryCommand;
 
         public ICommand NavBarSecondaryCommand => _navBarSecondaryCommand ??=
-            new RelayCommand(_ => _navigationService.StartPageNavigationService.Navigate());
+            new RelayCommand(_ => _navigationService.HistoryPageNavigationService.Navigate());
 
         private ICommand _logoutCommand;
 

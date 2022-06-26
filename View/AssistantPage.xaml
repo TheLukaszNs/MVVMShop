@@ -22,11 +22,14 @@
         <ListBox
             HorizontalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
+            ItemsSource="{Binding Orders}"
+            VerticalAlignment="Center"
             >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
@@ -35,21 +38,37 @@
                             Grid.Column="0"
                             TextAlignment="Center"
                             HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="{Binding Id}"
                             >
-                            ID
+                        </TextBlock>
+
+                        <TextBlock
+                            Grid.Column="1"
+                            TextAlignment="Center"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="{Binding Status}"
+                            >
                         </TextBlock>
 
                         <StackPanel
-                            Grid.Column="1"
+                            Grid.Column="2"
                             Orientation="Horizontal" 
                             HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
                             >
-                            <Button>
+                            <Button
+                                VerticalAlignment="Center"
+                                Command="{Binding AcceptOrder}"
+                                >
                                 Akceptuj
                             </Button>
 
                             <Button
+                                VerticalAlignment="Center"
                                 Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                                Command="{Binding CancelOrder}"
                                 >
                                 Odrzuć
                             </Button>

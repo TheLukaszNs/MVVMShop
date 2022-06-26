@@ -28,6 +28,7 @@ namespace MVVMShop.ViewModel
         {
             _ordersStore = ordersStore;
             _authStore = authStore;
+            _ordersStore.OrdersLoaded += LoadOrders;
 
             LoadOrders();
         }
