@@ -70,6 +70,7 @@
 
                         <Button
                             Grid.Column="2"
+                            Command="{Binding AddToCartCommand}"
                             >
                             Dodaj
                         </Button>

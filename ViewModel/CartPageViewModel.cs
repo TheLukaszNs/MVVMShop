@@ -5,13 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.Model;
+using MVVMShop.Stores;
 
 namespace MVVMShop.ViewModel
 {
     public class CartPageViewModel : BaseVM
     {
-        private ObservableCollection<Product> _products;
-        public ObservableCollection<Product> Products
+        private readonly CartStore _cartStore;
+
+        private ObservableCollection<CartListItemViewModel> _products;
+        public ObservableCollection<CartListItemViewModel> Products
         {
             get => _products;
             set
@@ -21,18 +24,7 @@ namespace MVVMShop.ViewModel
             }
         }
 
-        private Product _selectedProduct;
-        public Product SelectedProduct
-        {
-            get => _selectedProduct;
-            set
-            {
-                _selectedProduct = value;
-                OnPropertyChanged(nameof(SelectedProduct));
-            }
-        }
-
-        private decimal _totalPrice;
+        private decimal _totalPrice = 0;
         public decimal TotalPrice
         {
             get => _totalPrice;
@@ -54,12 +46,16 @@ namespace MVVMShop.ViewModel
             }
         }
 
-        public CartPageViewModel()
+        public CartPageViewModel(CartStore cartStore)
         {
-            // init products
-
-            TotalPrice = Products.Sum(p => p.Price);
-            TotalPoints = (uint)Products.Sum(p => p.Points);
+            _cartStore = cartStore;
+            Products = new ObservableCollection<CartListItemViewModel>(_cartStore.Products.Select(p => new CartListItemViewModel(_cartStore, p.Key, p.Value)));
+            
+            foreach (var product in Products)
+            {
+                TotalPrice += product.Price * product.Count;
+                TotalPoints += product.Points * product.Count;
+            }
         }
     }
 }
