@@ -6,10 +6,15 @@
              xmlns:local="clr-namespace:MVVMShop.View.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+
     <materialDesign:Card Padding="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -40,6 +45,17 @@
                 Style="{DynamicResource MaterialDesignIconButton}"
                 Grid.Column="1"
                 Cursor="Hand"
+                x:Name="SecondaryButton"
+                Click="SecondaryButton_OnClick"
+                Visibility="Collapsed">
+                <materialDesign:PackIcon
+                    Kind="History"
+                    x:Name="SecondaryButton_Icon" />
+            </Button>
+            <Button
+                Style="{DynamicResource MaterialDesignIconButton}"
+                Grid.Column="2"
+                Cursor="Hand"
                 x:Name="ActionButton"
                 Click="ActionButton_OnClick">
                 <materialDesign:PackIcon
@@ -48,7 +64,7 @@
             <Button 
                 Style="{DynamicResource MaterialDesignIconButton}"
                 Foreground="{DynamicResource SecondaryHueMidBrush}"
-                Grid.Column="2"
+                Grid.Column="3"
                 x:Name="ButtonLogout"
                 Click="ButtonLogout_OnClick" Cursor="Hand">
                 <Button.ToolTip>
