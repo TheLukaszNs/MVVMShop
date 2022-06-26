@@ -52,6 +52,26 @@ namespace MVVMShop.ViewModel
             }
         });
 
+        private ICommand _navBarHomeCommand;
+
+        public ICommand NavBarHomeCommand => _navBarHomeCommand ??= new RelayCommand(_ =>
+        {
+            switch (CurrentUser.Role)
+            {
+                case UserRole.Admin:
+                    _navigationService.AdminPageNavigationService.Navigate();
+                    break;
+                case UserRole.Pracownik:
+                    _navigationService.AssistantPageNavigationService.Navigate();
+                    break;
+                case UserRole.Klient:
+                    _navigationService.CustomerPageNavigationService.Navigate();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        });
+
         private ICommand _logoutCommand;
 
         public ICommand LogoutCommand => _logoutCommand ??= new RelayCommand(
@@ -78,6 +98,7 @@ namespace MVVMShop.ViewModel
             OnPropertyChanged(nameof(CurrentUser));
             OnPropertyChanged(nameof(NavBarActionIconKind));
             OnPropertyChanged(nameof(NavBarActionCommand));
+            OnPropertyChanged(nameof(NavBarHomeCommand));
         }
 
         private void OnCurrentViewModelChanged()

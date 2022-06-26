@@ -69,7 +69,8 @@
             LogoutClickedCommand="{Binding LogoutCommand}"
             User="{Binding CurrentUser}"
             ActionButtonKind="{Binding NavBarActionIconKind}"
-            ActionButtonAction="{Binding NavBarActionCommand}"/>
+            ActionButtonAction="{Binding NavBarActionCommand}"
+            HomeButtonAction="{Binding NavBarHomeCommand}"/>
         <ContentControl 
             Grid.Row="1"
             Content="{Binding CurrentViewModel}"

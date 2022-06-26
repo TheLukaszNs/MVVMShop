@@ -14,13 +14,27 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock 
-                VerticalAlignment="Center"
-                Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                Margin="0 0 20 0">
-                Witaj,
-                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:NavBar}}, Path=User.FirstName}" />
-            </TextBlock>
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+                <Button
+                    Style="{DynamicResource MaterialDesignIconButton}"
+                    Margin="0 0 10 0" Cursor="Hand"
+                    Click="HomeButton_OnClick">
+                    <Button.ToolTip>
+                        Strona Główna
+                    </Button.ToolTip>
+                    <materialDesign:PackIcon
+                        Kind="HomeOutline"/>
+                </Button>
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                    Margin="0 0 20 0">
+                    Witaj,
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:NavBar}}, Path=User.FirstName}" />
+                </TextBlock>
+            </StackPanel>
 
             <Button
                 Style="{DynamicResource MaterialDesignIconButton}"
@@ -37,6 +51,9 @@
                 Grid.Column="2"
                 x:Name="ButtonLogout"
                 Click="ButtonLogout_OnClick" Cursor="Hand">
+                <Button.ToolTip>
+                    Wyloguj się
+                </Button.ToolTip>
                 <materialDesign:PackIcon
                     Kind="LogoutVariant"/>
             </Button>

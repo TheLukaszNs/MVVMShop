@@ -48,6 +48,12 @@ namespace MVVMShop.View.UserControls
             set { SetValue(ActionButtonActionProperty, value); }
         }
 
+        public ICommand HomeButtonAction
+        {
+            get => (ICommand)GetValue(HomeButtonActionProperty);
+            set => SetValue(HomeButtonActionProperty, value);
+        }
+
         public NavBar()
         {
             InitializeComponent();
@@ -61,6 +67,11 @@ namespace MVVMShop.View.UserControls
         private void ActionButton_OnClick(object sender, RoutedEventArgs e)
         {
             ActionButtonAction?.Execute(null);
+        }
+
+        private void HomeButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            HomeButtonAction?.Execute(null);
         }
 
         public void SetActionButtonIcon(PackIconKind kind)
@@ -82,6 +93,9 @@ namespace MVVMShop.View.UserControls
         public static readonly DependencyProperty ActionButtonKindProperty = DependencyProperty.Register(
             nameof(ActionButtonKind), typeof(PackIconKind), typeof(NavBar),
             new PropertyMetadata(PackIconKind.CartCheck, OnActionButtonChangedCallback));
+
+        public static readonly DependencyProperty HomeButtonActionProperty = DependencyProperty.Register(
+            nameof(HomeButtonAction), typeof(ICommand), typeof(NavBar), new PropertyMetadata(null));
 
         private static void OnActionButtonChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
