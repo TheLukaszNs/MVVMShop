@@ -23,7 +23,12 @@ namespace MVVMShop.ViewModel
 
         public BaseVM CurrentViewModel => _navigationStore.CurrentViewModel;
         public User CurrentUser => _authStore.AuthenticatedUser;
+
         public bool IsAuthenticated => _authStore.IsAuthenticated;
+
+        // TODO: 🤨 sussy bug here lol
+        // FIXED: GOT IT 😎
+        public bool CanExecuteSecondaryAction { get; set; }
 
         public PackIconKind NavBarActionIconKind => CurrentUser?.Role switch
         {
@@ -72,6 +77,11 @@ namespace MVVMShop.ViewModel
             }
         });
 
+        private ICommand _navBarSecondaryCommand;
+
+        public ICommand NavBarSecondaryCommand => _navBarSecondaryCommand ??=
+            new RelayCommand(_ => _navigationService.StartPageNavigationService.Navigate());
+
         private ICommand _logoutCommand;
 
         public ICommand LogoutCommand => _logoutCommand ??= new RelayCommand(
@@ -99,6 +109,10 @@ namespace MVVMShop.ViewModel
             OnPropertyChanged(nameof(NavBarActionIconKind));
             OnPropertyChanged(nameof(NavBarActionCommand));
             OnPropertyChanged(nameof(NavBarHomeCommand));
+
+            if (user != null)
+                CanExecuteSecondaryAction = user.Role == UserRole.Klient;
+            OnPropertyChanged(nameof(CanExecuteSecondaryAction));
         }
 
         private void OnCurrentViewModelChanged()

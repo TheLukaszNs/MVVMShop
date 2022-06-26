@@ -70,7 +70,9 @@
             User="{Binding CurrentUser}"
             ActionButtonKind="{Binding NavBarActionIconKind}"
             ActionButtonAction="{Binding NavBarActionCommand}"
-            HomeButtonAction="{Binding NavBarHomeCommand}"/>
+            HomeButtonAction="{Binding NavBarHomeCommand}"
+            HasSecondaryAction="{Binding CanExecuteSecondaryAction}"
+            SecondaryAction="{Binding NavBarSecondaryCommand}"/>
         <ContentControl 
             Grid.Row="1"
             Content="{Binding CurrentViewModel}"
