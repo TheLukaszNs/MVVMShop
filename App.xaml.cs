@@ -17,6 +17,7 @@ using MVVMShop.HostBuilders;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
 using MVVMShop.Services.OrderCreators;
+using MVVMShop.Services.OrderProviders;
 using MVVMShop.Services.ProductCreators;
 using MVVMShop.Services.ProductProviders;
 using MVVMShop.Services.ProductEditor;
@@ -47,6 +48,7 @@ namespace MVVMShop
                     services.AddSingleton<ProductsStore>();
                     services.AddSingleton<UsersStore>();
                     services.AddSingleton<CartStore>();
+                    services.AddSingleton<OrdersStore>();
 
                     services.AddSingleton<GlobalNavigationService>();
 
@@ -60,6 +62,7 @@ namespace MVVMShop
                     services.AddSingleton<IUserProvider, DbUserProvider>();
                     services.AddSingleton<IUserEditor, DbUserEditor>();
                     services.AddSingleton<IOrderCreator, DbOrderCreator>();
+                    services.AddSingleton<IOrderProvider, DbOrderProvider>();
 
                     services.AddSingleton(s => new MainWindow()
                     {

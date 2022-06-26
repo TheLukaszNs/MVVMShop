@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Documents;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVVMShop.DTOs;
 
@@ -26,5 +27,5 @@ public class OrderDTO
     public virtual ICollection<OrdersProductsDTO> OrdersProducts { get; set; }
 
     public Guid UserId { get; set; }
-    public UserDTO User { get; set; }
+    [ForeignKey("UserId")] public UserDTO User { get; set; }
 }

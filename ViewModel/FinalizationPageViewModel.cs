@@ -8,6 +8,8 @@ using System.Windows.Input;
 using MVVMShop.Common.HelperTypes;
 using MVVMShop.Services.OrderCreators;
 using MVVMShop.Stores;
+using MVVMShop.Commands;
+using MVVMShop.Services;
 
 namespace MVVMShop.ViewModel
 {
@@ -15,7 +17,8 @@ namespace MVVMShop.ViewModel
     {
         private readonly CartStore _cartStore;
         private readonly AuthStore _authStore;
-        private readonly Regex _postCodeRegex = new Regex("[0 - 9]{2}-[0-9]{3}");
+        private readonly Regex _postCodeRegex = new Regex("[0-9]{2}-[0-9]{3}");
+        private readonly GlobalNavigationService _globalNavigationService;
 
         public List<string> PaymentMethods { get; } = new() { "Przelew", "Karta", "Przy odbiorze" };
         public List<string> ShipmentMethods { get; } = new() { "Paczkomat", "Kurier", "Odbiór osobisty" };
@@ -71,14 +74,21 @@ namespace MVVMShop.ViewModel
 
         private ICommand _finalizeOrderCommand;
 
-        public ICommand FinalizeOrderCommand => _finalizeOrderCommand ??= new RelayCommand(
-            o => FinalizeOrder()
-        );
+        public ICommand FinalizeOrderCommand => _finalizeOrderCommand ?? (_finalizeOrderCommand = new RelayCommand(
+            o => 
+            {
+                FinalizeOrder();
+                _cartStore.ClearCart();
+                _globalNavigationService.CustomerPageNavigationService.Navigate();
+            },
+            o => _postCodeRegex.Match(PostCode ?? "").Success
+        ));
 
-        public FinalizationPageViewModel(CartStore cartStore, AuthStore authStore)
+        public FinalizationPageViewModel(CartStore cartStore, AuthStore authStore, GlobalNavigationService globalNavigationService)
         {
             _cartStore = cartStore;
             _authStore = authStore;
+            _globalNavigationService = globalNavigationService;
         }
 
         private void FinalizeOrder()

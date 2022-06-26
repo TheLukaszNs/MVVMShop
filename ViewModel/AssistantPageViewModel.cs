@@ -8,5 +8,6 @@ namespace MVVMShop.ViewModel
 {
     public class AssistantPageViewModel : BaseVM
     {
+
     }
 }

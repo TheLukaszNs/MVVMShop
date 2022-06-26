@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:MVVMShop.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModel="clr-namespace:MVVMShop.ViewModel"
-             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:FinalizationPageViewModel}">
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModel:FinalizationPageViewModel}"
+             >
     <UserControl.Resources>
 
     </UserControl.Resources>
@@ -25,7 +27,6 @@
         </TextBlock>
 
         <Grid
-            Height="500"
             >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

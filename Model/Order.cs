@@ -9,7 +9,7 @@ namespace MVVMShop.Model;
 
 public class Order
 {
-    public uint? Id { get; set; }
+    public Guid Id { get; set; }
     public User Customer { get; set; }
     public User Assistant { get; set; }
     public decimal Value { get; set; }

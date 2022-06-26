@@ -44,6 +44,8 @@ namespace MVVMShop.Stores
             OnCartUpdated();
         }
 
+        public void ClearCart() => Products.Clear();  
+
         public event Action CartUpdated;
 
         protected virtual void OnCartUpdated()

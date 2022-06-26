@@ -20,8 +20,43 @@
 
         <!-- Orders List -->
         <ListBox
-                Height="500"
-                >
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            TextAlignment="Center"
+                            HorizontalAlignment="Center"
+                            >
+                            ID
+                        </TextBlock>
+
+                        <StackPanel
+                            Grid.Column="1"
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Stretch"
+                            >
+                            <Button>
+                                Akceptuj
+                            </Button>
+
+                            <Button
+                                Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                                >
+                                Odrzuć
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </StackPanel>
 </UserControl>

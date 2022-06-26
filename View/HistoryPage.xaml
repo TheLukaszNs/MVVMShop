@@ -3,31 +3,85 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:MVVMShop.View"
              mc:Ignorable="d" 
-             Width="1000"
-             Height="800"
              >
     <Grid>
         <StackPanel
             VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Width="800"
+            HorizontalAlignment="Stretch"
             >
             <!-- MOTD -->
             <TextBlock
                 Style="{DynamicResource MaterialDesignHeadline3TextBlock}"
                 FontWeight="Bold"
                 TextAlignment="Center"
-                Margin="0, 0, 0, 100"
+                HorizontalAlignment="Center"
                 >
                 Historia zamówień
             </TextBlock>
 
             <!-- Orders List -->
             <ListBox
-                Height="500"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
                 >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                TextAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Text="{Binding Id}"
+                                >
+                            </TextBlock>
+
+                            <StackPanel
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                >
+                                <TextBlock
+                                    TextAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Points}"
+                                    >
+                                </TextBlock>
+
+                                <materialDesign:PackIcon
+                                    Kind="Trophy"
+                                    >
+                                </materialDesign:PackIcon>
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                >
+                                <TextBlock
+                                    TextAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Price}"
+                                    >
+                                </TextBlock>
+
+                                <materialDesign:PackIcon
+                                    Kind="CurrencyUsd"
+                                    >
+                                </materialDesign:PackIcon>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>      
     </Grid>

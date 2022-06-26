@@ -45,7 +45,7 @@ namespace MVVMShop.ViewModel
                 case UserRole.Pracownik:
                     break;
                 case UserRole.Klient:
-                    _navigationService.CartPageNavigationService.Navigate();
+                    _navigationService.HistoryPageNavigationService.Navigate();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
