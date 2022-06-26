@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MVVMShop.DAL.Entities;
 using MVVMShop.DTOs;
 
 namespace MVVMShop.Model
@@ -19,7 +18,6 @@ namespace MVVMShop.Model
 
         public User()
         {
-
         }
 
         public User(Guid id, string email, string firstName, string lastName, UserRole role, uint points)
@@ -30,16 +28,6 @@ namespace MVVMShop.Model
             LastName = lastName;
             Role = role;
             Points = points;
-        }
-
-        public User(Users user)
-        {
-            Id = Guid.Empty;
-            Email = user.UserEmail;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Role = user.Role;
-            Points = user.Points;
         }
     }
 }

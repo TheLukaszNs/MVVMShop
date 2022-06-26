@@ -4,8 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MVVMShop.DAL.Entities;
-using MVVMShop.DAL.Repositories;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.DTOs;
 using MVVMShop.Model;
@@ -31,7 +29,7 @@ namespace MVVMShop.Services.ProductCreators
             product.Id = productDto.Id;
         }
 
-        private ProductDTO ToProductDto(Product product) => new()
+        public static ProductDTO ToProductDto(Product product) => new()
         {
             Availability = product.Availability,
             Points = product.Points,

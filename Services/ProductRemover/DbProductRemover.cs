@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MVVMShop.DAL.Entities;
-using MVVMShop.DAL.Repositories;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.DTOs;
 using MVVMShop.Model;

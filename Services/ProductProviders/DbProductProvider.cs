@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MVVMShop.DAL.Entities;
-using MVVMShop.DAL.Repositories;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.Model;
 

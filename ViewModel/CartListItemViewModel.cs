@@ -15,10 +15,11 @@ namespace MVVMShop.ViewModel
 
         private Product _product;
         private uint _count;
+
         public uint Count
         {
             get => _count;
-            set 
+            set
             {
                 _count = value;
                 OnPropertyChanged(nameof(Count));
@@ -30,14 +31,11 @@ namespace MVVMShop.ViewModel
         public uint Points => _product.Points * _count;
 
         private ICommand _deleteCommand;
-        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(
-            _ =>
-            {
-                _cartStore.RemoveFromCart(_product);
-                Count--;
-            },
+
+        public ICommand DeleteCommand => _deleteCommand ??= new RelayCommand(
+            _ => _cartStore.RemoveFromCart(_product),
             _ => true
-        ));
+        );
 
         public CartListItemViewModel(CartStore cartStore, Product product, uint count)
         {

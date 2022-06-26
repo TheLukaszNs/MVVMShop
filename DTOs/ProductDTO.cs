@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,4 +13,6 @@ public class ProductDTO
     public bool Availability { get; set; }
     public string Image { get; set; }
     public uint Points { get; set; }
+
+    public virtual ICollection<OrdersProductsDTO> OrdersProducts { get; set; }
 }

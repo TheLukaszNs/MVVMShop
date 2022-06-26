@@ -3,6 +3,7 @@ using System;
 using MVVMShop.DB.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVVMShop.Migrations
 {
     [DbContext(typeof(MVVMShopContext))]
-    partial class MVVMShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220626160054_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,38 +49,13 @@ namespace MVVMShop.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Value")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("MVVMShop.DTOs.OrdersProductsDTO", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<uint>("ProductCount")
-                        .HasColumnType("int unsigned");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrdersProductsDTO");
                 });
 
             modelBuilder.Entity("MVVMShop.DTOs.ProductDTO", b =>
@@ -138,6 +115,21 @@ namespace MVVMShop.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("OrderDTOProductDTO", b =>
+                {
+                    b.Property<Guid>("OrdersId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("OrdersId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("OrderDTOProductDTO");
+                });
+
             modelBuilder.Entity("MVVMShop.DTOs.OrderDTO", b =>
                 {
                     b.HasOne("MVVMShop.DTOs.UserDTO", "User")
@@ -149,33 +141,19 @@ namespace MVVMShop.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MVVMShop.DTOs.OrdersProductsDTO", b =>
+            modelBuilder.Entity("OrderDTOProductDTO", b =>
                 {
-                    b.HasOne("MVVMShop.DTOs.OrderDTO", "Order")
-                        .WithMany("OrdersProducts")
-                        .HasForeignKey("OrderId")
+                    b.HasOne("MVVMShop.DTOs.OrderDTO", null)
+                        .WithMany()
+                        .HasForeignKey("OrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MVVMShop.DTOs.ProductDTO", "Product")
-                        .WithMany("OrdersProducts")
-                        .HasForeignKey("ProductId")
+                    b.HasOne("MVVMShop.DTOs.ProductDTO", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("MVVMShop.DTOs.OrderDTO", b =>
-                {
-                    b.Navigation("OrdersProducts");
-                });
-
-            modelBuilder.Entity("MVVMShop.DTOs.ProductDTO", b =>
-                {
-                    b.Navigation("OrdersProducts");
                 });
 
             modelBuilder.Entity("MVVMShop.DTOs.UserDTO", b =>

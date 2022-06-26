@@ -12,6 +12,7 @@ public class GlobalNavigationService
     public NavigationService<CartPageViewModel> CartPageNavigationService { get; }
     public NavigationService<AssistantPageViewModel> AssistantPageNavigationService { get; }
     public NavigationService<CustomerPageViewModel> CustomerPageNavigationService { get; }
+    public NavigationService<FinalizationPageViewModel> FinalizationPageNavigationService { get; }
 
     public GlobalNavigationService(NavigationService<StartPageViewModel> startPageNavigationService,
         NavigationService<LoginPageViewModel> loginPageNavigationService,
@@ -20,7 +21,8 @@ public class GlobalNavigationService
         NavigationService<UserManagementViewModel> userManagementNavigationService,
         NavigationService<CartPageViewModel> cartPageNavigationService,
         NavigationService<AssistantPageViewModel> assistantPageNavigationService,
-        NavigationService<CustomerPageViewModel> customerPageNavigationService)
+        NavigationService<CustomerPageViewModel> customerPageNavigationService,
+        NavigationService<FinalizationPageViewModel> finalizationPageNavigationService)
     {
         StartPageNavigationService = startPageNavigationService;
         LoginPageNavigationService = loginPageNavigationService;
@@ -30,5 +32,6 @@ public class GlobalNavigationService
         CartPageNavigationService = cartPageNavigationService;
         AssistantPageNavigationService = assistantPageNavigationService;
         CustomerPageNavigationService = customerPageNavigationService;
+        FinalizationPageNavigationService = finalizationPageNavigationService;
     }
 }

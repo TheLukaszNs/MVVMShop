@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MVVMShop.Commands;
-using MVVMShop.DAL.Entities;
 using MVVMShop.DTOs;
 using MVVMShop.Exceptions;
 using MVVMShop.Model;
@@ -62,7 +61,8 @@ namespace MVVMShop.ViewModel
         public ICommand LoginCommand =>
             _loginCommand ?? (_loginCommand = new RelayCommand(
                     o => LogIn(),
-                    o => regex.Match(Login ?? "").Success
+                    o => regex.Match(Login ?? "")
+                        .Success
                 )
             );
 

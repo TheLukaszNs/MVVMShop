@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:MVVMShop.View"
+             xmlns:viewModel="clr-namespace:MVVMShop.ViewModel"
              mc:Ignorable="d" 
-             >
+             d:DataContext="{d:DesignInstance viewModel:CartPageViewModel}">
     <UserControl.Resources>
         
     </UserControl.Resources>
@@ -36,7 +37,7 @@
                 HorizontalContentAlignment="Stretch"
                 Style="{DynamicResource MaterialDesignListBox}"
                 ItemsSource="{Binding Products}"
-                SelectedItem="{Binding SelectedProduct}"
+                Margin="0 0 10 0"
                 >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -120,6 +121,7 @@
 
             <!-- Summary -->
             <StackPanel
+                Margin="10 0 0 0"
                 Grid.Column="1"
                 >
                 <!-- Price -->
@@ -168,7 +170,9 @@
                     </materialDesign:PackIcon>
                 </StackPanel>
 
-                <Button>
+                <Button 
+                    Command="{Binding GoToFinalizeCommand}"
+                    Cursor="Hand">
                     Dostawa i płatność
                 </Button>
             </StackPanel>

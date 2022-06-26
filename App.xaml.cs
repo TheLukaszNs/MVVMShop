@@ -12,9 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVVMShop.Common.Hashers;
-using MVVMShop.DAL;
-using MVVMShop.DAL.Entities;
-using MVVMShop.DAL.Repositories;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.HostBuilders;
 using MVVMShop.Services;
@@ -45,7 +42,6 @@ namespace MVVMShop
                     string connectionString = hostContext.Configuration.GetConnectionString("Default");
 
                     services.AddSingleton(new MVVMShopContextFactory(connectionString));
-                    services.AddSingleton<DbConnection>();
                     services.AddSingleton<NavigationStore>();
                     services.AddSingleton<AuthStore>();
                     services.AddSingleton<ProductsStore>();
@@ -63,6 +59,7 @@ namespace MVVMShop
                     services.AddSingleton<IOrderCreator, DbOrderCreator>();
                     services.AddSingleton<IUserProvider, DbUserProvider>();
                     services.AddSingleton<IUserEditor, DbUserEditor>();
+                    services.AddSingleton<IOrderCreator, DbOrderCreator>();
 
                     services.AddSingleton(s => new MainWindow()
                     {

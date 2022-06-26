@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMShop.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             >
+             xmlns:viewModel="clr-namespace:MVVMShop.ViewModel"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:FinalizationPageViewModel}">
     <UserControl.Resources>
 
     </UserControl.Resources>
@@ -28,8 +28,9 @@
             Height="500"
             >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <StackPanel
@@ -49,11 +50,8 @@
                     Margin="0 0 0 20"
                     Style="{DynamicResource MaterialDesignFilledComboBox}"
                     SelectedItem="{Binding SelectedDeliveryType}"
-                    >
-                    <ComboBoxItem>Paczkomat</ComboBoxItem>
-                    <ComboBoxItem>Kurier</ComboBoxItem>
-                    <ComboBoxItem>Odbiór osobisty</ComboBoxItem>
-                </ComboBox>
+                    ItemsSource="{Binding ShipmentMethods}"
+                    />
 
                 <TextBox
                     Style="{DynamicResource MaterialDesignFilledTextBox}"
@@ -76,7 +74,7 @@
             </StackPanel>
 
             <StackPanel
-                Grid.Column="1"
+                Grid.Column="2"
                 HorizontalAlignment="Stretch"
                 >
                 <!-- Payment -->
@@ -92,13 +90,11 @@
                     Margin="0 0 0 20"
                     Style="{DynamicResource MaterialDesignFilledComboBox}"
                     SelectedItem="{Binding SelectedPaymentMethod}"
-                    >
-                    <ComboBoxItem>Przelew</ComboBoxItem>
-                    <ComboBoxItem>Karta</ComboBoxItem>
-                    <ComboBoxItem>Przy odbiorze</ComboBoxItem>
-                </ComboBox>
+                    ItemsSource="{Binding PaymentMethods}"
+                    />
 
-                <Button>
+                <Button
+                    Command="{Binding FinalizeOrderCommand}">
                     Zamów
                 </Button>
             </StackPanel>

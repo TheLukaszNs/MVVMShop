@@ -4,14 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MVVMShop.Common.HelperTypes;
+using MVVMShop.Services.OrderCreators;
+using MVVMShop.Stores;
 
 namespace MVVMShop.ViewModel
 {
     public class FinalizationPageViewModel : BaseVM
     {
+        private readonly CartStore _cartStore;
+        private readonly AuthStore _authStore;
         private readonly Regex _postCodeRegex = new Regex("[0 - 9]{2}-[0-9]{3}");
 
+        public List<string> PaymentMethods { get; } = new() { "Przelew", "Karta", "Przy odbiorze" };
+        public List<string> ShipmentMethods { get; } = new() { "Paczkomat", "Kurier", "Odbiór osobisty" };
+
+
         private string _selectedDeliveryType;
+
         public string SelectedDeliveryType
         {
             get => _selectedDeliveryType;
@@ -23,6 +34,7 @@ namespace MVVMShop.ViewModel
         }
 
         private string _streetAddress;
+
         public string StreetAddress
         {
             get => _streetAddress;
@@ -34,6 +46,7 @@ namespace MVVMShop.ViewModel
         }
 
         private string _postCode;
+
         public string PostCode
         {
             get => _postCode;
@@ -45,9 +58,10 @@ namespace MVVMShop.ViewModel
         }
 
         private string _selectedPaymentMethod;
+
         public string SelectedPaymentMethod
         {
-            get => _selectedPaymentMethod; 
+            get => _selectedPaymentMethod;
             set
             {
                 _selectedPaymentMethod = value;
@@ -55,9 +69,30 @@ namespace MVVMShop.ViewModel
             }
         }
 
-        public FinalizationPageViewModel()
-        {
+        private ICommand _finalizeOrderCommand;
 
+        public ICommand FinalizeOrderCommand => _finalizeOrderCommand ??= new RelayCommand(
+            o => FinalizeOrder()
+        );
+
+        public FinalizationPageViewModel(CartStore cartStore, AuthStore authStore)
+        {
+            _cartStore = cartStore;
+            _authStore = authStore;
+        }
+
+        private void FinalizeOrder()
+        {
+            _cartStore.Finalize(new OrderMetadata
+            {
+                Address = StreetAddress,
+                PaymentMethod = SelectedPaymentMethod,
+                PostalCode = PostCode,
+                ShipmentMethod = SelectedDeliveryType,
+                Points = _cartStore.TotalPoints,
+                Value = _cartStore.TotalPrice,
+                UserId = _authStore.AuthenticatedUser.Id,
+            });
         }
     }
 }

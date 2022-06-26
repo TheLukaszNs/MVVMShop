@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVVMShop.Common.HelperTypes;
-using MVVMShop.DAL.Entities;
 using MVVMShop.Model;
 
 namespace MVVMShop.Services.Auth

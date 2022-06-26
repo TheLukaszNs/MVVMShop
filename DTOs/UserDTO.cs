@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using MVVMShop.DAL.Entities;
 
 namespace MVVMShop.DTOs;
 
@@ -20,4 +20,6 @@ public class UserDTO
     public string LastName { get; set; }
     public UserRole Role { get; set; }
     public uint Points { get; set; }
+
+    public ICollection<OrderDTO> Orders { get; set; }
 }
