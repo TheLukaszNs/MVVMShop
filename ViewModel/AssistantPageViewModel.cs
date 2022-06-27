@@ -27,10 +27,18 @@ namespace MVVMShop.ViewModel
         public AssistantPageViewModel(OrdersStore ordersStore)
         {
             _ordersStore = ordersStore;
+            _ordersStore.OrdersLoaded += LoadOrders;
 
             LoadOrders();
         }
 
         private void LoadOrders() => Orders = new ObservableCollection<AssisstantListItemViewModel>(_ordersStore.Orders.Select(o => new AssisstantListItemViewModel(o, _ordersStore)));
+
+        public override void Dispose()
+        {
+            _ordersStore.OrdersLoaded -= LoadOrders;
+
+            base.Dispose();
+        }
     }
 }
