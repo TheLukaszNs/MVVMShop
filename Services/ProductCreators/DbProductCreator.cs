@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MVVMShop.DB.DbContexts;
+﻿using MVVMShop.DB.DbContexts;
 using MVVMShop.DTOs;
 using MVVMShop.Model;
 
@@ -14,10 +8,7 @@ namespace MVVMShop.Services.ProductCreators
     {
         private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbProductCreator(MVVMShopContextFactory dbContextFactory)
-        {
-            _dbContextFactory = dbContextFactory;
-        }
+        public DbProductCreator(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
         public void CreateProduct(Product product)
         {

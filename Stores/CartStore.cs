@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.Common.HelperTypes;
 using MVVMShop.Model;
 using MVVMShop.Services.OrderCreators;
@@ -48,14 +46,8 @@ namespace MVVMShop.Stores
 
         public event Action CartUpdated;
 
-        protected virtual void OnCartUpdated()
-        {
-            CartUpdated?.Invoke();
-        }
+        protected virtual void OnCartUpdated() => CartUpdated?.Invoke();
 
-        public void Finalize(OrderMetadata metadata)
-        {
-            _orderCreator.CreateOrder(metadata, Products);
-        }
+        public void Finalize(OrderMetadata metadata) => _orderCreator.CreateOrder(metadata, Products);
     }
 }

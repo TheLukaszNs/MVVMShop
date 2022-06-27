@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MVVMShop.Model;
-using MVVMShop.Services.OrderCreators;
-using MVVMShop.Services.ProductCreators;
 using MVVMShop.Stores;
 
 namespace MVVMShop.ViewModel
@@ -158,22 +151,13 @@ namespace MVVMShop.ViewModel
             Points = "";
         }
 
-        private void OnProductAdded(Product product)
-        {
-            _products.Add(product);
-        }
+        private void OnProductAdded(Product product) => _products.Add(product);
 
-        private void OnProductRemoved(Product product)
-        {
-            _products.Remove(product);
-        }
+        private void OnProductRemoved(Product product) => _products.Remove(product);
 
         private void OnProductChanged() => LoadProducts();
 
-        private void LoadProducts()
-        {
-            Products = new ObservableCollection<Product>(_productsStore.Products);
-        }
+        private void LoadProducts() => Products = new ObservableCollection<Product>(_productsStore.Products);
 
         public override void Dispose()
         {

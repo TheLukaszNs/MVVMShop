@@ -10,10 +10,7 @@ public class DbUserEditor : IUserEditor
 {
     private readonly MVVMShopContextFactory _dbContextFactory;
 
-    public DbUserEditor(MVVMShopContextFactory dbContextFactory)
-    {
-        _dbContextFactory = dbContextFactory;
-    }
+    public DbUserEditor(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
     public User EditUser(Guid id, User newUser)
     {

@@ -13,14 +13,8 @@ namespace MVVMShop.Commands
     {
         private readonly NavigationService<TViewModel> _navigationService;
 
-        public NavigateCommand(NavigationService<TViewModel> navigationService)
-        {
-            _navigationService = navigationService;
-        }
+        public NavigateCommand(NavigationService<TViewModel> navigationService) => _navigationService = navigationService;
 
-        public override void Execute(object parameter)
-        {
-            _navigationService.Navigate();
-        }
+        public override void Execute(object parameter) => _navigationService.Navigate();
     }
 }

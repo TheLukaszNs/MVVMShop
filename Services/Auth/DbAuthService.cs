@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using MVVMShop.Common.Hashers;
 using MVVMShop.Common.HelperTypes;
 using MVVMShop.DB.DbContexts;
@@ -12,8 +7,6 @@ using MVVMShop.DTOs;
 using MVVMShop.Exceptions;
 using MVVMShop.Model;
 using MVVMShop.Services.Auth;
-using MVVMShop.Stores;
-using MySql.Data.MySqlClient;
 
 namespace MVVMShop.Services
 {
@@ -63,10 +56,7 @@ namespace MVVMShop.Services
             context.SaveChanges();
         }
 
-        public void LogOut()
-        {
-            throw new NotImplementedException();
-        }
+        public void LogOut() => throw new NotImplementedException();
 
         private UserDTO ToUserDto(UserRegisterData user) => new()
         {

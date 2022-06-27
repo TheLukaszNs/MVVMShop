@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.Model;
 
 namespace MVVMShop.Stores
@@ -25,9 +21,6 @@ namespace MVVMShop.Stores
 
         public event Action<User> AuthStateChanged;
 
-        private void OnAuthStateChanged()
-        {
-            AuthStateChanged?.Invoke(AuthenticatedUser);
-        }
+        private void OnAuthStateChanged() => AuthStateChanged?.Invoke(AuthenticatedUser);
     }
 }

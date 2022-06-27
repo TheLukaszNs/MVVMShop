@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace MVVMShop.Commands
 {
@@ -20,10 +16,7 @@ namespace MVVMShop.Commands
             }
         }
 
-        public override bool CanExecute(object parameter)
-        {
-            return !IsExecuting && base.CanExecute(parameter);
-        }
+        public override bool CanExecute(object parameter) => !IsExecuting && base.CanExecute(parameter);
 
         public override async void Execute(object parameter)
         {

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using MVVMShop.DTOs;
 using MVVMShop.Model;
 using MVVMShop.Services.ProductCreators;
 using MVVMShop.Services.ProductProviders;

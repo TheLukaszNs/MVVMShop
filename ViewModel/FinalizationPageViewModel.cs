@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using MVVMShop.Common.HelperTypes;
-using MVVMShop.Services.OrderCreators;
 using MVVMShop.Stores;
-using MVVMShop.Commands;
 using MVVMShop.Services;
 
 namespace MVVMShop.ViewModel

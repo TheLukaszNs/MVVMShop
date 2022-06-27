@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.DTOs;
-using MVVMShop.Model;
 
 namespace MVVMShop.Services.ProductRemover
 {
@@ -15,10 +9,7 @@ namespace MVVMShop.Services.ProductRemover
     {
         private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbProductRemover(MVVMShopContextFactory dbContextFactory)
-        {
-            _dbContextFactory = dbContextFactory;
-        }
+        public DbProductRemover(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
         public bool RemoveProduct(Guid productId)
         {

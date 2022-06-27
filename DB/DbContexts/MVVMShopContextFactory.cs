@@ -6,10 +6,7 @@ public class MVVMShopContextFactory
 {
     private readonly string _connectionString;
 
-    public MVVMShopContextFactory(string connectionString)
-    {
-        _connectionString = connectionString;
-    }
+    public MVVMShopContextFactory(string connectionString) => _connectionString = connectionString;
 
     public MVVMShopContext CreateDbContext()
     {

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.Common.HelperTypes;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.DTOs;
 using MVVMShop.Model;
-using MVVMShop.Services.ProductCreators;
 
 namespace MVVMShop.Services.OrderCreators
 {
@@ -17,10 +11,7 @@ namespace MVVMShop.Services.OrderCreators
     {
         private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbOrderCreator(MVVMShopContextFactory dbContextFactory)
-        {
-            _dbContextFactory = dbContextFactory;
-        }
+        public DbOrderCreator(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
         public bool CreateOrder(OrderMetadata metadata, Dictionary<Product, uint> products)
         {

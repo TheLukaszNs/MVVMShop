@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.Model;
 using MVVMShop.DB.DbContexts;
 
@@ -12,10 +9,7 @@ namespace MVVMShop.Services.UserProvider
     {
         private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbUserProvider(MVVMShopContextFactory dbContextFactory)
-        {
-            _dbContextFactory = dbContextFactory;
-        }
+        public DbUserProvider(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
         public IEnumerable<User> GetAllUsers()
         {

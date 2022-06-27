@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.Model;
 
@@ -12,10 +9,7 @@ namespace MVVMShop.Services.ProductProviders
     {
         private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbProductProvider(MVVMShopContextFactory dbContextFactory)
-        {
-            _dbContextFactory = dbContextFactory;
-        }
+        public DbProductProvider(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
         public IEnumerable<Product> GetAllProducts()
         {

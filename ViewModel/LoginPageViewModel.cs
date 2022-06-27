@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using MVVMShop.Commands;
 using MVVMShop.DTOs;
 using MVVMShop.Exceptions;
-using MVVMShop.Model;
 using MVVMShop.Services;
 using MVVMShop.Services.Auth;
 using MVVMShop.Stores;

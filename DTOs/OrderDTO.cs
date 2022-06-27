@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Windows.Documents;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVVMShop.DTOs;

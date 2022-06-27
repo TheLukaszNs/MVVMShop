@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.Model;
 using MVVMShop.DTOs;
@@ -14,10 +11,7 @@ namespace MVVMShop.Services.OrderEditor
     {
         private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbOrderEditor(MVVMShopContextFactory dbContextFactory)
-        {
-            _dbContextFactory = dbContextFactory;
-        }
+        public DbOrderEditor(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
         public Order EditOrder(Guid id, Order order)
         {

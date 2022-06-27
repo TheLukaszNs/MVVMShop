@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using MVVMShop.DTOs;
 using MVVMShop.Model;
 using MVVMShop.Services;
-using MVVMShop.Services.Auth;
 using MVVMShop.Stores;
-using MVVMShop.ViewModel;
 
 namespace MVVMShop.ViewModel
 {
@@ -115,10 +108,7 @@ namespace MVVMShop.ViewModel
             OnPropertyChanged(nameof(CanExecuteSecondaryAction));
         }
 
-        private void OnCurrentViewModelChanged()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
-        }
+        private void OnCurrentViewModelChanged() => OnPropertyChanged(nameof(CurrentViewModel));
 
         public override void Dispose()
         {

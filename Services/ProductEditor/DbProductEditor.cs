@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.DB.DbContexts;
 using MVVMShop.DTOs;
 using MVVMShop.Model;
@@ -13,10 +10,7 @@ namespace MVVMShop.Services.ProductEditor
     {
         private readonly MVVMShopContextFactory _dbContextFactory;
 
-        public DbProductEditor(MVVMShopContextFactory dbContextFactory)
-        {
-            _dbContextFactory = dbContextFactory;
-        }
+        public DbProductEditor(MVVMShopContextFactory dbContextFactory) => _dbContextFactory = dbContextFactory;
 
         public Product EditProduct(Guid productId, Product editedProduct)
         {

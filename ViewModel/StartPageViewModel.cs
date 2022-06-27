@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MVVMShop.Commands;
 using MVVMShop.Services;
-using MVVMShop.Stores;
-using MVVMShop.ViewModel;
 
 namespace MVVMShop.ViewModel
 {

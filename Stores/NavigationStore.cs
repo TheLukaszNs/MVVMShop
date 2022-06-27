@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVVMShop.ViewModel;
 
 namespace MVVMShop.Stores
@@ -24,9 +20,6 @@ namespace MVVMShop.Stores
 
         public event Action CurrentViewModelChanged;
 
-        private void OnCurrentViewModelChanged()
-        {
-            CurrentViewModelChanged?.Invoke();
-        }
+        private void OnCurrentViewModelChanged() => CurrentViewModelChanged?.Invoke();
     }
 }
