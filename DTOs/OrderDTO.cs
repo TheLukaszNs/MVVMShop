@@ -6,13 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVVMShop.DTOs;
 
-public enum OrderStatus
-{
-    WRealizacji,
-    Zrealizowane,
-    Anulowane,
-}
-
 public class OrderDTO
 {
     [Key] public Guid Id { get; set; }

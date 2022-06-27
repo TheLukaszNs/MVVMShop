@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MVVMShop.ViewModel.BaseVM">
+    <Position X="8.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\BaseVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.ViewModel.AdminPageViewModel">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgYAAAABESAAwAEBgAEcCAAAAAAAAAEAQICggAAIAAQ=</HashCode>
+      <FileName>ViewModel\AdminPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.AssisstantListItemViewModel">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAGAAAAAAAAgAAAAAAAAACAAAAAAQAwAAAAAAA=</HashCode>
+      <FileName>ViewModel\AssisstantListItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.AssistantPageViewModel">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAEAAAAAAAAABAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\AssistantPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.CartListItemViewModel">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAQAAgAEAAABAAAQAAAAAAAAAAICAAAAIAAA=</HashCode>
+      <FileName>ViewModel\CartListItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.CartPageViewModel">
+    <Position X="20.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACACAAgAAAAABAAAEAAAAAQAAAAIAAAIAAACQ=</HashCode>
+      <FileName>ViewModel\CartPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.CustomerPageViewModel">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAABAAAAAAAAAABICAAAAAAAAAAAAIAAAAAAAAQ=</HashCode>
+      <FileName>ViewModel\CustomerPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.FinalizationPageViewModel">
+    <Position X="25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgCAAAAAAgAAAARAAAAABAAAAAAiA0QEgAEAgBA=</HashCode>
+      <FileName>ViewModel\FinalizationPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.HistoryPageItemViewModel">
+    <Position X="27.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAQAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\HistoryPageItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.HistoryPageViewModel">
+    <Position X="29.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAEAAAAAAAAABAAAAAAAAAABAEAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\HistoryPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.LoginPageViewModel">
+    <Position X="31.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAACAAAAIAAAAAAQAAAAgAABAABACAEAQIAiAAAA=</HashCode>
+      <FileName>ViewModel\LoginPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.MainViewModel">
+    <Position X="34" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAMAAKAAIMAAIEAAAgAgAAEAAAAABGAAAEAAAII=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.ProductsListItemViewModel">
+    <Position X="36.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAABAAACAAAAAAAAAAIAAAAAIIAA=</HashCode>
+      <FileName>ViewModel\ProductsListItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.RegisterPageViewModel">
+    <Position X="38.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAEAAASAAEAAAIAEAAAAgAAABAACCAAIAAAAAAAk=</HashCode>
+      <FileName>ViewModel\RegisterPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.StartPageViewModel">
+    <Position X="40.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\StartPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.UserManagementItemViewModel">
+    <Position X="43" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAIAAABEAAAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\UserManagementItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.UserManagementViewModel">
+    <Position X="45.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAIAAAAAAAAAAAAAAAAAIAAAEIAAAAAAAA=</HashCode>
+      <FileName>ViewModel\UserManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Services.DbAuthService">
+    <Position X="10.25" Y="14.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAgAAAAAAAAAgAAAAAAAAABABAAAAAIAAAAAAA=</HashCode>
+      <FileName>Services\Auth\DbAuthService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.DTOs.OrderDTO">
+    <Position X="8.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAABACgAAAAAAAAAgAAAAAAAADAAQgAAAAAAA=</HashCode>
+      <FileName>DTOs\OrderDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.DTOs.OrdersProductsDTO">
+    <Position X="13" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAECAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\OrdersProductsDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.DTOs.ProductDTO">
+    <Position X="16" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAARAAgAAAAAABAAAAAAAAABAAAAAAAAAIAAA=</HashCode>
+      <FileName>DTOs\ProductDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.DTOs.UserDTO">
+    <Position X="18.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAEAAACAAgAAAEAAAAAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>DTOs\UserDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Exceptions.AuthFailedException">
+    <Position X="8.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\AuthFailedException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Exception" Collapsed="true">
+    <Position X="8.5" Y="7" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.DB.DbContexts.MVVMShopContext">
+    <Position X="24.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>DB\DbContexts\MVVMShopContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.EntityFrameworkCore.DbContext" Collapsed="true">
+    <Position X="24.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.DB.DbContexts.MVVMShopContextFactory">
+    <Position X="27" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>DB\DbContexts\MVVMShopContextFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.DB.DbContexts.MVVMShopDesignTimeContextFactory">
+    <Position X="29.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\DbContexts\MVVMShopDesignTimeContextFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Common.Hashers.DefaultPasswordHasher">
+    <Position X="34.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Hashers\DefaultPasswordHasher.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Commands.BaseCommand">
+    <Position X="36.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\BaseCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Commands.AsyncBaseCommand">
+    <Position X="36.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABgAQAAEAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Commands\AsyncBaseCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Commands.NavigateCommand&lt;TViewModel&gt;">
+    <Position X="38.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\NavigateCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.ViewModel.RelayCommand">
+    <Position X="38.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Common.HelperTypes.OrderMetadata">
+    <Position X="41" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAgAAAIAAAAAgAAAAAAAACAAQgAAAAAAA=</HashCode>
+      <FileName>Common\HelperTypes\OrderMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Common.HelperTypes.UserRegisterData">
+    <Position X="42.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Common\HelperTypes\UserRegisterData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Services.OrderCreators.DbOrderCreator">
+    <Position X="14.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\OrderCreators\DbOrderCreator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.OrderEditor.DbOrderEditor">
+    <Position X="19" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGAAAAACAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Services\OrderEditor\DbOrderEditor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.OrderProviders.DbOrderProvider">
+    <Position X="23.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Services\OrderProviders\DbOrderProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.ProductCreators.DbProductCreator">
+    <Position X="27.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductCreators\DbProductCreator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.ProductEditor.DbProductEditor">
+    <Position X="31.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABEAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductEditor\DbProductEditor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.ProductProviders.DbProductProvider">
+    <Position X="10.25" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductProviders\DbProductProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.ProductRemover.DbProductRemover">
+    <Position X="14.75" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductRemover\DbProductRemover.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.UserEditor.DbUserEditor">
+    <Position X="19" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Services\UserEditor\DbUserEditor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.UserProvider.DbUserProvider">
+    <Position X="23.25" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Services\UserProvider\DbUserProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Services.GlobalNavigationService">
+    <Position X="25.75" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEACAgAAAABAAAAAAAAAggAAAAAIAACAAAAAIAIAA=</HashCode>
+      <FileName>Services\GlobalNavigationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Services.NavigationService&lt;TViewModel&gt;">
+    <Position X="28.25" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAEAAAAA=</HashCode>
+      <FileName>Services\NavigationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Stores.AuthStore">
+    <Position X="8.5" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAIAAAAAAABAgAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Stores\AuthStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Stores.CartStore">
+    <Position X="10.25" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAQAAEAAAAAwAAAAAAIACAAACQ=</HashCode>
+      <FileName>Stores\CartStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Stores.NavigationStore">
+    <Position X="12" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAIEAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Stores\NavigationStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Stores.OrdersStore">
+    <Position X="13.75" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEAAAAAACAAAAAAAAAAAAAQAAAAAAAIiEAAAAAAAAA=</HashCode>
+      <FileName>Stores\OrdersStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Stores.ProductsStore">
+    <Position X="15.5" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgEAgIAAABQAEQwAgAEAAAAAAAAAAAACAIAAQ=</HashCode>
+      <FileName>Stores\ProductsStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Stores.UsersStore">
+    <Position X="17.25" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAgAAAAAAAAAAAgAAIgACAAAgAAAAAAAAAgA=</HashCode>
+      <FileName>Stores\UsersStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.View.UserControls.NavBar">
+    <Position X="20.5" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQQBAAAgAQQUiAAAQAAAgABBAAAAggAAgAAQQAAAAAg=</HashCode>
+      <FileName>View\UserControls\NavBar.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.UserControls.AssisstantOrderListItem">
+    <Position X="22.25" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\UserControls\AssisstantOrderListItem.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.AdminPage">
+    <Position X="24" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\AdminPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.AssistantPage">
+    <Position X="25.75" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\AssistantPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.BindablePasswordBox">
+    <Position X="22.25" Y="24.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAABAABACAAAAABIAAAA=</HashCode>
+      <FileName>View\BindablePasswordBox.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.CartPage">
+    <Position X="24" Y="24.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CartPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.FinalizationPage">
+    <Position X="25.75" Y="24.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\FinalizationPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.HistoryPage">
+    <Position X="24" Y="26" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\HistoryPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.LoginPage">
+    <Position X="25.75" Y="26" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.MainWindow">
+    <Position X="22.25" Y="27.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.RegisterPage">
+    <Position X="24" Y="27.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\RegisterPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.StartPage">
+    <Position X="25.75" Y="27.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\StartPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.View.UserManagementPage">
+    <Position X="27.5" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\UserManagementPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVVMShop.Model.Order">
+    <Position X="30.25" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAECAAAEAAAAgAAAAIAAAAgAAAAAAAACAAAgAAAAAAg=</HashCode>
+      <FileName>Model\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Model.Product">
+    <Position X="32" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAgAAAAAABAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Model\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVVMShop.Model.User">
+    <Position X="33.75" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAgAAAEAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Object">
+    <Position X="6.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="MVVMShop.Services.Auth.IAuthService">
+    <Position X="8.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAABABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Auth\IAuthService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Common.Hashers.IHasher">
+    <Position X="32.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Hashers\IHasher.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.OrderCreators.IOrderCreator">
+    <Position X="13" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\OrderCreators\IOrderCreator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.OrderEditor.IOrderEditor">
+    <Position X="17.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Services\OrderEditor\IOrderEditor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.OrderProviders.IOrderProvider">
+    <Position X="21.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Services\OrderProviders\IOrderProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.ProductCreators.IProductCreator">
+    <Position X="25.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductCreators\IProductCreator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.ProductEditor.IProductEditor">
+    <Position X="30" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductEditor\IProductEditor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.ProductProviders.IProductProvider">
+    <Position X="8.5" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductProviders\IProductProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.ProductRemover.IProductRemover">
+    <Position X="13" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductRemover\IProductRemover.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.UserEditor.IUserEditor">
+    <Position X="17.25" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Services\UserEditor\IUserEditor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVVMShop.Services.UserProvider.IUserProvider">
+    <Position X="21.5" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Services\UserProvider\IUserProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="MVVMShop.DTOs.OrderStatus">
+    <Position X="10.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAACAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\OrderStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MVVMShop.DTOs.UserRole">
+    <Position X="20.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>DTOs\UserRole.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -4,13 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVVMShop.DTOs;
 
-public enum UserRole
-{
-    Admin,
-    Pracownik,
-    Klient,
-}
-
 public class UserDTO
 {
     [Key] public Guid Id { get; set; }
